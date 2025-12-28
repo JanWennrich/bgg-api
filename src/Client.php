@@ -2,6 +2,8 @@
 
 namespace Nataniel\BoardGameGeek;
 
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\GuzzleException;
 use Nataniel\BoardGameGeek\Search\Query;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -20,13 +22,23 @@ class Client
      * @var LoggerInterface
      */
     private LoggerInterface $logger;
+    private GuzzleClient $httpClient;
 
     /**
      * @param LoggerInterface|null $logger
+     * @param GuzzleClient|null $httpClient
      */
-    public function __construct(?LoggerInterface $logger = null)
+    public function __construct(?LoggerInterface $logger = null, ?GuzzleClient $httpClient = null)
     {
         $this->logger = $logger ?? new NullLogger();
+
+        $this->httpClient = $httpClient ?? new GuzzleClient([
+            'base_uri' => self::API_URL . '/',
+            'timeout' => 30,
+            'headers' => [
+                'Accept-Encoding' => 'gzip',
+            ],
+        ]);
     }
 
     public function setUserAgent(string $userAgent): self
@@ -176,11 +188,13 @@ class Client
 
     /**
      * @throws Exception
+     * @throws \Exception
      */
     protected function request(string $action, array $params = []): \SimpleXMLElement
     {
-        $url = sprintf('%s/%s?%s', self::API_URL, $action, http_build_query(array_filter($params)));
-        $this->logger->debug('BGG API request', ['url' => $url, 'action' => $action, 'params' => $params]);
+        $params = array_filter($params);
+
+        $this->logger->debug('BGG API request', ['action' => $action, 'params' => $params]);
 
         $maxRetries = 3;
         
@@ -188,35 +202,35 @@ class Client
             if ($attempt > 0) {
                 $this->logger->info('Retrying BGG API request (attempt {attempt})', [
                     'attempt' => $attempt,
-                    'action' => $action,
-                    'url' => $url,
+                    'action' => $action
                 ]);
-                
-                // First retry: 2 seconds, later retries: 6 seconds to comply with BGG's rate limiting suggestion'
-                $retryDelay = ($attempt === 1) ? 2 : 6;
-                sleep($retryDelay);
+
+                sleep(5);
             }
 
             $startTime = microtime(true);
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-            curl_setopt($ch, CURLOPT_ENCODING, 'gzip');
-            // Set User-Agent
-            curl_setopt($ch, CURLOPT_USERAGENT, $this->userAgent);
-            // Set optional Authorization header
-            if ($this->authorization !== null && $this->authorization !== '') {
-                curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                    'Authorization: ' . $this->authorization,
+            try {
+                $httpResponse = $this->httpClient->request('GET', $action, [
+                    'query' => $params,
+                    'headers' => array_filter([
+                        'User-Agent' => $this->userAgent,
+                        'Authorization' => $this->authorization,
+                    ]),
+                    'http_errors' => false, // we handle status codes ourselves
                 ]);
+            } catch (GuzzleException $exception) {
+                $this->logger->error('BGG API transport error', [
+                    'exception' => $exception,
+                    'attempt' => $attempt,
+                    'action' => $action,
+                ]);
+
+                continue;
             }
 
-            $response = curl_exec($ch);
-            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            $curlError = curl_error($ch);
+            $httpCode = $httpResponse->getStatusCode();
+            $response = $httpResponse->getBody()->getContents();
             $duration = microtime(true) - $startTime;
 
             $this->logger->debug('BGG API response', [
@@ -226,54 +240,23 @@ class Client
                 'attempt' => $attempt,
             ]);
 
-            curl_close($ch);
-
-            if ($response === false) {
-                $this->logger->error('BGG API call failed', [
-                    'error' => $curlError,
-                    'url' => $url,
+            if ($httpCode === 202) {
+                $this->logger->info('BGG API returned 202, retrying', [
+                    'code' => $httpCode,
                     'action' => $action,
                     'attempt' => $attempt,
                 ]);
 
-                // If this is the last attempt, throw an exception
-                if ($attempt === $maxRetries) {
-                    throw new Exception('API call failed: ' . $curlError);
-                }
-
-                // Otherwise, continue to the next attempt
                 continue;
             }
 
-            if ($httpCode > 399) {
+            if ($httpCode >= 500) {
                 $this->logger->error('BGG API error response', [
                     'code' => $httpCode,
-                    'url' => $url,
                     'action' => $action,
                     'attempt' => $attempt,
                     'response' => substr($response, 0, 1000),
                 ]);
-
-                // If this is the last attempt, throw an exception
-                if ($attempt === $maxRetries) {
-                    throw new Exception('API call failed with HTTP code ' . $httpCode);
-                }
-
-                // Otherwise, continue to the next attempt
-                continue;
-            }
-
-            // If we got a 202, retry after delay
-            if ($httpCode === 202) {
-                $this->logger->info('BGG API request queued (202)', [
-                    'action' => $action,
-                    'attempt' => $attempt,
-                ]);
-
-                // If this is the last attempt, throw an exception
-                if ($attempt === $maxRetries) {
-                    throw new Exception('API request still processing after ' . $maxRetries . ' attempts');
-                }
 
                 // Otherwise, continue to the next attempt
                 continue;
@@ -282,16 +265,10 @@ class Client
             $xml = simplexml_load_string($response);
             if (!$xml instanceof \SimpleXMLElement) {
                 $this->logger->error('Failed to parse BGG API response as XML', [
-                    'url' => $url,
                     'action' => $action,
                     'attempt' => $attempt,
                     'response' => substr($response, 0, 1000),
                 ]);
-
-                // If this is the last attempt, throw an exception
-                if ($attempt === $maxRetries) {
-                    throw new Exception('Failed to parse API response as XML');
-                }
 
                 // Otherwise, continue to the next attempt
                 continue;
