@@ -1,9 +1,6 @@
 <?php
 namespace JanWennrich\BoardGameGeekApi\Search;
 
-use JanWennrich\BoardGameGeekApi\Client;
-use JanWennrich\BoardGameGeekApi\Thing;
-
 class Result
 {
     /** @var \SimpleXMLElement */
