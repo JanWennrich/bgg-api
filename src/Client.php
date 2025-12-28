@@ -3,6 +3,7 @@
 namespace Nataniel\BoardGameGeek;
 
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
 use Nataniel\BoardGameGeek\Search\Query;
 use Psr\Log\LoggerInterface;
@@ -23,6 +24,7 @@ class Client
      */
     private LoggerInterface $logger;
     private GuzzleClient $httpClient;
+    private CookieJar $cookieJar;
 
     /**
      * @param LoggerInterface|null $logger
@@ -31,10 +33,12 @@ class Client
     public function __construct(?LoggerInterface $logger = null, ?GuzzleClient $httpClient = null)
     {
         $this->logger = $logger ?? new NullLogger();
+        $this->cookieJar = new CookieJar();
 
         $this->httpClient = $httpClient ?? new GuzzleClient([
             'base_uri' => self::API_URL . '/',
             'timeout' => 30,
+            'cookies' => $this->cookieJar,
             'headers' => [
                 'Accept-Encoding' => 'gzip',
             ],
@@ -290,6 +294,49 @@ class Client
         }
 
         // This should never be reached due to the exception in the last attempt
-        throw new Exception('API call failed after ' . $maxRetries . ' attempts');
+        throw new Exception('API call failed');
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function login(string $username, string $password): void
+    {
+        $url = 'https://boardgamegeek.com/login/api/v1';
+
+        $this->logger->info('Logging in to BGG');
+
+        try {
+            $response = $this->httpClient->request('POST', $url, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'User-Agent' => $this->userAgent,
+                ],
+                'json' => [
+                    'credentials' => [
+                        'username' => $username,
+                        'password' => $password,
+                    ],
+                ],
+                'http_errors' => false,
+            ]);
+        } catch (GuzzleException $exception) {
+            $this->logger->error('BGG login request failed', [
+                'exception' => $exception,
+            ]);
+            throw new \Exception('Login request failed', 0, $exception);
+        }
+
+        $status = $response->getStatusCode();
+        $body = $response->getBody()->getContents();
+
+        $this->logger->debug('BGG login response', [
+            'status' => $status,
+            'body' => substr($body, 0, 500),
+        ]);
+
+        if ($status >= 300) {
+            throw new \Exception('BGG login failed with status ' . $status);
+        }
     }
 }
