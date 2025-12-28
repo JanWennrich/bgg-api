@@ -298,6 +298,9 @@ class Client
     }
 
     /**
+     * Log in via username and password.
+     * This grants access to data of the given user without an {@see https://boardgamegeek.com/using_the_xml_api authorization token}.
+     *
      * @throws \Exception
      */
     public function login(string $username, string $password): void
