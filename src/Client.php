@@ -250,6 +250,17 @@ class Client
                 continue;
             }
 
+            if ($httpCode >= 400 && $httpCode <= 499) {
+                $this->logger->error('BGG API returned client error', [
+                    'code' => $httpCode,
+                    'action' => $action,
+                    'attempt' => $attempt,
+                ]);
+
+                // Otherwise, continue to the next attempt
+                break;
+            }
+
             if ($httpCode >= 500) {
                 $this->logger->error('BGG API error response', [
                     'code' => $httpCode,
