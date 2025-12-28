@@ -1,19 +1,19 @@
 <?php
-namespace Nataniel\BoardGameGeekTest;
+namespace JanWennrich\BoardGameGeekApi\Test;
 
 use PHPUnit\Framework\TestCase;
-use Nataniel\BoardGameGeek;
+use JanWennrich\BoardGameGeekApi;
 
 class SearchTest extends TestCase
 {
     public function testQuery()
     {
         $xml = simplexml_load_file(__DIR__ . '/../files/search.xml');
-        $search = new BoardGameGeek\Search\Query($xml);
+        $search = new BoardGameGeekApi\Search\Query($xml);
         $this->assertCount(82, $search);
         $this->assertInstanceOf(\Traversable::class, $search);
         foreach ($search as $result) {
-            $this->assertInstanceOf(BoardGameGeek\Search\Result::class, $result);
+            $this->assertInstanceOf(BoardGameGeekApi\Search\Result::class, $result);
         }
     }
 }

@@ -1,7 +1,7 @@
 <?php
-namespace Nataniel\BoardGameGeek\Boardgame;
+namespace JanWennrich\BoardGameGeekApi\Boardgame;
 
-use Nataniel\BoardGameGeek\Exception;
+use JanWennrich\BoardGameGeekApi\Exception;
 
 abstract class Link
 {

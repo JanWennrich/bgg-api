@@ -1,7 +1,7 @@
 <?php
-namespace Nataniel\BoardGameGeek\Search;
+namespace JanWennrich\BoardGameGeekApi\Search;
 
-use Nataniel\BoardGameGeek\Exception;
+use JanWennrich\BoardGameGeekApi\Exception;
 
 class Query implements \IteratorAggregate, \Countable, \ArrayAccess
 {

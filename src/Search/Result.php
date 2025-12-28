@@ -1,8 +1,8 @@
 <?php
-namespace Nataniel\BoardGameGeek\Search;
+namespace JanWennrich\BoardGameGeekApi\Search;
 
-use Nataniel\BoardGameGeek\Client;
-use Nataniel\BoardGameGeek\Thing;
+use JanWennrich\BoardGameGeekApi\Client;
+use JanWennrich\BoardGameGeekApi\Thing;
 
 class Result
 {

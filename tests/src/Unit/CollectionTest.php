@@ -1,8 +1,8 @@
 <?php
-namespace App\Tests\src\Unit;
+namespace JanWennrich\BoardGameGeekApi\Test\Unit;
 
-use Nataniel\BoardGameGeek\Collection;
-use Nataniel\BoardGameGeek\Collection\Item;
+use JanWennrich\BoardGameGeekApi\Collection;
+use JanWennrich\BoardGameGeekApi\Collection\Item;
 use PHPUnit\Framework\TestCase;
 
 class CollectionTest extends TestCase

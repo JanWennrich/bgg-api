@@ -1,8 +1,8 @@
 <?php
-namespace App\Tests\src\Unit;
+namespace JanWennrich\BoardGameGeekApi\Test\Unit;
 
-use Nataniel\BoardGameGeek\Collection\Item;
-use Nataniel\BoardGameGeek\Collection\ItemStatus;
+use JanWennrich\BoardGameGeekApi\Collection\Item;
+use JanWennrich\BoardGameGeekApi\Collection\ItemStatus;
 use PHPUnit\Framework\TestCase;
 
 class ItemStatusTest extends TestCase

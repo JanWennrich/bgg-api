@@ -1,6 +1,6 @@
 <?php
 
-namespace Nataniel\BoardGameGeek\Collection;
+namespace JanWennrich\BoardGameGeekApi\Collection;
 
 class ItemStatus
 {

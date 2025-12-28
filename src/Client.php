@@ -1,11 +1,11 @@
 <?php
 
-namespace Nataniel\BoardGameGeek;
+namespace JanWennrich\BoardGameGeekApi;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
-use Nataniel\BoardGameGeek\Search\Query;
+use JanWennrich\BoardGameGeekApi\Search\Query;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 /**

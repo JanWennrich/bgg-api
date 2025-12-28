@@ -1,5 +1,5 @@
 <?php
-namespace Nataniel\BoardGameGeek\Boardgame;
+namespace JanWennrich\BoardGameGeekApi\Boardgame;
 
 class Version extends Link
 {

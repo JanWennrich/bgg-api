@@ -1,9 +1,13 @@
 {
-  "name": "nataniel/bggxmlapi2",
-  "description": "BoardGameGeek.com XML API2 - PHP Client Library",
+  "name": "jan-wennrich/bgg-api",
+  "description": "BoardGameGeek.com API Client Library",
   "type": "library",
   "license": "MIT",
   "authors": [
+    {
+      "name": "Jan Wennrich",
+      "homepage": "https://janwennrich.github.io/"
+    },
     {
       "name": "Artur Jedlinski",
       "email": "artur@jedlinski.pl"
@@ -21,8 +25,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Nataniel\\BoardGameGeek\\": "src/",
-      "Nataniel\\BoardGameGeekTest\\": "tests/src/"
+      "JanWennrich\\BoardGameGeekApi\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "JanWennrich\\BoardGameGeekApi\\Test\\": "tests/src/"
     }
   }
 }

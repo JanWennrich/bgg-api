@@ -1,15 +1,19 @@
-# bggxmlapi2
-PHP Client Library for BoardGameGeek.com [XML API2](https://boardgamegeek.com/wiki/page/BGG_XML_API2)
+# jan-wennrich/bgg-api
+
+PHP API Client Library for the BoardGameGeek.com API.
+
+_(Only the [BGG XML API2](https://boardgamegeek.com/wiki/page/BGG_XML_API2) is currently supported)_
 
 ## Installation
 ```
-composer require nataniel/bggxmlapi2
+composer require jan-wennrich/bgg-api
 ```
 
 ## Usage
+
 ```php
 // initialize client
-$client = new \Nataniel\BoardGameGeek\Client();
+$client = new \JanWennrich\BoardGameGeekApi\Client();
 
 // download information about "Dixit"
 // https://boardgamegeek.com/boardgame/39856/dixit
@@ -38,3 +42,7 @@ foreach ($result as $item) {
     $things[] = $client->getThing($item->getId());
 }
 ```
+
+## Credits
+
+This is a fork of [castro732/bggxmlapi2](https://github.com/castro732/bggxmlapi2) which is a fork of [nataniel/bggxmlapi2](https://github.com/nataniel/bggxmlapi2).

@@ -1,5 +1,5 @@
 <?php
-namespace Nataniel\BoardGameGeek;
+namespace JanWennrich\BoardGameGeekApi;
 
 class Boardgame extends Thing
 {

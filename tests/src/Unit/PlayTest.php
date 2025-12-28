@@ -1,8 +1,8 @@
 <?php
-namespace Nataniel\BoardGameGeekTest\Unit;
+namespace JanWennrich\BoardGameGeekApi\Test\Unit;
 
-use Nataniel\BoardGameGeek\Play;
-use Nataniel\BoardGameGeek\Player;
+use JanWennrich\BoardGameGeekApi\Play;
+use JanWennrich\BoardGameGeekApi\Player;
 use PHPUnit\Framework\TestCase;
 
 class PlayTest extends TestCase
