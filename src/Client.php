@@ -8,28 +8,18 @@ use GuzzleHttp\Exception\GuzzleException;
 use JanWennrich\BoardGameGeekApi\Search\Query;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-/**
- * Class Client
- * @package Nataniel\BoardGameGeek
- * https://boardgamegeek.com/wiki/page/BGG_XML_API2
- */
+
 class Client
 {
     const API_URL = 'https://boardgamegeek.com/xmlapi2';
 
     private string $userAgent = 'BGG XML API Client/1.0';
     private ?string $authorization = null;
-    /**
-     * @var LoggerInterface
-     */
+
     private LoggerInterface $logger;
     private GuzzleClient $httpClient;
     private CookieJar $cookieJar;
 
-    /**
-     * @param LoggerInterface|null $logger
-     * @param GuzzleClient|null $httpClient
-     */
     public function __construct(?LoggerInterface $logger = null, ?GuzzleClient $httpClient = null)
     {
         $this->logger = $logger ?? new NullLogger();
@@ -107,8 +97,7 @@ class Client
      * https://boardgamegeek.com/wiki/page/BGG_XML_API2#toc11
      * TODO: Note that you should check the response status code... if it's 202 (vs. 200) then it indicates BGG has queued
      * your request and you need to keep retrying (hopefully w/some delay between tries) until the status is not 202.
-     * @param array $params
-     * @return Collection
+     *
      * @throws Exception
      */
     public function getCollection(array $params): Collection
@@ -157,10 +146,6 @@ class Client
     }
 
     /**
-     * @param string $query
-     * @param bool $exact
-     * @param string $type
-     * @return Query
      * @throws Exception
      */
     public function search(string $query, bool $exact = false, string $type = Type::BOARDGAME): Search\Query
