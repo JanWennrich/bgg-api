@@ -1,6 +1,8 @@
 <?php
 namespace JanWennrich\BoardGameGeekApi;
 
+use JanWennrich\BoardGameGeekApi\Collection\Item;
+
 class Collection implements \IteratorAggregate, \Countable
 {
     /** @var \SimpleXMLElement */
@@ -18,7 +20,7 @@ class Collection implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @return \ArrayIterator|Collection\Item[]
+     * @return \ArrayIterator<Item>
      */
     public function getIterator(): \ArrayIterator
     {

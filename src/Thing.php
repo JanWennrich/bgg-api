@@ -233,7 +233,7 @@ class Thing
     }
 
     /**
-     * @return int
+     * @return float
      */
     public function getRank()
     {

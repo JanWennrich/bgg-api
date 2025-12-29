@@ -21,7 +21,7 @@ class Query implements \IteratorAggregate, \Countable, \ArrayAccess
     }
 
     /**
-     * @return \ArrayIterator|Result[]
+     * @return \ArrayIterator<Result>
      */
     public function getIterator()
     {
