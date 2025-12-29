@@ -106,21 +106,18 @@ class ClientTest extends TestCase
     public function testGetPlays()
     {
         $client = new BoardGameGeekApi\Client();
-        $plays = $client->getPlays([
-            'username' => 'nataniel',
-            'mindate' => '2005-02-07',
-            'maxdate' => '2005-02-07',
-        ]);
+
+        $username = $this->getUsername();
+        $password = $this->getPassword();
+
+        $client->login($username, $password);
+
+        $plays = $client->getPlays(['username' => $username]);
 
         $this->assertNotEmpty($plays);
 
         foreach ($plays as $play) {
             $this->assertInstanceOf(BoardGameGeekApi\Play::class, $play);
-            $this->assertEquals('2005-02-07', $play->getDate());
-            $this->assertEquals(1, $play->getQuantity());
-            $this->assertEquals('thing', $play->getObjectType());
-            $this->assertEquals(3307, $play->getObjectId());
-            $this->assertEquals('Wallenstein', $play->getObjectName());
         }
     }
 
@@ -139,5 +136,26 @@ class ClientTest extends TestCase
         $this->assertEquals('Artur', $item->getFirstName());
         $this->assertEquals('2004', $item->getYearRegistered());
         $this->assertStringStartsWith('https://cf.geekdo-static.com', $item->getAvatar());
+    }
+
+    private function getUsername(): string
+    {
+        return $this->getEnvironmentVariable('BGG_USERNAME');
+    }
+
+    private function getPassword(): string
+    {
+        return $this->getEnvironmentVariable('BGG_PASSWORD');
+    }
+
+    public function getEnvironmentVariable(string $environmentVariable): string
+    {
+        $value = getenv($environmentVariable);
+
+        $this->assertNotFalse($value, "Environment variable '$environmentVariable' must be set");
+        $this->assertIsString($value, "Environment variable '$environmentVariable' must be a string");
+        $this->assertNotEmpty($value, "Environment variable '$environmentVariable' must not be empty");
+
+        return $value;
     }
 }
