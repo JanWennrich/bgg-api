@@ -63,9 +63,7 @@ class Query implements \IteratorAggregate, \Countable, \ArrayAccess
 
     public function offsetGet($offset): ?Result
     {
-        return isset($this->results[ $offset ])
-            ? $this->results[ $offset ]
-            : null;
+        return $this->results[$offset] ?? null;
     }
 
     /**
