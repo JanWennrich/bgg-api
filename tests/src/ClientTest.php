@@ -13,6 +13,8 @@ class ClientTest extends TestCase
      */
     public function testGetThing()
     {
+        $this->markTestIncomplete('Test requires authorization token');
+
         $client = new BoardGameGeekApi\Client();
         $thing = $client->getThing(5371611111, true);
         $this->assertNull($thing);
@@ -28,6 +30,8 @@ class ClientTest extends TestCase
      */
     public function testGetThings()
     {
+        $this->markTestIncomplete('Test requires authorization token');
+
         $client = new BoardGameGeekApi\Client();
         $things = $client->getThings([ 209671, 194880 ], true);
 
@@ -50,6 +54,8 @@ class ClientTest extends TestCase
      */
     public function testGetHotItems()
     {
+        $this->markTestIncomplete('Test requires authorization token');
+
         $client = new BoardGameGeekApi\Client();
         $items = $client->getHotItems();
 
@@ -68,6 +74,8 @@ class ClientTest extends TestCase
      */
     public function testSearch()
     {
+        $this->markTestIncomplete('Test requires authorization token');
+
         $client = new BoardGameGeekApi\Client();
         $search = $client->search('Domek', false, BoardGameGeekApi\Type::BOARDGAME);
 
@@ -127,6 +135,8 @@ class ClientTest extends TestCase
      */
     public function testGetUser()
     {
+        $this->markTestIncomplete('Test requires authorization token');
+
         $client = new BoardGameGeekApi\Client();
         $item = $client->getUser('notexistingusername');
         $this->assertNull($item);
