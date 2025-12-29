@@ -52,7 +52,7 @@ class ItemStatus
         }
         try {
             return new \DateTimeImmutable($value);
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return null;
         }
     }
