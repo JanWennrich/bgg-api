@@ -47,6 +47,9 @@ abstract class Link
         return $this->toString();
     }
 
+    /**
+     * @throws Exception
+     */
     public static function factory(\SimpleXMLElement $xml): Link
     {
         switch ($xml['type']) {

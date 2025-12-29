@@ -210,6 +210,7 @@ class Thing
 
     /**
      * @return Boardgame\Link[]
+     * @throws Exception
      */
     public function getLinks(): array
     {
