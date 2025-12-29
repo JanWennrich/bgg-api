@@ -29,7 +29,7 @@ abstract class Link
 
     public function getType(): int
     {
-        return (string) $this->root['type'];
+        return (int) $this->root['type'];
     }
 
     public function getName(): string
