@@ -24,7 +24,7 @@ class Query implements \IteratorAggregate, \Countable, \ArrayAccess
     /**
      * @return \ArrayIterator<Result>
      */
-    public function getIterator()
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->results);
     }
@@ -39,7 +39,7 @@ class Query implements \IteratorAggregate, \Countable, \ArrayAccess
      * @param  mixed $value
      * @throws Exception
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         throw new Exception('Search\\Query is read-only.');
     }
@@ -48,7 +48,7 @@ class Query implements \IteratorAggregate, \Countable, \ArrayAccess
      * @param  int $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->results[ $offset ]);
     }
@@ -57,7 +57,7 @@ class Query implements \IteratorAggregate, \Countable, \ArrayAccess
      * @param  int $offset
      * @throws Exception
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         throw new Exception('Search\\Query is read-only.');
     }
