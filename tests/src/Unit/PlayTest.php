@@ -1,4 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi\Test\Unit;
 
 use JanWennrich\BoardGameGeekApi\Play;

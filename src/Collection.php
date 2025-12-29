@@ -1,4 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi;
 
 use JanWennrich\BoardGameGeekApi\Collection\Item;
@@ -29,6 +30,6 @@ class Collection implements \IteratorAggregate, \Countable
 
     public function count(): int
     {
-        return (int)$this->root['totalitems'];
+        return (int) $this->root['totalitems'];
     }
 }

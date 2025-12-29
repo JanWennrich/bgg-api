@@ -1,4 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi;
 
 class Factory

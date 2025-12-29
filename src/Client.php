@@ -10,7 +10,7 @@ use Psr\Log\NullLogger;
 
 class Client
 {
-    const API_URL = 'https://boardgamegeek.com/xmlapi2';
+    public const API_URL = 'https://boardgamegeek.com/xmlapi2';
 
     private string $userAgent = 'BGG XML API Client/1.0';
     private ?string $authorization = null;
@@ -131,13 +131,13 @@ class Client
     {
         try {
 
-        $xml = $this->request('user', [
-            'name' => $name,
-        ]);
+            $xml = $this->request('user', [
+                'name' => $name,
+            ]);
 
-        return !empty($xml['id'])
-            ? new User($xml)
-            : null;
+            return !empty($xml['id'])
+                ? new User($xml)
+                : null;
 
         } catch (\Exception) {
             return null;
@@ -185,12 +185,12 @@ class Client
         $this->logger->debug('BGG API request', ['action' => $action, 'params' => $params]);
 
         $maxRetries = 3;
-        
+
         for ($attempt = 0; $attempt <= $maxRetries; $attempt++) {
             if ($attempt > 0) {
                 $this->logger->info('Retrying BGG API request (attempt {attempt})', [
                     'attempt' => $attempt,
-                    'action' => $action
+                    'action' => $action,
                 ]);
 
                 sleep(5);

@@ -1,18 +1,18 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi\Boardgame;
 
 use JanWennrich\BoardGameGeekApi\Exception;
 
 abstract class Link
 {
-    const
-        TYPE_CATEGORY = 'boardgamecategory',
-        TYPE_MECHANIC = 'boardgamemechanic',
-        TYPE_EXPANSION = 'boardgameexpansion',
-        TYPE_DESIGNER = 'boardgamedesigner',
-        TYPE_ARTIST = 'boardgameartist',
-        TYPE_PUBLISHER = 'boardgamepublisher',
-        TYPE_VERSION = 'boardgameversion';
+    public const TYPE_CATEGORY = 'boardgamecategory';
+    public const TYPE_MECHANIC = 'boardgamemechanic';
+    public const TYPE_EXPANSION = 'boardgameexpansion';
+    public const TYPE_DESIGNER = 'boardgamedesigner';
+    public const TYPE_ARTIST = 'boardgameartist';
+    public const TYPE_PUBLISHER = 'boardgamepublisher';
+    public const TYPE_VERSION = 'boardgameversion';
 
     /** @var \SimpleXMLElement */
     protected $root;
@@ -24,17 +24,17 @@ abstract class Link
 
     public function getId(): int
     {
-        return (int)$this->root['id'];
+        return (int) $this->root['id'];
     }
 
     public function getType(): int
     {
-        return (string)$this->root['type'];
+        return (string) $this->root['type'];
     }
 
     public function getName(): string
     {
-        return (string)$this->root['value'];
+        return (string) $this->root['value'];
     }
 
     public function toString(): string

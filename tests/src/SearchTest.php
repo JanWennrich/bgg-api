@@ -1,4 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi\Test;
 
 use PHPUnit\Framework\TestCase;

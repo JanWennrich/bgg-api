@@ -1,4 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi;
 
 class HotItem
@@ -13,26 +14,26 @@ class HotItem
 
     public function getId(): int
     {
-        return (int)$this->root['id'];
+        return (int) $this->root['id'];
     }
 
     public function getRank(): int
     {
-        return (int)$this->root['rank'];
+        return (int) $this->root['rank'];
     }
 
     public function getName(): string
     {
-        return (string)$this->root->name['value'];
+        return (string) $this->root->name['value'];
     }
 
     public function getYearPublished(): int
     {
-        return (int)$this->root->yearpublished['value'];
+        return (int) $this->root->yearpublished['value'];
     }
 
     public function getThumbnail(): string
     {
-        return (string)$this->root->thumbnail['value'];
+        return (string) $this->root->thumbnail['value'];
     }
 }

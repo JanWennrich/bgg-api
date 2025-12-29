@@ -1,4 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi;
 
 class Player
@@ -22,7 +23,7 @@ class Player
         if ($val === '' || !is_numeric($val)) {
             return null;
         }
-        return (int)$val;
+        return (int) $val;
     }
 
     public function getName(): string
@@ -46,7 +47,7 @@ class Player
         if ($val === '' || !is_numeric($val)) {
             return null;
         }
-        return (int)$val;
+        return (int) $val;
     }
 
     public function isNew(): bool
@@ -60,7 +61,7 @@ class Player
         if ($val === '' || !is_numeric($val)) {
             return null;
         }
-        return (float)$val;
+        return (float) $val;
     }
 
     public function isWin(): bool
@@ -70,7 +71,7 @@ class Player
 
     private static function toBool($value): bool
     {
-        $v = strtolower(trim((string)$value));
+        $v = strtolower(trim((string) $value));
         return in_array($v, ['1', 'true', 'yes', 'y'], true);
     }
 }

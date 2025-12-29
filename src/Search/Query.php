@@ -1,4 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi\Search;
 
 use JanWennrich\BoardGameGeekApi\Exception;
@@ -30,7 +31,7 @@ class Query implements \IteratorAggregate, \Countable, \ArrayAccess
 
     public function count(): int
     {
-        return (int)$this->root['total'];
+        return (int) $this->root['total'];
     }
 
     /**

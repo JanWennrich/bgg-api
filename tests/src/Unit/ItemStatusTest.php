@@ -1,4 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi\Test\Unit;
 
 use JanWennrich\BoardGameGeekApi\Collection\Item;
@@ -99,7 +100,7 @@ class ItemStatusTest extends TestCase
             'collection-item-1.xml',
             'collection-item-2.xml',
             'collection-item-3.xml',
-            'collection-item-4.xml'
+            'collection-item-4.xml',
         ];
 
         foreach ($testFiles as $testFile) {

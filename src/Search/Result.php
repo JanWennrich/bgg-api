@@ -1,4 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi\Search;
 
 class Result
@@ -13,12 +14,12 @@ class Result
 
     public function getId(): int
     {
-        return (int)$this->root['id'];
+        return (int) $this->root['id'];
     }
 
     public function getType(): string
     {
-        return (string)$this->root['type'];
+        return (string) $this->root['type'];
     }
 
     public function isType(string $type): bool
@@ -28,11 +29,11 @@ class Result
 
     public function getName(): string
     {
-        return (string)$this->root->name['value'];
+        return (string) $this->root->name['value'];
     }
 
     public function getYearPublished(): int
     {
-        return (int)$this->root->yearpublished['value'];
+        return (int) $this->root->yearpublished['value'];
     }
 }

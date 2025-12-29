@@ -1,7 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi;
 
-class Exception extends \Exception
-{
-
-}
+class Exception extends \Exception {}

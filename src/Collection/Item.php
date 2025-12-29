@@ -1,4 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi\Collection;
 
 class Item
@@ -13,42 +14,42 @@ class Item
 
     public function getObjectType(): string
     {
-        return (string)$this->root['objecttype'];
+        return (string) $this->root['objecttype'];
     }
 
     public function getObjectId(): int
     {
-        return (int)$this->root['objectid'];
+        return (int) $this->root['objectid'];
     }
 
     public function getSubtype(): string
     {
-        return (string)$this->root['subtype'];
+        return (string) $this->root['subtype'];
     }
 
     public function getCollId(): int
     {
-        return (int)$this->root['collid'];
+        return (int) $this->root['collid'];
     }
 
     public function getName(): string
     {
-        return (string)$this->root->name;
+        return (string) $this->root->name;
     }
 
     public function getYearPublished(): int
     {
-        return (int)$this->root->yearpublished;
+        return (int) $this->root->yearpublished;
     }
 
     public function getImage(): string
     {
-        return (string)$this->root->image;
+        return (string) $this->root->image;
     }
 
     public function getThumbnail(): string
     {
-        return (string)$this->root->thumbnail;
+        return (string) $this->root->thumbnail;
     }
 
     public function getStatus(): ItemStatus
@@ -58,7 +59,7 @@ class Item
 
     public function getNumPlays(): int
     {
-        return (int)$this->root->numplays;
+        return (int) $this->root->numplays;
     }
 
     private function getStats(): ?\SimpleXMLElement

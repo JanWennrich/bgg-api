@@ -26,22 +26,22 @@ class ItemStatus
         $this->wishlist = self::toBool($xml['wishlist'] ?? null);
         $this->wishlistPriority = self::toNullableInt($xml['wishlistpriority'] ?? null);
         $this->preordered = self::toBool($xml['preordered'] ?? null);
-        $this->lastModified = self::toDate((string)($xml['lastmodified'] ?? ''));
+        $this->lastModified = self::toDate((string) ($xml['lastmodified'] ?? ''));
     }
 
     private static function toBool($value): bool
     {
-        $v = strtolower(trim((string)$value));
+        $v = strtolower(trim((string) $value));
         return in_array($v, ['1', 'true', 'yes', 'y'], true);
     }
 
     private static function toNullableInt($value): ?int
     {
-        $s = trim((string)$value);
+        $s = trim((string) $value);
         if ($s === '' || !is_numeric($s)) {
             return null;
         }
-        return (int)$s;
+        return (int) $s;
     }
 
     private static function toDate(string $value): ?\DateTimeImmutable
@@ -57,14 +57,44 @@ class ItemStatus
         }
     }
 
-    public function isOwn(): bool { return $this->own; }
-    public function isPrevOwned(): bool { return $this->prevOwned; }
-    public function isForTrade(): bool { return $this->forTrade; }
-    public function isWant(): bool { return $this->want; }
-    public function isWantToPlay(): bool { return $this->wantToPlay; }
-    public function isWantToBuy(): bool { return $this->wantToBuy; }
-    public function isWishlist(): bool { return $this->wishlist; }
-    public function getWishlistPriority(): ?int { return $this->wishlistPriority; }
-    public function isPreordered(): bool { return $this->preordered; }
-    public function getLastModified(): ?\DateTimeImmutable { return $this->lastModified; }
+    public function isOwn(): bool
+    {
+        return $this->own;
+    }
+    public function isPrevOwned(): bool
+    {
+        return $this->prevOwned;
+    }
+    public function isForTrade(): bool
+    {
+        return $this->forTrade;
+    }
+    public function isWant(): bool
+    {
+        return $this->want;
+    }
+    public function isWantToPlay(): bool
+    {
+        return $this->wantToPlay;
+    }
+    public function isWantToBuy(): bool
+    {
+        return $this->wantToBuy;
+    }
+    public function isWishlist(): bool
+    {
+        return $this->wishlist;
+    }
+    public function getWishlistPriority(): ?int
+    {
+        return $this->wishlistPriority;
+    }
+    public function isPreordered(): bool
+    {
+        return $this->preordered;
+    }
+    public function getLastModified(): ?\DateTimeImmutable
+    {
+        return $this->lastModified;
+    }
 }

@@ -1,7 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi\Boardgame;
 
-class Mechanic extends Link
-{
-
-}
+class Mechanic extends Link {}

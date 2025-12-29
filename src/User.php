@@ -1,4 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi;
 
 class User
@@ -13,12 +14,12 @@ class User
 
     public function getId(): int
     {
-        return (int)$this->root['id'];
+        return (int) $this->root['id'];
     }
 
     public function getLogin(): string
     {
-        return (string)$this->root['name'];
+        return (string) $this->root['name'];
     }
 
     public function getName(): string
@@ -28,26 +29,26 @@ class User
 
     public function getFirstName(): string
     {
-        return (string)$this->root->firstname['value'];
+        return (string) $this->root->firstname['value'];
     }
 
     public function getLastName(): string
     {
-        return (string)$this->root->lastname['value'];
+        return (string) $this->root->lastname['value'];
     }
 
     public function getAvatar(): string
     {
-        return (string)$this->root->avatarlink['value'];
+        return (string) $this->root->avatarlink['value'];
     }
 
     public function getCountry(): string
     {
-        return (string)$this->root->country['value'];
+        return (string) $this->root->country['value'];
     }
 
     public function getYearRegistered(): int
     {
-        return (int)$this->root->yearregistered ['value'];
+        return (int) $this->root->yearregistered ['value'];
     }
 }

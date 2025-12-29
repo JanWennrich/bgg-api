@@ -1,4 +1,5 @@
 <?php
+
 namespace JanWennrich\BoardGameGeekApi;
 
 class Play
@@ -129,7 +130,7 @@ class Play
 
     private function toBool($value): bool
     {
-        $v = strtolower(trim((string)$value));
+        $v = strtolower(trim((string) $value));
         return in_array($v, ['1', 'true', 'yes', 'y'], true);
     }
 }
