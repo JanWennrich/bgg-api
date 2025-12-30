@@ -7,7 +7,7 @@ use JanWennrich\BoardGameGeekApi\Exception;
 class Query implements \IteratorAggregate, \Countable, \ArrayAccess
 {
     /** @var Result[] */
-    private $results = [];
+    private array $results = [];
 
     public function __construct(private \SimpleXMLElement $root)
     {

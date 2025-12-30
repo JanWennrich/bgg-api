@@ -20,13 +20,7 @@ abstract class Link implements \Stringable
 
     public const TYPE_VERSION = 'boardgameversion';
 
-    /** @var \SimpleXMLElement */
-    protected $root;
-
-    public function __construct(\SimpleXMLElement $xml)
-    {
-        $this->root = $xml;
-    }
+    public function __construct(protected \SimpleXMLElement $root) {}
 
     public function getId(): int
     {

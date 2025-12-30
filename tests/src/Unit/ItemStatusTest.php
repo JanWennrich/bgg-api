@@ -97,7 +97,7 @@ final class ItemStatusTest extends TestCase
             'collection-item-4.xml',
         ];
 
-        $collectionItems = array_map(fn($testFile) => new Item(simplexml_load_file(__DIR__ . '/../../files/' . $testFile)), $testFiles);
+        $collectionItems = array_map(fn(string $testFile): Item => new Item(simplexml_load_file(__DIR__ . '/../../files/' . $testFile)), $testFiles);
 
         $this->assertCount(4, $collectionItems);
     }

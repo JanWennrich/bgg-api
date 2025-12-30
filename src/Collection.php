@@ -7,7 +7,7 @@ use JanWennrich\BoardGameGeekApi\Collection\Item;
 class Collection implements \IteratorAggregate, \Countable
 {
     /** @var Collection\Item[] */
-    private $items = [];
+    private array $items = [];
 
     public function __construct(private \SimpleXMLElement $root)
     {

@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace JanWennrich\BoardGameGeekApi\Test;
 
+use JanWennrich\BoardGameGeekApi\Thing;
 use PHPUnit\Framework\TestCase;
 use JanWennrich\BoardGameGeekApi;
 
 final class ThingTest extends TestCase
 {
-    /** @var BoardGameGeekApi\Thing */
-    private $thing;
+    private Thing $thing;
 
     protected function setUp(): void
     {
         $xml = simplexml_load_file(__DIR__ . '/../files/thing.xml');
-        $this->thing = new BoardGameGeekApi\Thing($xml->item);
+        $this->thing = new Thing($xml->item);
     }
 
     public function testGetName(): void

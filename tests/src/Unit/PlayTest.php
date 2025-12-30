@@ -10,8 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 final class PlayTest extends TestCase
 {
-    /** @var Play */
-    private $play;
+    private Play $play;
 
     protected function setUp(): void
     {
