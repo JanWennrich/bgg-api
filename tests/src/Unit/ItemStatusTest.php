@@ -3,7 +3,6 @@
 namespace JanWennrich\BoardGameGeekApi\Test\Unit;
 
 use JanWennrich\BoardGameGeekApi\Collection\Item;
-use JanWennrich\BoardGameGeekApi\Collection\ItemStatus;
 use PHPUnit\Framework\TestCase;
 
 class ItemStatusTest extends TestCase
@@ -13,19 +12,19 @@ class ItemStatusTest extends TestCase
         $xml = simplexml_load_file(__DIR__ . '/../../files/collection-item-1.xml');
         $collectionItem = new Item($xml);
 
-        $status = $collectionItem->getStatus();
-        $this->assertInstanceOf(ItemStatus::class, $status);
-        $this->assertTrue($status->isOwn());
-        $this->assertFalse($status->isPrevOwned());
-        $this->assertFalse($status->isForTrade());
-        $this->assertFalse($status->isWant());
-        $this->assertFalse($status->isWantToPlay());
-        $this->assertFalse($status->isWantToBuy());
-        $this->assertTrue($status->isWishlist());
-        $this->assertSame(4, $status->getWishlistPriority());
-        $this->assertFalse($status->isPreordered());
-        $this->assertNotNull($status->getLastModified());
-        $this->assertSame('2022-03-19 09:58:13', $status->getLastModified()->format('Y-m-d H:i:s'));
+        $sut = $collectionItem->getStatus();
+
+        $this->assertTrue($sut->isOwn());
+        $this->assertFalse($sut->isPrevOwned());
+        $this->assertFalse($sut->isForTrade());
+        $this->assertFalse($sut->isWant());
+        $this->assertFalse($sut->isWantToPlay());
+        $this->assertFalse($sut->isWantToBuy());
+        $this->assertTrue($sut->isWishlist());
+        $this->assertSame(4, $sut->getWishlistPriority());
+        $this->assertFalse($sut->isPreordered());
+        $this->assertNotNull($sut->getLastModified());
+        $this->assertSame('2022-03-19 09:58:13', $sut->getLastModified()->format('Y-m-d H:i:s'));
     }
 
     public function testMissingOrInvalidValuesAreHandled(): void
@@ -33,21 +32,21 @@ class ItemStatusTest extends TestCase
         $xml = simplexml_load_file(__DIR__ . '/../../files/collection-item-4.xml');
         $collectionItem = new Item($xml);
 
-        $status = $collectionItem->getStatus();
-        $this->assertInstanceOf(ItemStatus::class, $status);
+        $sut = $collectionItem->getStatus();
+
         // All flags default to false when missing
-        $this->assertFalse($status->isOwn());
-        $this->assertFalse($status->isPrevOwned());
-        $this->assertFalse($status->isForTrade());
-        $this->assertFalse($status->isWant());
-        $this->assertFalse($status->isWantToPlay());
-        $this->assertFalse($status->isWantToBuy());
-        $this->assertFalse($status->isWishlist());
-        $this->assertFalse($status->isPreordered());
+        $this->assertFalse($sut->isOwn());
+        $this->assertFalse($sut->isPrevOwned());
+        $this->assertFalse($sut->isForTrade());
+        $this->assertFalse($sut->isWant());
+        $this->assertFalse($sut->isWantToPlay());
+        $this->assertFalse($sut->isWantToBuy());
+        $this->assertFalse($sut->isWishlist());
+        $this->assertFalse($sut->isPreordered());
         // Wishlist priority null when empty
-        $this->assertNull($status->getWishlistPriority());
+        $this->assertNull($sut->getWishlistPriority());
         // Invalid date becomes null
-        $this->assertNull($status->getLastModified());
+        $this->assertNull($sut->getLastModified());
     }
 
     public function testCollectionItem2ParsesCorrectly(): void
@@ -55,21 +54,17 @@ class ItemStatusTest extends TestCase
         $xml = simplexml_load_file(__DIR__ . '/../../files/collection-item-2.xml');
         $collectionItem = new Item($xml);
 
-        $this->assertInstanceOf(Item::class, $collectionItem);
+        $sut = $collectionItem->getStatus();
 
-        $status = $collectionItem->getStatus();
-        $this->assertInstanceOf(ItemStatus::class, $status);
-
-        $this->assertNotNull($status);
-
-        $this->assertIsBool($status->isOwn());
-        $this->assertIsBool($status->isPrevOwned());
-        $this->assertIsBool($status->isForTrade());
-        $this->assertIsBool($status->isWant());
-        $this->assertIsBool($status->isWantToPlay());
-        $this->assertIsBool($status->isWantToBuy());
-        $this->assertIsBool($status->isWishlist());
-        $this->assertIsBool($status->isPreordered());
+        $this->assertFalse($sut->isOwn());
+        $this->assertTrue($sut->isPrevOwned());
+        $this->assertFalse($sut->isForTrade());
+        $this->assertFalse($sut->isWant());
+        $this->assertFalse($sut->isWantToPlay());
+        $this->assertFalse($sut->isWantToBuy());
+        $this->assertFalse($sut->isWishlist());
+        $this->assertFalse($sut->isPreordered());
+        $this->assertEquals(new \DateTimeImmutable('2025-07-13 15:49:07'), $sut->getLastModified());
     }
 
     public function testCollectionItem3ParsesCorrectly(): void
@@ -77,10 +72,17 @@ class ItemStatusTest extends TestCase
         $xml = simplexml_load_file(__DIR__ . '/../../files/collection-item-3.xml');
         $collectionItem = new Item($xml);
 
-        $this->assertInstanceOf(Item::class, $collectionItem);
+        $sut = $collectionItem->getStatus();
 
-        $status = $collectionItem->getStatus();
-        $this->assertInstanceOf(ItemStatus::class, $status);
+        $this->assertTrue($sut->isOwn());
+        $this->assertFalse($sut->isPrevOwned());
+        $this->assertTrue($sut->isForTrade());
+        $this->assertFalse($sut->isWant());
+        $this->assertFalse($sut->isWantToPlay());
+        $this->assertFalse($sut->isWantToBuy());
+        $this->assertFalse($sut->isWishlist());
+        $this->assertFalse($sut->isPreordered());
+        $this->assertEquals(new \DateTimeImmutable('2025-03-24 16:37:53'), $sut->getLastModified());
 
     }
 
