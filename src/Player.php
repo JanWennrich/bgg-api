@@ -48,7 +48,7 @@ class Player
 
     public function isNew(): bool
     {
-        return self::toBool($this->root['new'] ?? null);
+        return $this->toBool($this->root['new'] ?? null);
     }
 
     public function getRating(): ?float
@@ -63,10 +63,10 @@ class Player
 
     public function isWin(): bool
     {
-        return self::toBool($this->root['win'] ?? null);
+        return $this->toBool($this->root['win'] ?? null);
     }
 
-    private static function toBool($value): bool
+    private function toBool($value): bool
     {
         $v = strtolower(trim((string) $value));
         return in_array($v, ['1', 'true', 'yes', 'y'], true);
