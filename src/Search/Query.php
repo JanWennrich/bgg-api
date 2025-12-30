@@ -4,6 +4,10 @@ namespace JanWennrich\BoardGameGeekApi\Search;
 
 use JanWennrich\BoardGameGeekApi\Exception;
 
+/**
+ * @implements \ArrayAccess<integer, Result>
+ * @implements \IteratorAggregate<integer, Result>
+ */
 class Query implements \IteratorAggregate, \Countable, \ArrayAccess
 {
     /** @var Result[] */
@@ -17,7 +21,7 @@ class Query implements \IteratorAggregate, \Countable, \ArrayAccess
     }
 
     /**
-     * @return \ArrayIterator<Result>
+     * @return \ArrayIterator<int, Result>
      */
     public function getIterator(): \ArrayIterator
     {

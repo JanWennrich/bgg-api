@@ -4,6 +4,9 @@ namespace JanWennrich\BoardGameGeekApi;
 
 use JanWennrich\BoardGameGeekApi\Collection\Item;
 
+/**
+ * @implements \IteratorAggregate<int, Item>
+ */
 class Collection implements \IteratorAggregate, \Countable
 {
     /** @var Collection\Item[] */
@@ -17,7 +20,7 @@ class Collection implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @return \ArrayIterator<Item>
+     * @return \ArrayIterator<int, Item>
      */
     public function getIterator(): \ArrayIterator
     {

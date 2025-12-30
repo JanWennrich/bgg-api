@@ -8,6 +8,9 @@ use GuzzleHttp\Exception\GuzzleException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
+/**
+ * @phpstan-type RequestParams Array<string, bool|int|string>
+ */
 class Client
 {
     public const API_URL = 'https://boardgamegeek.com/xmlapi2';
@@ -72,6 +75,7 @@ class Client
     }
 
     /**
+     * @param string[]|int[] $ids
      * @return Thing[]
      * @throws Exception
      */
@@ -100,6 +104,7 @@ class Client
      * TODO: Note that you should check the response status code... if it's 202 (vs. 200) then it indicates BGG has queued
      * your request and you need to keep retrying (hopefully w/some delay between tries) until the status is not 202.
      *
+     * @param RequestParams $params
      * @throws Exception
      */
     public function getCollection(array $params): Collection
@@ -162,6 +167,7 @@ class Client
     }
 
     /**
+     * @param RequestParams $params
      * @return Play[]
      * @throws Exception
      */
@@ -178,6 +184,7 @@ class Client
     }
 
     /**
+     * @param RequestParams $params
      * @throws Exception
      * @throws \Exception
      */
