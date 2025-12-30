@@ -15,7 +15,6 @@
   ],
   "require": {
     "php": "^8.0",
-    "ext-curl": "*",
     "ext-simplexml": "*",
     "guzzlehttp/guzzle": "^7.10",
     "psr/log": "^1.1 || ^2.0 || ^3.0"
