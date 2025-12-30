@@ -118,7 +118,7 @@ class Thing
     public function getBoardgameCategories(): array
     {
         $values = [];
-        $xml = $this->root->xpath("link[@type='boardgamecategory']");
+        $xml = $this->root->xpath("link[@type='boardgamecategory']") ?? [];
         foreach ($xml as $element) {
             $values[] = new Boardgame\Category($element);
         }
@@ -132,7 +132,7 @@ class Thing
     public function getBoardgameMechanics(): array
     {
         $values = [];
-        $xml = $this->root->xpath("link[@type='boardgamemechanic']");
+        $xml = $this->root->xpath("link[@type='boardgamemechanic']") ?? [];
         foreach ($xml as $element) {
             $values[] = new Boardgame\Mechanic($element);
         }
@@ -146,7 +146,7 @@ class Thing
     public function getBoardgameDesigners(): array
     {
         $values = [];
-        $xml = $this->root->xpath("link[@type='boardgamedesigner']");
+        $xml = $this->root->xpath("link[@type='boardgamedesigner']") ?? [];
         foreach ($xml as $element) {
             $values[] = new Boardgame\Designer($element);
         }
@@ -160,7 +160,7 @@ class Thing
     public function getBoardgameArtists(): array
     {
         $values = [];
-        $xml = $this->root->xpath("link[@type='boardgameartist']");
+        $xml = $this->root->xpath("link[@type='boardgameartist']") ?? [];
         foreach ($xml as $element) {
             $values[] = new Boardgame\Artist($element);
         }
@@ -174,7 +174,7 @@ class Thing
     public function getBoardgamePublishers(): array
     {
         $values = [];
-        $xml = $this->root->xpath("link[@type='boardgamepublisher']");
+        $xml = $this->root->xpath("link[@type='boardgamepublisher']") ?? [];
         foreach ($xml as $element) {
             $values[] = new Boardgame\Publisher($element);
         }
@@ -188,7 +188,7 @@ class Thing
     public function getBoardgameExpansions(): array
     {
         $values = [];
-        $xml = $this->root->xpath("link[@type='boardgameexpansion']");
+        $xml = $this->root->xpath("link[@type='boardgameexpansion']") ?? [];
         foreach ($xml as $element) {
             $values[] = new Boardgame\Expansion($element);
         }
@@ -203,7 +203,7 @@ class Thing
     {
         $values = [];
         // Versions are provided under <versions><item .../></versions> in the API response
-        $xml = $this->root->xpath('versions/item');
+        $xml = $this->root->xpath('versions/item') ?? [];
         foreach ($xml as $element) {
             $values[] = new Boardgame\Version($element);
         }
@@ -218,7 +218,7 @@ class Thing
     public function getLinks(): array
     {
         $values = [];
-        $xml = $this->root->xpath('link');
+        $xml = $this->root->xpath('link') ?? [];
         foreach ($xml as $element) {
             $values[] = Boardgame\Link::factory($element);
         }
@@ -247,7 +247,7 @@ class Thing
     public function getAlternateNames(): array
     {
         $names = [];
-        $xml = $this->root->xpath("name[@type='alternate']");
+        $xml = $this->root->xpath("name[@type='alternate']") ?? [];
         foreach ($xml as $element) {
             $names[] = (string) $element['value'];
         }
