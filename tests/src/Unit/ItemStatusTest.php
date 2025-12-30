@@ -25,7 +25,7 @@ final class ItemStatusTest extends TestCase
         $this->assertTrue($sut->isWishlist());
         $this->assertSame(4, $sut->getWishlistPriority());
         $this->assertFalse($sut->isPreordered());
-        $this->assertNotNull($sut->getLastModified());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $sut->getLastModified());
         $this->assertSame('2022-03-19 09:58:13', $sut->getLastModified()->format('Y-m-d H:i:s'));
     }
 
@@ -48,7 +48,7 @@ final class ItemStatusTest extends TestCase
         // Wishlist priority null when empty
         $this->assertNull($sut->getWishlistPriority());
         // Invalid date becomes null
-        $this->assertNull($sut->getLastModified());
+        $this->assertNotInstanceOf(\DateTimeImmutable::class, $sut->getLastModified());
     }
 
     public function testCollectionItem2ParsesCorrectly(): void

@@ -61,7 +61,7 @@ final class CollectionTest extends TestCase
         $this->assertFalse($status->isWantToBuy());
         $this->assertFalse($status->isWishlist());
         $this->assertFalse($status->isPreordered());
-        $this->assertNotNull($status->getLastModified());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $status->getLastModified());
         $this->assertSame('2023-12-18 14:21:07', $status->getLastModified()->format('Y-m-d H:i:s'));
 
         $this->assertSame(6, $first->getNumPlays());
@@ -98,7 +98,7 @@ final class CollectionTest extends TestCase
         $this->assertFalse($status->isOwn());
         $this->assertTrue($status->isPrevOwned());
         $this->assertSame(1, $found->getNumPlays());
-        $this->assertNotNull($status->getLastModified());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $status->getLastModified());
         $this->assertSame('2025-07-13 15:49:07', $status->getLastModified()->format('Y-m-d H:i:s'));
     }
 }

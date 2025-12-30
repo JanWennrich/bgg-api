@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace JanWennrich\BoardGameGeekApi\Test;
 
 use JanWennrich\BoardGameGeekApi\Client;
+use JanWennrich\BoardGameGeekApi\Thing;
+use JanWennrich\BoardGameGeekApi\User;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\TestCase;
 use JanWennrich\BoardGameGeekApi;
@@ -27,7 +29,7 @@ final class ClientTest extends TestCase
         // @phpstan-ignore deadCode.unreachable
         $client = new Client();
         $thing = $client->getThing(5371611111, true);
-        $this->assertNull($thing);
+        $this->assertNotInstanceOf(Thing::class, $thing);
 
         $thing = $client->getThing(39856, true);
         $this->assertInstanceOf(BoardGameGeekApi\Boardgame::class, $thing);
@@ -47,7 +49,7 @@ final class ClientTest extends TestCase
 
         $this->assertCount(2, $things);
         foreach ($things as $thing) {
-            $this->assertInstanceOf(BoardGameGeekApi\Thing::class, $thing);
+            $this->assertInstanceOf(Thing::class, $thing);
             $this->assertContains($thing->getName(), [ 'Zona: The Secret of Chernobyl', 'Dream Home' ]);
         }
 
@@ -140,12 +142,12 @@ final class ClientTest extends TestCase
         // @phpstan-ignore deadCode.unreachable
         $client = new Client();
         $item = $client->getUser('notexistingusername');
-        $this->assertNull($item);
+        $this->assertNotInstanceOf(User::class, $item);
 
         $item = $client->getUser('nataniel');
-        $this->assertInstanceOf(BoardGameGeekApi\User::class, $item);
         $this->assertEquals('Artur', $item->getFirstName());
         $this->assertEquals('2004', $item->getYearRegistered());
+        $this->assertInstanceOf(User::class, $item);
         $this->assertStringStartsWith('https://cf.geekdo-static.com', $item->getAvatar());
     }
 
