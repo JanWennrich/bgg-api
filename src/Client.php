@@ -105,7 +105,7 @@ class Client
     public function getCollection(array $params): Collection
     {
         $xml = $this->request('collection', $params);
-        if ($xml->getName() != 'items') {
+        if ($xml->getName() !== 'items') {
             throw new Exception($xml->error->message);
         }
 
