@@ -52,6 +52,7 @@ abstract class Link implements \Stringable
      */
     public static function factory(\SimpleXMLElement $xml): Link
     {
+        // This cannot be converted to a match expression, it does not behave the same, for some reason
         switch ($xml['type']) {
             case self::TYPE_ARTIST:    return new Artist($xml);
             case self::TYPE_DESIGNER:  return new Designer($xml);
