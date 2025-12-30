@@ -18,16 +18,16 @@ class Client
 
     private LoggerInterface $logger;
 
-    private GuzzleClient $httpClient;
+    private GuzzleClient $guzzleClient;
 
     private CookieJar $cookieJar;
 
-    public function __construct(?LoggerInterface $logger = null, ?GuzzleClient $httpClient = null)
+    public function __construct(?LoggerInterface $logger = null, ?GuzzleClient $guzzleClient = null)
     {
         $this->logger = $logger ?? new NullLogger();
         $this->cookieJar = new CookieJar();
 
-        $this->httpClient = $httpClient ?? new GuzzleClient([
+        $this->guzzleClient = $guzzleClient ?? new GuzzleClient([
             'base_uri' => self::API_URL . '/',
             'timeout' => 30,
             'cookies' => $this->cookieJar,
@@ -202,7 +202,7 @@ class Client
             $startTime = microtime(true);
 
             try {
-                $httpResponse = $this->httpClient->request('GET', $action, [
+                $httpResponse = $this->guzzleClient->request('GET', $action, [
                     'query' => $params,
                     'headers' => array_filter([
                         'User-Agent' => $this->userAgent,
@@ -297,7 +297,7 @@ class Client
         $this->logger->info('Logging in to BGG');
 
         try {
-            $response = $this->httpClient->request('POST', $url, [
+            $response = $this->guzzleClient->request('POST', $url, [
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'User-Agent' => $this->userAgent,
