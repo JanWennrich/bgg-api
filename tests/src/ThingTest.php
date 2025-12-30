@@ -20,7 +20,7 @@ final class ThingTest extends TestCase
 
     public function testGetName(): void
     {
-        $this->assertEquals('Dream Home', $this->thing->getName());
+        $this->assertSame('Dream Home', $this->thing->getName());
     }
 
     public function testGetLinks(): void
