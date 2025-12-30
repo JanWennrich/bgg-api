@@ -30,7 +30,7 @@ class Query implements \IteratorAggregate, \Countable, \ArrayAccess
 
     public function count(): int
     {
-        return (int) $this->root['total'];
+        return count($this->results);
     }
 
     /**
