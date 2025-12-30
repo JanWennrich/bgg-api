@@ -49,17 +49,17 @@ final class CollectionTest extends TestCase
         $this->assertStringStartsWith('https://cf.geekdo-images.com/', $first->getImage());
         $this->assertStringStartsWith('https://cf.geekdo-images.com/', $first->getThumbnail());
 
-        $status = $first->getStatus();
-        $this->assertTrue($status->isOwn());
-        $this->assertFalse($status->isPrevOwned());
-        $this->assertFalse($status->isForTrade());
-        $this->assertFalse($status->isWant());
-        $this->assertFalse($status->isWantToPlay());
-        $this->assertFalse($status->isWantToBuy());
-        $this->assertFalse($status->isWishlist());
-        $this->assertFalse($status->isPreordered());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $status->getLastModified());
-        $this->assertSame('2023-12-18 14:21:07', $status->getLastModified()->format('Y-m-d H:i:s'));
+        $itemStatus = $first->getStatus();
+        $this->assertTrue($itemStatus->isOwn());
+        $this->assertFalse($itemStatus->isPrevOwned());
+        $this->assertFalse($itemStatus->isForTrade());
+        $this->assertFalse($itemStatus->isWant());
+        $this->assertFalse($itemStatus->isWantToPlay());
+        $this->assertFalse($itemStatus->isWantToBuy());
+        $this->assertFalse($itemStatus->isWishlist());
+        $this->assertFalse($itemStatus->isPreordered());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $itemStatus->getLastModified());
+        $this->assertSame('2023-12-18 14:21:07', $itemStatus->getLastModified()->format('Y-m-d H:i:s'));
 
         $this->assertSame(6, $first->getNumPlays());
     }
@@ -92,11 +92,11 @@ final class CollectionTest extends TestCase
 
         $this->assertInstanceOf(Item::class, $found, 'Expected to find objectid=359871 in collection.xml');
 
-        $status = $found->getStatus();
-        $this->assertFalse($status->isOwn());
-        $this->assertTrue($status->isPrevOwned());
+        $itemStatus = $found->getStatus();
+        $this->assertFalse($itemStatus->isOwn());
+        $this->assertTrue($itemStatus->isPrevOwned());
         $this->assertSame(1, $found->getNumPlays());
-        $this->assertInstanceOf(\DateTimeImmutable::class, $status->getLastModified());
-        $this->assertSame('2025-07-13 15:49:07', $status->getLastModified()->format('Y-m-d H:i:s'));
+        $this->assertInstanceOf(\DateTimeImmutable::class, $itemStatus->getLastModified());
+        $this->assertSame('2025-07-13 15:49:07', $itemStatus->getLastModified()->format('Y-m-d H:i:s'));
     }
 }

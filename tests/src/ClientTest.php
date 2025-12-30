@@ -107,9 +107,9 @@ final class ClientTest extends TestCase
         $this->expectException(BoardGameGeekApi\Exception::class);
         $client->getCollection([ 'username' => 'notexistingusername' ]);
 
-        $items = $client->getCollection([ 'username' => 'nataniel' ]);
-        $this->assertNotEmpty($items);
-        foreach ($items as $item) {
+        $collection = $client->getCollection([ 'username' => 'nataniel' ]);
+        $this->assertNotEmpty($collection);
+        foreach ($collection as $item) {
             $this->assertNotEmpty($item->getName());
             $this->assertStringStartsWith('https://cf.geekdo-images.com', $item->getImage());
         }
