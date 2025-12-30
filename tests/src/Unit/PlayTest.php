@@ -14,7 +14,7 @@ final class PlayTest extends TestCase
 
     protected function setUp(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/play.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../files/play.xml') ?: $this->fail('Could not load XML file');
         $this->play = new Play($xml->play);
     }
 

@@ -11,7 +11,7 @@ final class ItemStatusTest extends TestCase
 {
     public function testGetStatusReturnsItemStatusWithParsedValues(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/collection-item-1.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../files/collection-item-1.xml') ?: $this->fail('Could not load XML file');
         $collectionItem = new Item($xml);
 
         $itemStatus = $collectionItem->getStatus();
@@ -31,7 +31,7 @@ final class ItemStatusTest extends TestCase
 
     public function testMissingOrInvalidValuesAreHandled(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/collection-item-4.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../files/collection-item-4.xml') ?: $this->fail('Could not load XML file');
         $collectionItem = new Item($xml);
 
         $itemStatus = $collectionItem->getStatus();
@@ -53,7 +53,7 @@ final class ItemStatusTest extends TestCase
 
     public function testCollectionItem2ParsesCorrectly(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/collection-item-2.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../files/collection-item-2.xml') ?: $this->fail('Could not load XML file');
         $collectionItem = new Item($xml);
 
         $itemStatus = $collectionItem->getStatus();
@@ -71,7 +71,7 @@ final class ItemStatusTest extends TestCase
 
     public function testCollectionItem3ParsesCorrectly(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/collection-item-3.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../files/collection-item-3.xml') ?: $this->fail('Could not load XML file');
         $collectionItem = new Item($xml);
 
         $itemStatus = $collectionItem->getStatus();
@@ -97,7 +97,10 @@ final class ItemStatusTest extends TestCase
             'collection-item-4.xml',
         ];
 
-        $collectionItems = array_map(fn(string $testFile): Item => new Item(simplexml_load_file(__DIR__ . '/../../files/' . $testFile)), $testFiles);
+        $collectionItems = array_map(function (string $testFile): Item {
+            $xml = simplexml_load_file(__DIR__ . '/../../files/' . $testFile) ?: $this->fail('Could not load XML file');
+            return new Item($xml);
+        }, $testFiles);
 
         $this->assertCount(4, $collectionItems);
     }

@@ -14,13 +14,13 @@ final class CollectionTest extends TestCase
 
     protected function setUp(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/collection.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../files/collection.xml') ?: $this->fail('Could not load XML file');
         $this->collection = new Collection($xml);
     }
 
     public function testCountMatchesXmlAndIterator(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/collection.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../files/collection.xml') ?: $this->fail('Could not load XML file');
         $expectedTotal = (int) $xml['totalitems'];
 
         // count() should read from the XML attribute

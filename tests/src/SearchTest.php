@@ -11,7 +11,7 @@ final class SearchTest extends TestCase
 {
     public function testQuery(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../files/search.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../files/search.xml') ?: $this->fail('Could not load XML file');
         $query = new BoardGameGeekApi\Search\Query($xml);
         $this->assertCount(82, $query);
     }
