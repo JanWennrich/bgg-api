@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JanWennrich\BoardGameGeekApi\Test;
 
 use JanWennrich\BoardGameGeekApi\Client;
