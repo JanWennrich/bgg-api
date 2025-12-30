@@ -9,7 +9,7 @@ class ClientTest extends TestCase
 {
     /**
      * https://boardgamegeek.com/boardgame/39856/dixit
-     * @covers BoardGameGeekApi\Client::getThing
+     * @covers \JanWennrich\BoardGameGeekApi\Client::getThing
      */
     public function testGetThing()
     {
@@ -26,7 +26,7 @@ class ClientTest extends TestCase
 
     /**
      * https://www.boardgamegeek.com/xmlapi2/thing?id=209671,194880
-     * @covers BoardGameGeekApi\Client::getThing
+     * @covers \JanWennrich\BoardGameGeekApi\Client::getThing
      */
     public function testGetThings()
     {
@@ -50,7 +50,7 @@ class ClientTest extends TestCase
 
     /**
      * https://www.boardgamegeek.com/xmlapi2/hot?type=boardgame
-     * @covers BoardGameGeekApi\Client::getHotItems
+     * @covers \JanWennrich\BoardGameGeekApi\Client::getHotItems
      */
     public function testGetHotItems()
     {
@@ -70,7 +70,7 @@ class ClientTest extends TestCase
 
     /**
      * https://www.boardgamegeek.com/xmlapi2/search/?query=Domek&type=boardgame
-     * @covers BoardGameGeekApi\Client::search
+     * @covers \JanWennrich\BoardGameGeekApi\Client::search
      */
     public function testSearch()
     {
@@ -89,7 +89,7 @@ class ClientTest extends TestCase
 
     /**
      * https://www.boardgamegeek.com/xmlapi2/collection?username=nataniel
-     * @covers BoardGameGeekApi\Client::getCollection
+     * @covers \JanWennrich\BoardGameGeekApi\Client::getCollection
      */
     public function testGetCollection()
     {
@@ -109,7 +109,7 @@ class ClientTest extends TestCase
 
     /**
      * https://www.boardgamegeek.com/xmlapi2/plays?username=nataniel
-     * @covers BoardGameGeekApi\Client::getPlays
+     * @covers \JanWennrich\BoardGameGeekApi\Client::getPlays
      */
     public function testGetPlays()
     {
@@ -131,7 +131,7 @@ class ClientTest extends TestCase
 
     /**
      * https://www.boardgamegeek.com/xmlapi2/user?name=nataniel
-     * @covers BoardGameGeekApi\Client::getUser
+     * @covers \JanWennrich\BoardGameGeekApi\Client::getUser
      */
     public function testGetUser()
     {
