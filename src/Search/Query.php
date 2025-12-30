@@ -41,7 +41,6 @@ class Query implements \IteratorAggregate, \Countable, \ArrayAccess
 
     /**
      * @param  int $offset
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
