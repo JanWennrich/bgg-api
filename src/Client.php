@@ -77,7 +77,7 @@ class Client
      */
     public function getThings(array $ids, bool $stats = false, bool $versions = false): array
     {
-        if (empty($ids)) {
+        if ($ids === []) {
             return [];
         }
 
