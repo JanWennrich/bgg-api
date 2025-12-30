@@ -21,13 +21,7 @@ class Thing
     public const TYPE_RPGITEM = 'rpgitem';
     public const TYPE_RPGISSUE = 'rpgissue';
 
-    /** @var \SimpleXMLElement */
-    private $root;
-
-    public function __construct(\SimpleXMLElement $xml)
-    {
-        $this->root = $xml;
-    }
+    public function __construct(private \SimpleXMLElement $root) {}
 
     public function getId(): int
     {

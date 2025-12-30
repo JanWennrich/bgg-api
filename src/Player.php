@@ -4,13 +4,7 @@ namespace JanWennrich\BoardGameGeekApi;
 
 class Player
 {
-    /** @var \SimpleXMLElement */
-    private $root;
-
-    public function __construct(\SimpleXMLElement $xml)
-    {
-        $this->root = $xml;
-    }
+    public function __construct(private \SimpleXMLElement $root) {}
 
     public function getUsername(): string
     {

@@ -6,15 +6,11 @@ use JanWennrich\BoardGameGeekApi\Collection\Item;
 
 class Collection implements \IteratorAggregate, \Countable
 {
-    /** @var \SimpleXMLElement */
-    private $root;
-
     /** @var Collection\Item[] */
     private $items = [];
 
-    public function __construct(\SimpleXMLElement $xml)
+    public function __construct(private \SimpleXMLElement $root)
     {
-        $this->root = $xml;
         foreach ($this->root as $item) {
             $this->items[] = new Collection\Item($item);
         }

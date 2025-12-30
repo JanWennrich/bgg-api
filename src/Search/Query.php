@@ -6,16 +6,11 @@ use JanWennrich\BoardGameGeekApi\Exception;
 
 class Query implements \IteratorAggregate, \Countable, \ArrayAccess
 {
-    /** @var \SimpleXMLElement */
-    private $root;
-
     /** @var Result[] */
     private $results = [];
 
-    public function __construct(\SimpleXMLElement $xml)
+    public function __construct(private \SimpleXMLElement $root)
     {
-        $this->root = $xml;
-
         foreach ($this->root as $item) {
             $this->results[] = new Result($item);
         }
