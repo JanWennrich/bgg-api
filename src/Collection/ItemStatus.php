@@ -38,15 +38,23 @@ class ItemStatus
         $this->lastModified = $this->toDate((string) ($xml['lastmodified'] ?? ''));
     }
 
-    private function toBool($value): bool
+    private function toBool(?string $value): bool
     {
-        $v = strtolower(trim((string) $value));
+        if ($value === null) {
+            return false;
+        }
+
+        $v = strtolower(trim($value));
         return in_array($v, ['1', 'true', 'yes', 'y'], true);
     }
 
-    private function toNullableInt($value): ?int
+    private function toNullableInt(?string $value): ?int
     {
-        $s = trim((string) $value);
+        if ($value === null) {
+            return null;
+        }
+
+        $s = trim($value);
         if ($s === '' || !is_numeric($s)) {
             return null;
         }
@@ -54,8 +62,12 @@ class ItemStatus
         return (int) $s;
     }
 
-    private function toDate(string $value): ?\DateTimeImmutable
+    private function toDate(?string $value): ?\DateTimeImmutable
     {
+        if ($value === null) {
+            return null;
+        }
+
         $value = trim($value);
         if ($value === '') {
             return null;

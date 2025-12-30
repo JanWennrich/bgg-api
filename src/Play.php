@@ -91,9 +91,13 @@ class Play
         return $players;
     }
 
-    private function toBool($value): bool
+    private function toBool(?string $value): bool
     {
-        $v = strtolower(trim((string) $value));
+        if ($value === null) {
+            return false;
+        }
+
+        $v = strtolower(trim($value));
         return in_array($v, ['1', 'true', 'yes', 'y'], true);
     }
 }
