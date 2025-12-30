@@ -29,6 +29,6 @@ class Collection implements \IteratorAggregate, \Countable
 
     public function count(): int
     {
-        return (int) $this->root['totalitems'];
+        return count($this->items);
     }
 }
