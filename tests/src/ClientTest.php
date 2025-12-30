@@ -2,21 +2,28 @@
 
 namespace JanWennrich\BoardGameGeekApi\Test;
 
+use JanWennrich\BoardGameGeekApi\Client;
+use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\TestCase;
 use JanWennrich\BoardGameGeekApi;
 
+#[CoversMethod(Client::class, 'getThing')]
+#[CoversMethod(Client::class, 'getHotItems')]
+#[CoversMethod(Client::class, 'search')]
+#[CoversMethod(Client::class, 'getCollection')]
+#[CoversMethod(Client::class, 'getPlays')]
+#[CoversMethod(Client::class, 'getUser')]
 class ClientTest extends TestCase
 {
     /**
      * https://boardgamegeek.com/boardgame/39856/dixit
-     * @covers \JanWennrich\BoardGameGeekApi\Client::getThing
      */
     public function testGetThing()
     {
         $this->markTestIncomplete('Test requires authorization token');
 
         // @phpstan-ignore deadCode.unreachable
-        $client = new BoardGameGeekApi\Client();
+        $client = new Client();
         $thing = $client->getThing(5371611111, true);
         $this->assertNull($thing);
 
@@ -27,14 +34,13 @@ class ClientTest extends TestCase
 
     /**
      * https://www.boardgamegeek.com/xmlapi2/thing?id=209671,194880
-     * @covers \JanWennrich\BoardGameGeekApi\Client::getThing
      */
     public function testGetThings()
     {
         $this->markTestIncomplete('Test requires authorization token');
 
         // @phpstan-ignore deadCode.unreachable
-        $client = new BoardGameGeekApi\Client();
+        $client = new Client();
         $things = $client->getThings([ 209671, 194880 ], true);
 
         $this->assertCount(2, $things);
@@ -52,14 +58,13 @@ class ClientTest extends TestCase
 
     /**
      * https://www.boardgamegeek.com/xmlapi2/hot?type=boardgame
-     * @covers \JanWennrich\BoardGameGeekApi\Client::getHotItems
      */
     public function testGetHotItems()
     {
         $this->markTestIncomplete('Test requires authorization token');
 
         // @phpstan-ignore deadCode.unreachable
-        $client = new BoardGameGeekApi\Client();
+        $client = new Client();
         $items = $client->getHotItems();
 
         # empty hot list? error on BGG?
@@ -73,14 +78,13 @@ class ClientTest extends TestCase
 
     /**
      * https://www.boardgamegeek.com/xmlapi2/search/?query=Domek&type=boardgame
-     * @covers \JanWennrich\BoardGameGeekApi\Client::search
      */
     public function testSearch()
     {
         $this->markTestIncomplete('Test requires authorization token');
 
         // @phpstan-ignore deadCode.unreachable
-        $client = new BoardGameGeekApi\Client();
+        $client = new Client();
         $search = $client->search('Domek', false, BoardGameGeekApi\Type::BOARDGAME);
 
         $this->assertGreaterThan(1, count($search));
@@ -92,11 +96,10 @@ class ClientTest extends TestCase
 
     /**
      * https://www.boardgamegeek.com/xmlapi2/collection?username=nataniel
-     * @covers \JanWennrich\BoardGameGeekApi\Client::getCollection
      */
     public function testGetCollection()
     {
-        $client = new BoardGameGeekApi\Client();
+        $client = new Client();
         $this->expectException(BoardGameGeekApi\Exception::class);
         $client->getCollection([ 'username' => 'notexistingusername' ]);
 
@@ -110,11 +113,10 @@ class ClientTest extends TestCase
 
     /**
      * https://www.boardgamegeek.com/xmlapi2/plays?username=nataniel
-     * @covers \JanWennrich\BoardGameGeekApi\Client::getPlays
      */
     public function testGetPlays()
     {
-        $client = new BoardGameGeekApi\Client();
+        $client = new Client();
 
         $username = $this->getUsername();
         $password = $this->getPassword();
@@ -128,14 +130,13 @@ class ClientTest extends TestCase
 
     /**
      * https://www.boardgamegeek.com/xmlapi2/user?name=nataniel
-     * @covers \JanWennrich\BoardGameGeekApi\Client::getUser
      */
     public function testGetUser()
     {
         $this->markTestIncomplete('Test requires authorization token');
 
         // @phpstan-ignore deadCode.unreachable
-        $client = new BoardGameGeekApi\Client();
+        $client = new Client();
         $item = $client->getUser('notexistingusername');
         $this->assertNull($item);
 
