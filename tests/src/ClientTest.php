@@ -15,7 +15,7 @@ use JanWennrich\BoardGameGeekApi;
 #[CoversMethod(Client::class, 'getCollection')]
 #[CoversMethod(Client::class, 'getPlays')]
 #[CoversMethod(Client::class, 'getUser')]
-class ClientTest extends TestCase
+final class ClientTest extends TestCase
 {
     /**
      * https://boardgamegeek.com/boardgame/39856/dixit

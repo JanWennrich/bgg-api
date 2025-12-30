@@ -7,7 +7,7 @@ namespace JanWennrich\BoardGameGeekApi\Test;
 use PHPUnit\Framework\TestCase;
 use JanWennrich\BoardGameGeekApi;
 
-class ThingTest extends TestCase
+final class ThingTest extends TestCase
 {
     /** @var BoardGameGeekApi\Thing */
     private $thing;

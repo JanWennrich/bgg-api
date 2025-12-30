@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\Collection;
 use JanWennrich\BoardGameGeekApi\Collection\Item;
 use PHPUnit\Framework\TestCase;
 
-class CollectionTest extends TestCase
+final class CollectionTest extends TestCase
 {
     /** @var Collection */
     private Collection $collection;

@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\Play;
 use JanWennrich\BoardGameGeekApi\Player;
 use PHPUnit\Framework\TestCase;
 
-class PlayTest extends TestCase
+final class PlayTest extends TestCase
 {
     /** @var Play */
     private $play;

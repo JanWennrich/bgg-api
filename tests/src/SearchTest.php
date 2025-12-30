@@ -7,7 +7,7 @@ namespace JanWennrich\BoardGameGeekApi\Test;
 use PHPUnit\Framework\TestCase;
 use JanWennrich\BoardGameGeekApi;
 
-class SearchTest extends TestCase
+final class SearchTest extends TestCase
 {
     public function testQuery()
     {

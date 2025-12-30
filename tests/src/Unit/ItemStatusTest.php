@@ -7,7 +7,7 @@ namespace JanWennrich\BoardGameGeekApi\Test\Unit;
 use JanWennrich\BoardGameGeekApi\Collection\Item;
 use PHPUnit\Framework\TestCase;
 
-class ItemStatusTest extends TestCase
+final class ItemStatusTest extends TestCase
 {
     public function testGetStatusReturnsItemStatusWithParsedValues(): void
     {
