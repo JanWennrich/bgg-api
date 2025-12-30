@@ -12,7 +12,7 @@ final class ThingTest extends TestCase
     /** @var BoardGameGeekApi\Thing */
     private $thing;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $xml = simplexml_load_file(__DIR__ . '/../files/thing.xml');
         $this->thing = new BoardGameGeekApi\Thing($xml->item);
