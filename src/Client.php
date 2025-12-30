@@ -138,9 +138,9 @@ class Client
                 'name' => $name,
             ]);
 
-            return !empty($xml['id'])
-                ? new User($xml)
-                : null;
+            return empty($xml['id'])
+                ? null
+                : new User($xml);
 
         } catch (\Exception) {
             return null;
