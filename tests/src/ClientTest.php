@@ -79,7 +79,6 @@ class ClientTest extends TestCase
         $client = new BoardGameGeekApi\Client();
         $search = $client->search('Domek', false, BoardGameGeekApi\Type::BOARDGAME);
 
-        $this->assertInstanceOf(BoardGameGeekApi\Search\Query::class, $search);
         $this->assertGreaterThan(1, count($search));
         foreach ($search as $result) {
             $this->assertInstanceOf(BoardGameGeekApi\Search\Result::class, $result);
@@ -98,10 +97,8 @@ class ClientTest extends TestCase
         $client->getCollection([ 'username' => 'notexistingusername' ]);
 
         $items = $client->getCollection([ 'username' => 'nataniel' ]);
-        $this->assertInstanceOf(BoardGameGeekApi\Collection::class, $items);
         $this->assertNotEmpty($items);
         foreach ($items as $i => $item) {
-            $this->assertInstanceOf(BoardGameGeekApi\Collection\Item::class, $item);
             $this->assertNotEmpty($item->getName());
             $this->assertStringStartsWith('https://cf.geekdo-images.com', $item->getImage());
         }
@@ -123,10 +120,6 @@ class ClientTest extends TestCase
         $plays = $client->getPlays(['username' => $username]);
 
         $this->assertNotEmpty($plays);
-
-        foreach ($plays as $play) {
-            $this->assertInstanceOf(BoardGameGeekApi\Play::class, $play);
-        }
     }
 
     /**

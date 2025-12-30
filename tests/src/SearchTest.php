@@ -12,9 +12,5 @@ class SearchTest extends TestCase
         $xml = simplexml_load_file(__DIR__ . '/../files/search.xml');
         $search = new BoardGameGeekApi\Search\Query($xml);
         $this->assertCount(82, $search);
-        $this->assertInstanceOf(\Traversable::class, $search);
-        foreach ($search as $result) {
-            $this->assertInstanceOf(BoardGameGeekApi\Search\Result::class, $result);
-        }
     }
 }

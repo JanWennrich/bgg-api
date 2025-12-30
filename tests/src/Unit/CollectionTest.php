@@ -23,7 +23,7 @@ class CollectionTest extends TestCase
         $expectedTotal = (int) $xml['totalitems'];
 
         // count() should read from the XML attribute
-        $this->assertSame($expectedTotal, $this->collection->count());
+        $this->assertCount($expectedTotal, $this->collection);
 
         // And number of parsed items should match as well
         $itemsFromIterator = iterator_to_array($this->collection);
