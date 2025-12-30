@@ -310,11 +310,11 @@ class Client
                 ],
                 'http_errors' => false,
             ]);
-        } catch (GuzzleException $exception) {
+        } catch (GuzzleException $guzzleException) {
             $this->logger->error('BGG login request failed', [
-                'exception' => $exception,
+                'exception' => $guzzleException,
             ]);
-            throw new \Exception('Login request failed', 0, $exception);
+            throw new \Exception('Login request failed', 0, $guzzleException);
         }
 
         $status = $response->getStatusCode();
