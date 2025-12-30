@@ -82,7 +82,7 @@ class Client
         }
 
         $xml = $this->request('thing', [
-            'id' => join(',', $ids),
+            'id' => implode(',', $ids),
             'stats' => $stats,
             'versions' => $versions,
         ]);
