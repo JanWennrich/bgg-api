@@ -93,7 +93,13 @@ class Client
 
         $items = [];
         foreach ($xml as $item) {
-            $items[] = Factory::fromXml($item);
+            $thing = Factory::fromXml($item);
+
+            if (!$thing instanceof Thing) {
+                continue;
+            }
+
+            $items[] = $thing;
         }
 
         return $items;
