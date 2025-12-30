@@ -26,25 +26,25 @@ class ItemStatus
 
     public function __construct(\SimpleXMLElement $xml)
     {
-        $this->own = self::toBool($xml['own'] ?? null);
-        $this->prevOwned = self::toBool($xml['prevowned'] ?? null);
-        $this->forTrade = self::toBool($xml['fortrade'] ?? null);
-        $this->want = self::toBool($xml['want'] ?? null);
-        $this->wantToPlay = self::toBool($xml['wanttoplay'] ?? null);
-        $this->wantToBuy = self::toBool($xml['wanttobuy'] ?? null);
-        $this->wishlist = self::toBool($xml['wishlist'] ?? null);
-        $this->wishlistPriority = self::toNullableInt($xml['wishlistpriority'] ?? null);
-        $this->preordered = self::toBool($xml['preordered'] ?? null);
-        $this->lastModified = self::toDate((string) ($xml['lastmodified'] ?? ''));
+        $this->own = $this->toBool($xml['own'] ?? null);
+        $this->prevOwned = $this->toBool($xml['prevowned'] ?? null);
+        $this->forTrade = $this->toBool($xml['fortrade'] ?? null);
+        $this->want = $this->toBool($xml['want'] ?? null);
+        $this->wantToPlay = $this->toBool($xml['wanttoplay'] ?? null);
+        $this->wantToBuy = $this->toBool($xml['wanttobuy'] ?? null);
+        $this->wishlist = $this->toBool($xml['wishlist'] ?? null);
+        $this->wishlistPriority = $this->toNullableInt($xml['wishlistpriority'] ?? null);
+        $this->preordered = $this->toBool($xml['preordered'] ?? null);
+        $this->lastModified = $this->toDate((string) ($xml['lastmodified'] ?? ''));
     }
 
-    private static function toBool($value): bool
+    private function toBool($value): bool
     {
         $v = strtolower(trim((string) $value));
         return in_array($v, ['1', 'true', 'yes', 'y'], true);
     }
 
-    private static function toNullableInt($value): ?int
+    private function toNullableInt($value): ?int
     {
         $s = trim((string) $value);
         if ($s === '' || !is_numeric($s)) {
@@ -54,7 +54,7 @@ class ItemStatus
         return (int) $s;
     }
 
-    private static function toDate(string $value): ?\DateTimeImmutable
+    private function toDate(string $value): ?\DateTimeImmutable
     {
         $value = trim($value);
         if ($value === '') {
