@@ -13,10 +13,12 @@ class Version extends Link
         }
 
         // Try to find primary name first
-        if ($names = $this->root->xpath("name[@type='primary']")) {
-            if (isset($names[0]['value']) && (string) $names[0]['value'] !== '') {
-                return (string) $names[0]['value'];
-            }
+        if (
+            ($names = $this->root->xpath("name[@type='primary']"))
+            && (isset($names[0]['value'])
+            && (string) $names[0]['value'] !== '')
+        ) {
+            return (string) $names[0]['value'];
         }
 
         // Fallback to first name element
