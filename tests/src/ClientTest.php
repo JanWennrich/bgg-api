@@ -109,7 +109,7 @@ final class ClientTest extends TestCase
 
         $items = $client->getCollection([ 'username' => 'nataniel' ]);
         $this->assertNotEmpty($items);
-        foreach ($items as $i => $item) {
+        foreach ($items as $item) {
             $this->assertNotEmpty($item->getName());
             $this->assertStringStartsWith('https://cf.geekdo-images.com', $item->getImage());
         }

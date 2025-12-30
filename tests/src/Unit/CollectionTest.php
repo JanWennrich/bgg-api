@@ -10,7 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 final class CollectionTest extends TestCase
 {
-    /** @var Collection */
     private Collection $collection;
 
     protected function setUp(): void
