@@ -26,9 +26,7 @@ final class ThingTest extends TestCase
     public function testGetLinks()
     {
         $this->assertCount(16, $this->thing->getLinks());
-        foreach ($this->thing->getLinks() as $item) {
-            $this->assertInstanceOf(BoardGameGeekApi\Boardgame\Link::class, $item);
-        }
+        $this->assertContainsOnlyInstancesOf(BoardGameGeekApi\Boardgame\Link::class, $this->thing->getLinks());
     }
 
     public function testGetDesigners()

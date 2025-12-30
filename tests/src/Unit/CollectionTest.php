@@ -31,9 +31,7 @@ final class CollectionTest extends TestCase
         $itemsFromIterator = iterator_to_array($this->collection);
         $this->assertCount($expectedTotal, $itemsFromIterator);
 
-        foreach ($itemsFromIterator as $item) {
-            $this->assertInstanceOf(Item::class, $item);
-        }
+        $this->assertContainsOnlyInstancesOf(Item::class, $itemsFromIterator);
     }
 
     public function testFirstItemFields(): void
