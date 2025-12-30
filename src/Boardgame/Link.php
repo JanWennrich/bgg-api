@@ -4,7 +4,7 @@ namespace JanWennrich\BoardGameGeekApi\Boardgame;
 
 use JanWennrich\BoardGameGeekApi\Exception;
 
-abstract class Link
+abstract class Link implements \Stringable
 {
     public const TYPE_CATEGORY = 'boardgamecategory';
     public const TYPE_MECHANIC = 'boardgamemechanic';
