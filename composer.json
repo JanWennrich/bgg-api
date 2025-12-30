@@ -22,6 +22,9 @@
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.92",
+    "phpstan/extension-installer": "^1.4",
+    "phpstan/phpstan": "2.1.33",
+    "phpstan/phpstan-phpunit": "^2.0",
     "phpunit/phpunit": "^5.6.1|^11.0.1"
   },
   "autoload": {
@@ -36,6 +39,9 @@
   },
   "config": {
     "optimize-autoloader": true,
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "phpstan/extension-installer": true
+    }
   }
 }
