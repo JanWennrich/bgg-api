@@ -5,20 +5,29 @@ namespace JanWennrich\BoardGameGeekApi;
 class Thing
 {
     public const LANGUAGE_LEVEL_NO_NECESSARY_TEXT = 1;
+
     public const // No necessary in-game text
         LANGUAGE_LEVEL_SOME_NECESSARY_TEXT = 2;
+
     public const // Some necessary text - easily memorized or small crib sheet
         LANGUAGE_LEVEL_MODERATE_TEXT = 3;
+
     public const // Moderate in-game text - needs crib sheet or paste ups
         LANGUAGE_LEVEL_EXTENSIVE_USE = 4;
+
     public const // Extensive use of text - massive conversion needed to be playable
         LANGUAGE_LEVEL_UNPLAYABLE = 5;          // Unplayable in another language
 
     public const TYPE_BOARDGAME = 'boardgame';
+
     public const TYPE_BOARDGAMEEXPANSION = 'boardgameexpansion';
+
     public const TYPE_BOARDGAMEACCESSORY = 'boardgameaccessory';
+
     public const TYPE_VIDEOGAME = 'videogame';
+
     public const TYPE_RPGITEM = 'rpgitem';
+
     public const TYPE_RPGISSUE = 'rpgissue';
 
     public function __construct(private \SimpleXMLElement $root) {}

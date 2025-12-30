@@ -97,6 +97,7 @@ class Play
                 $subtypes[] = (string) $subtype['value'];
             }
         }
+
         return $subtypes;
     }
 
@@ -119,6 +120,7 @@ class Play
                 $players[] = new Player($player);
             }
         }
+
         return $players;
     }
 

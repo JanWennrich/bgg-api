@@ -13,10 +13,13 @@ class Client
     public const API_URL = 'https://boardgamegeek.com/xmlapi2';
 
     private string $userAgent = 'BGG XML API Client/1.0';
+
     private ?string $authorization = null;
 
     private LoggerInterface $logger;
+
     private GuzzleClient $httpClient;
+
     private CookieJar $cookieJar;
 
     public function __construct(?LoggerInterface $logger = null, ?GuzzleClient $httpClient = null)

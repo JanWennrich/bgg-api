@@ -17,6 +17,7 @@ class Player
         if ($val === '' || !is_numeric($val)) {
             return null;
         }
+
         return (int) $val;
     }
 
@@ -41,6 +42,7 @@ class Player
         if ($val === '' || !is_numeric($val)) {
             return null;
         }
+
         return (int) $val;
     }
 
@@ -55,6 +57,7 @@ class Player
         if ($val === '' || !is_numeric($val)) {
             return null;
         }
+
         return (float) $val;
     }
 

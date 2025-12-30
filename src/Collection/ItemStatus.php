@@ -5,14 +5,23 @@ namespace JanWennrich\BoardGameGeekApi\Collection;
 class ItemStatus
 {
     private bool $own;
+
     private bool $prevOwned;
+
     private bool $forTrade;
+
     private bool $want;
+
     private bool $wantToPlay;
+
     private bool $wantToBuy;
+
     private bool $wishlist;
+
     private ?int $wishlistPriority;
+
     private bool $preordered;
+
     private ?\DateTimeImmutable $lastModified;
 
     public function __construct(\SimpleXMLElement $xml)
@@ -41,6 +50,7 @@ class ItemStatus
         if ($s === '' || !is_numeric($s)) {
             return null;
         }
+
         return (int) $s;
     }
 
@@ -50,6 +60,7 @@ class ItemStatus
         if ($value === '') {
             return null;
         }
+
         try {
             return new \DateTimeImmutable($value);
         } catch (\Exception) {
@@ -61,38 +72,47 @@ class ItemStatus
     {
         return $this->own;
     }
+
     public function isPrevOwned(): bool
     {
         return $this->prevOwned;
     }
+
     public function isForTrade(): bool
     {
         return $this->forTrade;
     }
+
     public function isWant(): bool
     {
         return $this->want;
     }
+
     public function isWantToPlay(): bool
     {
         return $this->wantToPlay;
     }
+
     public function isWantToBuy(): bool
     {
         return $this->wantToBuy;
     }
+
     public function isWishlist(): bool
     {
         return $this->wishlist;
     }
+
     public function getWishlistPriority(): ?int
     {
         return $this->wishlistPriority;
     }
+
     public function isPreordered(): bool
     {
         return $this->preordered;
     }
+
     public function getLastModified(): ?\DateTimeImmutable
     {
         return $this->lastModified;

@@ -89,6 +89,7 @@ final class CollectionTest extends TestCase
                 break;
             }
         }
+
         $this->assertInstanceOf(Item::class, $found, 'Expected to find objectid=359871 in collection.xml');
 
         $status = $found->getStatus();

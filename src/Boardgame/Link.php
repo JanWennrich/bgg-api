@@ -7,11 +7,17 @@ use JanWennrich\BoardGameGeekApi\Exception;
 abstract class Link implements \Stringable
 {
     public const TYPE_CATEGORY = 'boardgamecategory';
+
     public const TYPE_MECHANIC = 'boardgamemechanic';
+
     public const TYPE_EXPANSION = 'boardgameexpansion';
+
     public const TYPE_DESIGNER = 'boardgamedesigner';
+
     public const TYPE_ARTIST = 'boardgameartist';
+
     public const TYPE_PUBLISHER = 'boardgamepublisher';
+
     public const TYPE_VERSION = 'boardgameversion';
 
     /** @var \SimpleXMLElement */
