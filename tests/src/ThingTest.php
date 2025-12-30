@@ -36,8 +36,8 @@ final class ThingTest extends TestCase
 
         $item = $items[0];
         $this->assertInstanceOf(BoardGameGeekApi\Boardgame\Designer::class, $item);
-        $this->assertEquals('Klemens Kalicki', $item->getName());
-        $this->assertEquals(89488, $item->getId());
+        $this->assertSame('Klemens Kalicki', $item->getName());
+        $this->assertSame(89488, $item->getId());
     }
 
     public function testGetCategories()
@@ -47,8 +47,8 @@ final class ThingTest extends TestCase
 
         $item = $items[0];
         $this->assertInstanceOf(BoardGameGeekApi\Boardgame\Category::class, $item);
-        $this->assertEquals('Card Game', $item->getName());
-        $this->assertEquals(1002, $item->getId());
+        $this->assertSame('Card Game', $item->getName());
+        $this->assertSame(1002, $item->getId());
     }
 
     public function testGetMechanics()
@@ -58,8 +58,8 @@ final class ThingTest extends TestCase
 
         $item = $items[0];
         $this->assertInstanceOf(BoardGameGeekApi\Boardgame\Mechanic::class, $item);
-        $this->assertEquals('Card Drafting', $item->getName());
-        $this->assertEquals(2041, $item->getId());
+        $this->assertSame('Card Drafting', $item->getName());
+        $this->assertSame(2041, $item->getId());
     }
 
     public function testGetExpansions()
@@ -69,8 +69,8 @@ final class ThingTest extends TestCase
 
         $item = $items[0];
         $this->assertInstanceOf(BoardGameGeekApi\Boardgame\Expansion::class, $item);
-        $this->assertEquals('Domek: Promo Token – Car', $item->getName());
-        $this->assertEquals(208871, $item->getId());
+        $this->assertSame('Domek: Promo Token – Car', $item->getName());
+        $this->assertSame(208871, $item->getId());
     }
 
     public function testGetArtists()
@@ -80,8 +80,8 @@ final class ThingTest extends TestCase
 
         $item = $items[0];
         $this->assertInstanceOf(BoardGameGeekApi\Boardgame\Artist::class, $item);
-        $this->assertEquals('Bartłomiej Kordowski', $item->getName());
-        $this->assertEquals(53716, $item->getId());
+        $this->assertSame('Bartłomiej Kordowski', $item->getName());
+        $this->assertSame(53716, $item->getId());
     }
 
     public function testGetPublishers()
@@ -91,7 +91,7 @@ final class ThingTest extends TestCase
 
         $item = $items[0];
         $this->assertInstanceOf(BoardGameGeekApi\Boardgame\Publisher::class, $item);
-        $this->assertEquals('ADC Blackfire Entertainment', $item->getName());
-        $this->assertEquals(23043, $item->getId());
+        $this->assertSame('ADC Blackfire Entertainment', $item->getName());
+        $this->assertSame(23043, $item->getId());
     }
 }

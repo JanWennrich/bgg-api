@@ -33,7 +33,7 @@ final class ClientTest extends TestCase
 
         $thing = $client->getThing(39856, true);
         $this->assertInstanceOf(BoardGameGeekApi\Boardgame::class, $thing);
-        $this->assertEquals('Dixit', $thing->getName());
+        $this->assertSame('Dixit', $thing->getName());
     }
 
     /**
@@ -75,7 +75,7 @@ final class ClientTest extends TestCase
         # $this->assertNotEmpty($items);
         foreach ($items as $i => $item) {
             $this->assertInstanceOf(BoardGameGeekApi\HotItem::class, $item);
-            $this->assertEquals($i + 1, $item->getRank());
+            $this->assertSame($i + 1, $item->getRank());
             $this->assertNotEmpty($item->getName());
         }
     }
@@ -145,9 +145,9 @@ final class ClientTest extends TestCase
         $this->assertNotInstanceOf(User::class, $item);
 
         $item = $client->getUser('nataniel');
-        $this->assertEquals('Artur', $item->getFirstName());
-        $this->assertEquals('2004', $item->getYearRegistered());
         $this->assertInstanceOf(User::class, $item);
+        $this->assertSame('Artur', $item->getFirstName());
+        $this->assertSame(2004, $item->getYearRegistered());
         $this->assertStringStartsWith('https://cf.geekdo-static.com', $item->getAvatar());
     }
 
