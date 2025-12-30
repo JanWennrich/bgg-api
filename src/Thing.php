@@ -244,6 +244,9 @@ class Thing
         return (float) $this->root->statistics->ratings->ranks->rank['value'];
     }
 
+    /**
+     * @return string[]
+     */
     public function getAlternateNames(): array
     {
         $names = [];
