@@ -26,7 +26,8 @@
     "phpstan/phpstan": "2.1.33",
     "phpstan/phpstan-phpunit": "^2.0",
     "phpunit/phpunit": "^12.5",
-    "rector/rector": "^2.3"
+    "rector/rector": "^2.3",
+    "shipmonk/composer-dependency-analyser": "^1.8"
   },
   "autoload": {
     "psr-4": {
