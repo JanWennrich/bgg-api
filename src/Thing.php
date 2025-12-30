@@ -236,10 +236,7 @@ class Thing
         return round((float) $this->root->statistics->ratings->averageweight['value'], 1);
     }
 
-    /**
-     * @return float
-     */
-    public function getRank()
+    public function getRank(): float
     {
         return (float) $this->root->statistics->ratings->ranks->rank['value'];
     }

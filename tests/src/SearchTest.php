@@ -9,7 +9,7 @@ use JanWennrich\BoardGameGeekApi;
 
 final class SearchTest extends TestCase
 {
-    public function testQuery()
+    public function testQuery(): void
     {
         $xml = simplexml_load_file(__DIR__ . '/../files/search.xml');
         $query = new BoardGameGeekApi\Search\Query($xml);

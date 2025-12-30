@@ -22,7 +22,7 @@ final class ClientTest extends TestCase
     /**
      * https://boardgamegeek.com/boardgame/39856/dixit
      */
-    public function testGetThing()
+    public function testGetThing(): void
     {
         $this->markTestIncomplete('Test requires authorization token');
 
@@ -39,7 +39,7 @@ final class ClientTest extends TestCase
     /**
      * https://www.boardgamegeek.com/xmlapi2/thing?id=209671,194880
      */
-    public function testGetThings()
+    public function testGetThings(): void
     {
         $this->markTestIncomplete('Test requires authorization token');
 
@@ -63,7 +63,7 @@ final class ClientTest extends TestCase
     /**
      * https://www.boardgamegeek.com/xmlapi2/hot?type=boardgame
      */
-    public function testGetHotItems()
+    public function testGetHotItems(): void
     {
         $this->markTestIncomplete('Test requires authorization token');
 
@@ -83,7 +83,7 @@ final class ClientTest extends TestCase
     /**
      * https://www.boardgamegeek.com/xmlapi2/search/?query=Domek&type=boardgame
      */
-    public function testSearch()
+    public function testSearch(): void
     {
         $this->markTestIncomplete('Test requires authorization token');
 
@@ -101,7 +101,7 @@ final class ClientTest extends TestCase
     /**
      * https://www.boardgamegeek.com/xmlapi2/collection?username=nataniel
      */
-    public function testGetCollection()
+    public function testGetCollection(): void
     {
         $client = new Client();
         $this->expectException(BoardGameGeekApi\Exception::class);
@@ -118,7 +118,7 @@ final class ClientTest extends TestCase
     /**
      * https://www.boardgamegeek.com/xmlapi2/plays?username=nataniel
      */
-    public function testGetPlays()
+    public function testGetPlays(): void
     {
         $client = new Client();
 
@@ -135,7 +135,7 @@ final class ClientTest extends TestCase
     /**
      * https://www.boardgamegeek.com/xmlapi2/user?name=nataniel
      */
-    public function testGetUser()
+    public function testGetUser(): void
     {
         $this->markTestIncomplete('Test requires authorization token');
 

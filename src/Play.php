@@ -6,82 +6,52 @@ class Play
 {
     public function __construct(private \SimpleXMLElement $root) {}
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return (int) $this->root['id'];
     }
 
-    /**
-     * @return string
-     */
-    public function getDate()
+    public function getDate(): string
     {
         return (string) $this->root['date'];
     }
 
-    /**
-     * @return int
-     */
-    public function getQuantity()
+    public function getQuantity(): int
     {
         return (int) $this->root['quantity'];
     }
 
-    /**
-     * @return int
-     */
-    public function getLength()
+    public function getLength(): int
     {
         return (int) $this->root['length'];
     }
 
-    /**
-     * @return bool
-     */
-    public function isIncomplete()
+    public function isIncomplete(): bool
     {
         return $this->toBool($this->root['incomplete'] ?? null);
     }
 
-    /**
-     * @return bool
-     */
-    public function isNoWinStats()
+    public function isNoWinStats(): bool
     {
         return $this->toBool($this->root['nowinstats'] ?? null);
     }
 
-    /**
-     * @return string
-     */
-    public function getLocation()
+    public function getLocation(): string
     {
         return (string) $this->root['location'];
     }
 
-    /**
-     * @return string
-     */
-    public function getObjectType()
+    public function getObjectType(): string
     {
         return (string) $this->root->item['objecttype'];
     }
 
-    /**
-     * @return int
-     */
-    public function getObjectId()
+    public function getObjectId(): int
     {
         return (int) $this->root->item['objectid'];
     }
 
-    /**
-     * @return string
-     */
-    public function getObjectName()
+    public function getObjectName(): string
     {
         return (string) $this->root->item['name'];
     }
@@ -89,7 +59,7 @@ class Play
     /**
      * @return string[]
      */
-    public function getSubtypes()
+    public function getSubtypes(): array
     {
         $subtypes = [];
         if (isset($this->root->item->subtypes)) {
@@ -101,10 +71,7 @@ class Play
         return $subtypes;
     }
 
-    /**
-     * @return string
-     */
-    public function getComments()
+    public function getComments(): string
     {
         return isset($this->root->comments) ? (string) $this->root->comments : '';
     }

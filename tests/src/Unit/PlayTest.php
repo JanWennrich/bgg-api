@@ -19,7 +19,7 @@ final class PlayTest extends TestCase
         $this->play = new Play($xml->play);
     }
 
-    public function testBasicAttributes()
+    public function testBasicAttributes(): void
     {
         $this->assertSame(102838714, $this->play->getId());
         $this->assertSame('2025-08-19', $this->play->getDate());
@@ -30,7 +30,7 @@ final class PlayTest extends TestCase
         $this->assertSame('Home', $this->play->getLocation());
     }
 
-    public function testItemInfo()
+    public function testItemInfo(): void
     {
         $this->assertSame('thing', $this->play->getObjectType());
         $this->assertSame(155987, $this->play->getObjectId());
@@ -38,12 +38,12 @@ final class PlayTest extends TestCase
         $this->assertSame(['boardgame'], $this->play->getSubtypes());
     }
 
-    public function testComments()
+    public function testComments(): void
     {
         $this->assertSame('Played with expansions: - [thing=232197]Abyss: Leviathan[/thing]', $this->play->getComments());
     }
 
-    public function testPlayers()
+    public function testPlayers(): void
     {
         $players = $this->play->getPlayers();
         $this->assertCount(4, $players);

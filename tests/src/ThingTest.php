@@ -18,18 +18,18 @@ final class ThingTest extends TestCase
         $this->thing = new BoardGameGeekApi\Thing($xml->item);
     }
 
-    public function testGetName()
+    public function testGetName(): void
     {
         $this->assertEquals('Dream Home', $this->thing->getName());
     }
 
-    public function testGetLinks()
+    public function testGetLinks(): void
     {
         $this->assertCount(16, $this->thing->getLinks());
         $this->assertContainsOnlyInstancesOf(BoardGameGeekApi\Boardgame\Link::class, $this->thing->getLinks());
     }
 
-    public function testGetDesigners()
+    public function testGetDesigners(): void
     {
         $items = $this->thing->getBoardgameDesigners();
         $this->assertCount(1, $items);
@@ -40,7 +40,7 @@ final class ThingTest extends TestCase
         $this->assertSame(89488, $item->getId());
     }
 
-    public function testGetCategories()
+    public function testGetCategories(): void
     {
         $items = $this->thing->getBoardgameCategories();
         $this->assertCount(1, $items);
@@ -51,7 +51,7 @@ final class ThingTest extends TestCase
         $this->assertSame(1002, $item->getId());
     }
 
-    public function testGetMechanics()
+    public function testGetMechanics(): void
     {
         $items = $this->thing->getBoardgameMechanics();
         $this->assertCount(4, $items);
@@ -62,7 +62,7 @@ final class ThingTest extends TestCase
         $this->assertSame(2041, $item->getId());
     }
 
-    public function testGetExpansions()
+    public function testGetExpansions(): void
     {
         $items = $this->thing->getBoardgameExpansions();
         $this->assertCount(2, $items);
@@ -73,7 +73,7 @@ final class ThingTest extends TestCase
         $this->assertSame(208871, $item->getId());
     }
 
-    public function testGetArtists()
+    public function testGetArtists(): void
     {
         $items = $this->thing->getBoardgameArtists();
         $this->assertCount(1, $items);
@@ -84,7 +84,7 @@ final class ThingTest extends TestCase
         $this->assertSame(53716, $item->getId());
     }
 
-    public function testGetPublishers()
+    public function testGetPublishers(): void
     {
         $items = $this->thing->getBoardgamePublishers();
         $this->assertCount(7, $items);
