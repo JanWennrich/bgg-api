@@ -165,9 +165,9 @@ final class ClientTest extends TestCase
     {
         $value = getenv($environmentVariable);
 
-        $this->assertNotFalse($value, "Environment variable '$environmentVariable' must be set");
-        $this->assertIsString($value, "Environment variable '$environmentVariable' must be a string");
-        $this->assertNotEmpty($value, "Environment variable '$environmentVariable' must not be empty");
+        if ($value === false || !is_string($value) || $value === '') {
+            $this->markTestSkipped('Environment variable ' . $environmentVariable . ' required for this test, is not set');
+        }
 
         return $value;
     }
