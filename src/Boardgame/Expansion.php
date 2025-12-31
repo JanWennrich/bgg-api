@@ -6,6 +6,6 @@ class Expansion extends Link
 {
     public function isInbound(): bool
     {
-        return $this->root['inbound'] === 'true';
+        return ((string) $this->root['inbound']) === 'true';
     }
 }
