@@ -17,7 +17,8 @@
     "php": "^8.1",
     "ext-simplexml": "*",
     "guzzlehttp/guzzle": "^7.10",
-    "psr/log": "^1.1 || ^2.0 || ^3.0"
+    "psr/log": "^1.1 || ^2.0 || ^3.0",
+    "webmozart/assert": "^2.1"
   },
   "require-dev": {
     "ergebnis/composer-normalize": "^2.48.2",
@@ -25,6 +26,7 @@
     "phpstan/extension-installer": "^1.4.3",
     "phpstan/phpstan": "2.1.33",
     "phpstan/phpstan-phpunit": "^2.0.11",
+    "phpstan/phpstan-webmozart-assert": "^2.0",
     "phpunit/phpunit": "^12.5.4",
     "rector/rector": "^2.3",
     "shipmonk/composer-dependency-analyser": "^1.8.4"
