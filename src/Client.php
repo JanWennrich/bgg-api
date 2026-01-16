@@ -5,6 +5,7 @@ namespace JanWennrich\BoardGameGeekApi;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
+use JanWennrich\BoardGameGeekApi\Query\FamilyQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThingQuery;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -149,6 +150,78 @@ class Client
             'ratingcomments' => (int) $thingQuery->withRatingComments,
             'page' => $thingQuery->page,
             'pagesize' => $thingQuery->pageSize,
+        ];
+    }
+
+
+    /**
+     * @param BggId $id The id of the family to retrieve.
+     * @param ?FamilyQuery $familyQuery Query to filter the returned result
+     *
+     * @throws Exception
+     * @throws InvalidArgumentException
+     */
+    public function getFamily(int $id, ?FamilyQuery $familyQuery = null): ?Family
+    {
+        Assert::positiveInteger($id);
+
+        $query = $this->buildFamilyQueryArray($familyQuery);
+
+        $query['id'] = $id;
+
+        $xml = $this->request('family', $query);
+
+        if (!isset($xml->item)) {
+            return null;
+        }
+
+        return new Family($xml->item);
+    }
+
+    /**
+     * @param non-empty-array<BggId> $ids The ids of the families to retrieve. Cannot be an empty array.
+     * @param ?FamilyQuery $familyQuery Query to filter the returned result
+     *
+     * @return Family[]
+     *
+     * @throws Exception
+     * @throws InvalidArgumentException
+     */
+    public function getFamilies(array $ids, ?FamilyQuery $familyQuery = null): array
+    {
+        Assert::minCount($ids, 1);
+        Assert::allPositiveInteger($ids);
+
+        $query = $this->buildFamilyQueryArray($familyQuery);
+
+        $query['id'] = implode(',', $ids);
+
+        $xml = $this->request('family', $query);
+
+        $items = [];
+        foreach ($xml as $item) {
+            $items[] = new Family($item);
+        }
+
+        return $items;
+    }
+
+    /**
+     * @return ($familyQuery is null ? array{} : array{
+     *     type: literal-string
+     * })
+     */
+    private function buildFamilyQueryArray(?FamilyQuery $familyQuery = null): array
+    {
+        if (!$familyQuery instanceof FamilyQuery) {
+            return [];
+        }
+
+        return [
+            'type' => implode(
+                ',',
+                array_map(static fn(FamilyType $familyType) => $familyType->value, $familyQuery->withTypes),
+            ),
         ];
     }
 
