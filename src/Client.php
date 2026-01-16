@@ -5,11 +5,15 @@ namespace JanWennrich\BoardGameGeekApi;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
+use JanWennrich\BoardGameGeekApi\Query\ThingQuery;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Webmozart\Assert\Assert;
+use Webmozart\Assert\InvalidArgumentException;
 
 /**
  * @phpstan-type RequestParams Array<string, bool|int|string>
+ * @phpstan-type BggId positive-int
  */
 class Client
 {
@@ -57,39 +61,47 @@ class Client
     }
 
     /**
+     * @param BggId $id The id of the thing to retrieve. Cannot be an empty array.
+     * @param ?ThingQuery $thingQuery Query to modify and filter the returned result
+     *
      * @throws Exception
+     *
+     * @throws InvalidArgumentException
      */
-    public function getThing(int $id, bool $stats = false, bool $versions = false): ?Thing
+    public function getThing(int $id, ?ThingQuery $thingQuery = null): ?Thing
     {
-        if (empty($id)) {
-            return null;
-        }
+        Assert::positiveInteger($id);
 
-        $xml = $this->request('thing', [
-            'id' => $id,
-            'stats' => $stats,
-            'versions' => $versions,
-        ]);
+        $query = $this->buildThingQueryArray($thingQuery);
+
+        var_dump($query);
+
+        $query['id'] = $id;
+
+        $xml = $this->request('thing', $query);
 
         return Factory::fromXml($xml->item);
     }
 
     /**
-     * @param string[]|int[] $ids
+     * @param non-empty-array<BggId> $ids The ids of the things to retrieve. Cannot be an empty array.
+     * @param ?ThingQuery $thingQuery Query to modify and filter the returned result
+     *
      * @return Thing[]
+     *
      * @throws Exception
+     * @throws InvalidArgumentException
      */
-    public function getThings(array $ids, bool $stats = false, bool $versions = false): array
+    public function getThings(array $ids, ?ThingQuery $thingQuery = null): array
     {
-        if ($ids === []) {
-            return [];
-        }
+        Assert::countBetween($ids, 1, 20);
+        Assert::allPositiveInteger($ids);
 
-        $xml = $this->request('thing', [
-            'id' => implode(',', $ids),
-            'stats' => $stats,
-            'versions' => $versions,
-        ]);
+        $query = $this->buildThingQueryArray($thingQuery);
+
+        $query['id'] = implode(',', $ids);
+
+        $xml = $this->request('thing', $query);
 
         $items = [];
         foreach ($xml as $item) {
@@ -103,6 +115,41 @@ class Client
         }
 
         return $items;
+    }
+
+    /**
+     * @return ($thingQuery is null ? array{} : array{
+     *     types: literal-string,
+     *     versions: int<0,1>,
+     *     videos: int<0,1>,
+     *     stats: int<0,1>,
+     *     marketplace: int<0,1>,
+     *     comments: int<0,1>,
+     *     ratingcomments: int<0,1>,
+     *     page: positive-int,
+     *     pagesize: int<10, 100>
+     * })
+     */
+    private function buildThingQueryArray(?ThingQuery $thingQuery = null): array
+    {
+        if (!$thingQuery instanceof ThingQuery) {
+            return [];
+        }
+
+        return [
+            'types' => implode(
+                ',',
+                array_map(static fn(ThingType $thingType) => $thingType->value, $thingQuery->withTypes),
+            ),
+            'versions' => (int) $thingQuery->withVersions,
+            'videos' => (int) $thingQuery->withVideos,
+            'stats' => (int) $thingQuery->withStats,
+            'marketplace' => (int) $thingQuery->withMarketplaceData,
+            'comments' => (int) $thingQuery->withComments,
+            'ratingcomments' => (int) $thingQuery->withRatingComments,
+            'page' => $thingQuery->page,
+            'pagesize' => $thingQuery->pageSize,
+        ];
     }
 
     /**
