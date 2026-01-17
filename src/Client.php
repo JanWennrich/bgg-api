@@ -135,6 +135,26 @@ class Client
     }
 
     /**
+     * @param BggId $id The id of the forum. This is the id that appears in the address of the page when visiting a forum in the browser.
+     * @param positive-int $page The page of the thread list to return; page size is 50. Threads in the thread list are sorted in order of most recent post.
+     *
+     * @throws Exception
+     * @throws InvalidArgumentException
+     */
+    public function getForum(int $id, int $page = 1): ForumThreadList
+    {
+        Assert::positiveInteger($id);
+        Assert::positiveInteger($page);
+
+        $xml = $this->request('forum', [
+            'id' => $id,
+            'page' => $page,
+        ]);
+
+        return new ForumThreadList($xml);
+    }
+
+    /**
      * @return ($thingQuery is null ? array{} : array{
      *     types: literal-string,
      *     versions: int<0,1>,
