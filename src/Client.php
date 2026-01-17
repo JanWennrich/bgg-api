@@ -119,6 +119,22 @@ class Client
     }
 
     /**
+     * @param BggId $id The id of the entry to retrieve the forum list for.
+     * @param ForumListType $forumListType The type of entry in the database.
+     *
+     * @throws Exception
+     */
+    public function getForumList(int $id, ForumListType $forumListType): ForumList
+    {
+        $xml = $this->request('forumlist', [
+            'id' => $id,
+            'type' => $forumListType->value,
+        ]);
+
+        return new ForumList($xml);
+    }
+
+    /**
      * @return ($thingQuery is null ? array{} : array{
      *     types: literal-string,
      *     versions: int<0,1>,
