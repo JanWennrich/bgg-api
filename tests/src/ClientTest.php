@@ -127,7 +127,7 @@ final class ClientTest extends TestCase
 
         $client->login($username, $password);
 
-        $plays = $client->getPlays(['username' => $username]);
+        $plays = $client->getPlaysForUser($username);
 
         $this->assertNotEmpty($plays);
     }

@@ -7,6 +7,7 @@ use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
 use JanWennrich\BoardGameGeekApi\Query\FamilyQuery;
 use JanWennrich\BoardGameGeekApi\Query\GuildQuery;
+use JanWennrich\BoardGameGeekApi\Query\PlaysQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThreadQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThingQuery;
 use JanWennrich\BoardGameGeekApi\Query\UsersQuery;
@@ -315,6 +316,28 @@ class Client
         ];
     }
 
+    /**
+     * @return ($playsQuery is null ? array{} : array{
+     *     mindate?: non-empty-string,
+     *     maxdate?: non-empty-string,
+     *     subtype: value-of<PlayType>,
+     *     page: positive-int
+     * })
+     */
+    private function buildPlaysQueryArray(?PlaysQuery $playsQuery = null): array
+    {
+        if (!$playsQuery instanceof PlaysQuery) {
+            return [];
+        }
+
+        return array_filter([
+            'mindate' => $playsQuery->minDate?->format('Y-m-d'),
+            'maxdate' => $playsQuery->maxDate?->format('Y-m-d'),
+            'subtype' => $playsQuery->playType->value,
+            'page' => $playsQuery->page,
+        ], static fn(mixed $value): bool => $value !== null);
+    }
+
 
     /**
      * @param BggId $id The id of the family to retrieve.
@@ -438,13 +461,56 @@ class Client
     }
 
     /**
-     * @param RequestParams $params
+     * Get plays logged by a particular user.
+     * Data is returned in backwards-chronological form.
+     *
+     * @param string $username Name of the player you want to request play information for.
+     * @param ?PlaysQuery $playsQuery Optional query to filter the returned result.
+     *
      * @return Play[]
+     *
      * @throws Exception
+     * @throws InvalidArgumentException
      */
-    public function getPlays(array $params): array
+    public function getPlaysForUser(string $username, ?PlaysQuery $playsQuery = null): array
     {
-        $xml = $this->request('plays', $params);
+        Assert::stringNotEmpty($username);
+
+        $query = $this->buildPlaysQueryArray($playsQuery);
+        $query['username'] = $username;
+
+        $xml = $this->request('plays', $query);
+
+        $items = [];
+        foreach ($xml as $item) {
+            $items[] = new Play($item);
+        }
+
+        return $items;
+    }
+
+    /**
+     * Get plays logged for an item ID.
+     * Data is returned in backwards-chronological form.
+     *
+     * @param int $itemId ID of the item you want to request play information for.
+     * @param ItemType $itemType Type of the item you want to request play information for.
+     * @param ?PlaysQuery $playsQuery Optional query to filter the returned result.
+     *
+     * @return Play[]
+     *
+     * @throws Exception
+     * @throws InvalidArgumentException
+     */
+    public function getPlaysForItem(int $itemId, ItemType $itemType, ?PlaysQuery $playsQuery = null): array
+    {
+        Assert::positiveInteger($itemId);
+
+        $query = $this->buildPlaysQueryArray($playsQuery);
+        $query['id'] = $itemId;
+        $query['type'] = $itemType->value;
+
+        $xml = $this->request('plays', $query);
 
         $items = [];
         foreach ($xml as $item) {
