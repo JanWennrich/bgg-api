@@ -6,6 +6,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
 use JanWennrich\BoardGameGeekApi\Query\FamilyQuery;
+use JanWennrich\BoardGameGeekApi\Query\ThreadQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThingQuery;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -155,6 +156,25 @@ class Client
     }
 
     /**
+     * @param BggId $id The id of the thread to retrieve.
+     * @param ?ThreadQuery $threadQuery Query to filter the returned result
+     *
+     * @throws Exception
+     * @throws InvalidArgumentException
+     */
+    public function getThread(int $id, ?ThreadQuery $threadQuery = null): Thread
+    {
+        Assert::positiveInteger($id);
+
+        $query = $this->buildThreadQueryArray($threadQuery);
+        $query['id'] = $id;
+
+        $xml = $this->request('thread', $query);
+
+        return new Thread($xml);
+    }
+
+    /**
      * @return ($thingQuery is null ? array{} : array{
      *     types: literal-string,
      *     versions: int<0,1>,
@@ -187,6 +207,26 @@ class Client
             'page' => $thingQuery->page,
             'pagesize' => $thingQuery->pageSize,
         ];
+    }
+
+    /**
+     * @return ($threadQuery is null ? array{} : array{
+     *     minarticleid?: positive-int,
+     *     minarticledate?: non-empty-string,
+     *     count?: int<1,1000>,
+     * })
+     */
+    private function buildThreadQueryArray(?ThreadQuery $threadQuery = null): array
+    {
+        if (!$threadQuery instanceof ThreadQuery) {
+            return [];
+        }
+
+        return array_filter([
+            'minarticleid' => $threadQuery->minArticleId,
+            'minarticledate' => $threadQuery->minArticleDate?->format('Y-m-d H:i:s'),
+            'count' => $threadQuery->count,
+        ], static fn(mixed $value): bool => $value !== null);
     }
 
 
