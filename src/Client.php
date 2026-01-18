@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use JanWennrich\BoardGameGeekApi\Query\FamilyQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThreadQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThingQuery;
+use JanWennrich\BoardGameGeekApi\Query\UsersQuery;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Webmozart\Assert\Assert;
@@ -175,6 +176,25 @@ class Client
     }
 
     /**
+     * @param non-empty-string $name Specifies the username.
+     * @param ?UsersQuery $usersQuery Query to modify and filter the returned result
+     *
+     * @throws Exception
+     * @throws InvalidArgumentException
+     */
+    public function getUser(string $name, ?UsersQuery $usersQuery = null): ?User
+    {
+        Assert::stringNotEmpty($name);
+
+        $query = $this->buildUsersQueryArray($usersQuery);
+        $query['name'] = $name;
+
+        $xml = $this->request('users', $query);
+
+        return empty($xml['id']) ? null : new User($xml);
+    }
+
+    /**
      * @return ($thingQuery is null ? array{} : array{
      *     types: literal-string,
      *     versions: int<0,1>,
@@ -227,6 +247,32 @@ class Client
             'minarticledate' => $threadQuery->minArticleDate?->format('Y-m-d H:i:s'),
             'count' => $threadQuery->count,
         ], static fn(mixed $value): bool => $value !== null);
+    }
+
+    /**
+     * @return ($usersQuery is null ? array{} : array{
+     *     buddies: int<0,1>,
+     *     guilds: int<0,1>,
+     *     hot: int<0,1>,
+     *     top: int<0,1>,
+     *     domain: value-of<UserDomain>,
+     *     page: positive-int
+     * })
+     */
+    private function buildUsersQueryArray(?UsersQuery $usersQuery = null): array
+    {
+        if (!$usersQuery instanceof UsersQuery) {
+            return [];
+        }
+
+        return [
+            'buddies' => (int) $usersQuery->withBuddies,
+            'guilds' => (int) $usersQuery->withGuilds,
+            'hot' => (int) $usersQuery->withHot,
+            'top' => (int) $usersQuery->withTop,
+            'domain' => $usersQuery->domain->value,
+            'page' => $usersQuery->page,
+        ];
     }
 
 
@@ -335,23 +381,6 @@ class Client
         }
 
         return $items;
-    }
-
-    public function getUser(string $name): ?User
-    {
-        try {
-
-            $xml = $this->request('user', [
-                'name' => $name,
-            ]);
-
-            return empty($xml['id'])
-                ? null
-                : new User($xml);
-
-        } catch (\Exception) {
-            return null;
-        }
     }
 
     /**
