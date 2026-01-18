@@ -105,9 +105,9 @@ final class ClientTest extends TestCase
     {
         $client = new Client();
         $this->expectException(BoardGameGeekApi\Exception::class);
-        $client->getCollection([ 'username' => 'notexistingusername' ]);
+        $client->getCollection('notexistingusername');
 
-        $collection = $client->getCollection([ 'username' => 'nataniel' ]);
+        $collection = $client->getCollection('nataniel');
         $this->assertNotEmpty($collection);
         foreach ($collection as $item) {
             $this->assertNotEmpty($item->getName());

@@ -5,6 +5,7 @@ namespace JanWennrich\BoardGameGeekApi;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
+use JanWennrich\BoardGameGeekApi\Query\CollectionQuery;
 use JanWennrich\BoardGameGeekApi\Query\FamilyQuery;
 use JanWennrich\BoardGameGeekApi\Query\GuildQuery;
 use JanWennrich\BoardGameGeekApi\Query\PlaysQuery;
@@ -317,6 +318,83 @@ class Client
     }
 
     /**
+     * @return ($collectionQuery is null ? array{} : array{
+     *     version: int<0,1>,
+     *     subtype: value-of<ThingType>,
+     *     excludesubtype?: value-of<ThingType>,
+     *     id?: non-empty-string,
+     *     brief: int<0,1>,
+     *     stats: int<0,1>,
+     *     own?: int<0,1>,
+     *     rated?: int<0,1>,
+     *     played?: int<0,1>,
+     *     comment?: int<0,1>,
+     *     trade?: int<0,1>,
+     *     want?: int<0,1>,
+     *     wishlist?: int<0,1>,
+     *     wishlistpriority?: int<1,5>,
+     *     preordered?: int<0,1>,
+     *     wanttoplay?: int<0,1>,
+     *     wanttobuy?: int<0,1>,
+     *     prevowned?: int<0,1>,
+     *     hasparts?: int<0,1>,
+     *     wantparts?: int<0,1>,
+     *     minrating?: int<1,10>,
+     *     rating?: int<1,10>,
+     *     minbggrating?: int<1,10>,
+     *     bggrating?: int<1,10>,
+     *     minplays?: int<0,max>,
+     *     maxplays?: int<0,max>,
+     *     showprivate: int<0,1>,
+     *     collid?: positive-int,
+     *     modifiedsince?: non-empty-string
+     * })
+     */
+    private function buildCollectionQueryArray(?CollectionQuery $collectionQuery = null): array
+    {
+        if (!$collectionQuery instanceof CollectionQuery) {
+            return [];
+        }
+
+        $ids = null;
+        if (is_array($collectionQuery->ids)) {
+            $ids = implode(',', $collectionQuery->ids);
+        }
+
+        return array_filter([
+            'version' => (int) $collectionQuery->withVersions,
+            'subtype' => $collectionQuery->onlyThingsWithType->value,
+            'excludesubtype' => $collectionQuery->excludeThingsWithType?->value,
+            'id' => $ids,
+            'brief' => (int) $collectionQuery->onlyBrief,
+            'stats' => (int) $collectionQuery->withStats,
+            'own' => $collectionQuery->isOwned === null ? null : (int) $collectionQuery->isOwned,
+            'rated' => $collectionQuery->isRated === null ? null : (int) $collectionQuery->isRated,
+            'played' => $collectionQuery->isPlayed === null ? null : (int) $collectionQuery->isPlayed,
+            'comment' => $collectionQuery->isCommented === null ? null : (int) $collectionQuery->isCommented,
+            'trade' => $collectionQuery->isForTrade === null ? null : (int) $collectionQuery->isForTrade,
+            'want' => $collectionQuery->isWanted === null ? null : (int) $collectionQuery->isWanted,
+            'wishlist' => $collectionQuery->isWishlisted === null ? null : (int) $collectionQuery->isWishlisted,
+            'wishlistpriority' => $collectionQuery->wishlistPriority,
+            'preordered' => $collectionQuery->isPreOrdered === null ? null : (int) $collectionQuery->isPreOrdered,
+            'wanttoplay' => $collectionQuery->wantToPlay === null ? null : (int) $collectionQuery->wantToPlay,
+            'wanttobuy' => $collectionQuery->wantToBuy === null ? null : (int) $collectionQuery->wantToBuy,
+            'prevowned' => $collectionQuery->isPreviouslyOwned === null ? null : (int) $collectionQuery->isPreviouslyOwned,
+            'hasparts' => $collectionQuery->hasParts === null ? null : (int) $collectionQuery->hasParts,
+            'wantparts' => $collectionQuery->wantParts === null ? null : (int) $collectionQuery->wantParts,
+            'minrating' => $collectionQuery->minPersonalRating,
+            'rating' => $collectionQuery->maxPersonalRating,
+            'minbggrating' => $collectionQuery->minBggRating,
+            'bggrating' => $collectionQuery->maxBggRating,
+            'minplays' => $collectionQuery->minPlays,
+            'maxplays' => $collectionQuery->maxPlays,
+            'showprivate' => (int) $collectionQuery->showPrivate,
+            'collid' => $collectionQuery->collectionId,
+            'modifiedsince' => $collectionQuery->modifiedSince?->format('Y-m-d H:i:s'),
+        ], static fn(mixed $value): bool => $value !== null);
+    }
+
+    /**
      * @return ($playsQuery is null ? array{} : array{
      *     mindate?: non-empty-string,
      *     maxdate?: non-empty-string,
@@ -410,17 +488,20 @@ class Client
         ];
     }
 
-    /**
-     * https://boardgamegeek.com/wiki/page/BGG_XML_API2#toc11
-     * TODO: Note that you should check the response status code... if it's 202 (vs. 200) then it indicates BGG has queued
-     * your request and you need to keep retrying (hopefully w/some delay between tries) until the status is not 202.
+    /*
+     * @param ?CollectionQuery $collectionQuery Query to filter the returned result
      *
-     * @param RequestParams $params
      * @throws Exception
+     * @throws InvalidArgumentException
      */
-    public function getCollection(array $params): Collection
+    public function getCollection(string $username, ?CollectionQuery $collectionQuery = null): Collection
     {
-        $xml = $this->request('collection', $params);
+        Assert::stringNotEmpty($username);
+
+        $query = $this->buildCollectionQueryArray($collectionQuery);
+        $query['username'] = $username;
+
+        $xml = $this->request('collection', $query);
         if ($xml->getName() !== 'items') {
             throw new Exception($xml->error->message);
         }
