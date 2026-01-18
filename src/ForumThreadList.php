@@ -51,7 +51,12 @@ class ForumThreadList
     public function getThreads(): array
     {
         $threads = [];
-        $threadsNode = $this->root->threads ?? $this->root;
+
+        if (!isset($this->root->threads)) {
+            return [];
+        }
+
+        $threadsNode = $this->root->threads;
         foreach ($threadsNode->thread as $thread) {
             $threads[] = new ForumThread($thread);
         }
