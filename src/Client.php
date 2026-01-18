@@ -608,8 +608,6 @@ class Client
      */
     protected function request(string $action, array $params = []): \SimpleXMLElement
     {
-        $params = array_filter($params);
-
         $this->logger->debug('BGG API request', ['action' => $action, 'params' => $params]);
 
         $maxRetries = 3;
