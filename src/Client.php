@@ -6,6 +6,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
 use JanWennrich\BoardGameGeekApi\Query\FamilyQuery;
+use JanWennrich\BoardGameGeekApi\Query\GuildQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThreadQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThingQuery;
 use JanWennrich\BoardGameGeekApi\Query\UsersQuery;
@@ -195,6 +196,25 @@ class Client
     }
 
     /**
+     * @param BggId $id ID of the guild you want to view.
+     * @param ?GuildQuery $guildQuery Query to modify and filter the returned result
+     *
+     * @throws Exception
+     * @throws InvalidArgumentException
+     */
+    public function getGuild(int $id, ?GuildQuery $guildQuery = null): ?Guild
+    {
+        Assert::positiveInteger($id);
+
+        $query = $this->buildGuildQueryArray($guildQuery);
+        $query['id'] = $id;
+
+        $xml = $this->request('guild', $query);
+
+        return empty($xml['id']) ? null : new Guild($xml);
+    }
+
+    /**
      * @return ($thingQuery is null ? array{} : array{
      *     types: literal-string,
      *     versions: int<0,1>,
@@ -272,6 +292,26 @@ class Client
             'top' => (int) $usersQuery->withTop,
             'domain' => $usersQuery->domain->value,
             'page' => $usersQuery->page,
+        ];
+    }
+
+    /**
+     * @return ($guildQuery is null ? array{} : array{
+     *     members: int<0,1>,
+     *     sort: value-of<GuildMemberSort>,
+     *     page: positive-int
+     * })
+     */
+    private function buildGuildQueryArray(?GuildQuery $guildQuery = null): array
+    {
+        if (!$guildQuery instanceof GuildQuery) {
+            return [];
+        }
+
+        return [
+            'members' => (int) $guildQuery->withMembers,
+            'sort' => $guildQuery->sort->value,
+            'page' => $guildQuery->page,
         ];
     }
 
