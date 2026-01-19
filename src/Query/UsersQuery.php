@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\UserDomain;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
-class UsersQuery
+final readonly class UsersQuery
 {
     /**
      * @param bool $withBuddies Turns on optional buddies reporting. Results are paged; see page parameter.

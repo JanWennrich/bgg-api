@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\PlayType;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
-class PlaysQuery
+final readonly class PlaysQuery
 {
     /**
      * @param ?\DateTimeImmutable $minDate Returns only plays of the specified date or later.

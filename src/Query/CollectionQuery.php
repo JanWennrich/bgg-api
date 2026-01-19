@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\ThingType;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
-class CollectionQuery
+final readonly class CollectionQuery
 {
     /**
      * @param bool $withVersions Return version info for each collection item.

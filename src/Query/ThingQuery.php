@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\ThingType;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
-class ThingQuery
+final readonly class ThingQuery
 {
     /**
      * @param ThingType[] $withTypes Specify that, regardless of the type of thing asked for by id, the results are filtered by the {@see ThingType}(s) specified. Multiple {@see ThingType}s can be specified.

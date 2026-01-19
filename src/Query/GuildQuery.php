@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\GuildMemberSort;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
-class GuildQuery
+final readonly class GuildQuery
 {
     /**
      * @param bool $withMembers Include member roster in the results.

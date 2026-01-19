@@ -7,7 +7,7 @@ namespace JanWennrich\BoardGameGeekApi\Query;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
-class ThreadQuery
+final readonly class ThreadQuery
 {
     /**
      * @param positive-int|null $minArticleId Filters the results so that only articles with an equal or higher id will be returned.
