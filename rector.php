@@ -18,7 +18,7 @@ return RectorConfig::configure()
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
-    ->withPhpSets(php80: true) // upto PHP 8.0
+    ->withPhpSets(php82: true) // upto PHP 8.2
     ->withSets([
         PHPUnitSetList::PHPUNIT_50,
         PHPUnitSetList::PHPUNIT_60,
