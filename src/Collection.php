@@ -12,7 +12,7 @@ class Collection implements \IteratorAggregate, \Countable
     /** @var Collection\Item[] */
     private array $items = [];
 
-    public function __construct(private \SimpleXMLElement $root)
+    public function __construct(private readonly \SimpleXMLElement $root)
     {
         foreach ($this->root as $item) {
             $this->items[] = new Collection\Item($item);

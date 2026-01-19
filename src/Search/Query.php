@@ -13,7 +13,7 @@ class Query implements \IteratorAggregate, \Countable, \ArrayAccess
     /** @var Result[] */
     private array $results = [];
 
-    public function __construct(private \SimpleXMLElement $root)
+    public function __construct(private readonly \SimpleXMLElement $root)
     {
         foreach ($this->root as $item) {
             $this->results[] = new Result($item);

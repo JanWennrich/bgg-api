@@ -29,15 +29,12 @@ class Client
 
     private ?string $authorization = null;
 
-    private LoggerInterface $logger;
+    private readonly GuzzleClient $guzzleClient;
 
-    private GuzzleClient $guzzleClient;
+    private readonly CookieJar $cookieJar;
 
-    private CookieJar $cookieJar;
-
-    public function __construct(?LoggerInterface $logger = null, ?GuzzleClient $guzzleClient = null)
+    public function __construct(private readonly LoggerInterface $logger = new NullLogger(), ?GuzzleClient $guzzleClient = null)
     {
-        $this->logger = $logger ?? new NullLogger();
         $this->cookieJar = new CookieJar();
 
         $this->guzzleClient = $guzzleClient ?? new GuzzleClient([

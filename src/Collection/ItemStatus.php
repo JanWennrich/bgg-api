@@ -2,7 +2,7 @@
 
 namespace JanWennrich\BoardGameGeekApi\Collection;
 
-class ItemStatus
+readonly class ItemStatus
 {
     private bool $own;
 
