@@ -510,10 +510,10 @@ class Client
      * @return HotItem[]
      * @throws Exception
      */
-    public function getHotItems(string $type = Type::BOARDGAME): array
+    public function getHotItems(HotItemType $hotItemType = HotItemType::BoardGame): array
     {
         $xml = $this->request('hot', [
-            'type' => $type,
+            'type' => $hotItemType->value,
         ]);
 
         $items = [];
