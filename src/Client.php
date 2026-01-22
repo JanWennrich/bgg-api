@@ -9,6 +9,7 @@ use JanWennrich\BoardGameGeekApi\Query\CollectionQuery;
 use JanWennrich\BoardGameGeekApi\Query\FamilyQuery;
 use JanWennrich\BoardGameGeekApi\Query\GuildQuery;
 use JanWennrich\BoardGameGeekApi\Query\PlaysQuery;
+use JanWennrich\BoardGameGeekApi\Query\SearchQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThreadQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThingQuery;
 use JanWennrich\BoardGameGeekApi\Query\UsersQuery;
@@ -315,6 +316,35 @@ class Client
     }
 
     /**
+     * @return ($searchQuery is null ? array{} : array{
+     *     type?: non-empty-string,
+     *     exact: int<0,1>
+     * })
+     */
+    private function buildSearchQueryArray(?SearchQuery $searchQuery = null): array
+    {
+        if (!$searchQuery instanceof SearchQuery) {
+            return [];
+        }
+
+        $onlyTypesString = null;
+        if ($searchQuery->onlyTypes !== []) {
+            $onlyTypesString = implode(
+                ',',
+                array_map(
+                    static fn(SearchType $searchType): string => $searchType->value,
+                    $searchQuery->onlyTypes,
+                ),
+            );
+        }
+
+        return array_filter([
+            'type' => $onlyTypesString,
+            'exact' => (int) $searchQuery->onlyExact,
+        ], static fn(mixed $value): bool => $value !== null);
+    }
+
+    /**
      * @return ($collectionQuery is null ? array{} : array{
      *     version: int<0,1>,
      *     subtype: value-of<ThingType>,
@@ -525,15 +555,20 @@ class Client
     }
 
     /**
+     * @param non-empty-string $searchTerm String to search
+     * @param ?SearchQuery $searchQuery Optional query parameters
+     *
      * @throws Exception
+     * @throws InvalidArgumentException
      */
-    public function search(string $query, bool $exact = false, string $type = Type::BOARDGAME): Search\Query
+    public function search(string $searchTerm, ?SearchQuery $searchQuery = null): Search\Query
     {
-        $xml = $this->request('search', array_filter([
-            'query' => $query,
-            'type' => $type,
-            'exact' => (int) $exact,
-        ]));
+        Assert::stringNotEmpty($searchTerm);
+
+        $params = $this->buildSearchQueryArray($searchQuery);
+        $params['query'] = $searchTerm;
+
+        $xml = $this->request('search', $params);
 
         return new Search\Query($xml);
     }

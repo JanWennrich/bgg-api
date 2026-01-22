@@ -89,7 +89,12 @@ final class ClientTest extends TestCase
 
         // @phpstan-ignore deadCode.unreachable
         $client = new Client();
-        $search = $client->search('Domek', false, BoardGameGeekApi\Type::BOARDGAME);
+        $search = $client->search(
+            'Domek',
+            new BoardGameGeekApi\Query\SearchQuery(
+                onlyTypes: [ BoardGameGeekApi\SearchType::BoardGame ],
+            ),
+        );
 
         $this->assertGreaterThan(1, count($search));
         foreach ($search as $result) {
