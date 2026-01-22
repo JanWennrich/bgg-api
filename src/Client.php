@@ -86,7 +86,7 @@ class Client
     }
 
     /**
-     * @param non-empty-array<BggId> $ids The ids of the things to retrieve. Cannot be an empty array.
+     * @param non-empty-array<BggId> $ids The ids of the things to retrieve. Must contain between 1 and 20 ids.
      * @param ?ThingQuery $thingQuery Query to modify and filter the returned result
      *
      * @return Thing[]
@@ -513,7 +513,8 @@ class Client
         ];
     }
 
-    /*
+    /**
+     * @param non-empty-string $username Username to get the collection for
      * @param ?CollectionQuery $collectionQuery Query to filter the returned result
      *
      * @throws Exception
@@ -575,7 +576,7 @@ class Client
      * Get plays logged by a particular user.
      * Data is returned in backwards-chronological form.
      *
-     * @param string $username Name of the player you want to request play information for.
+     * @param non-empty-string $username Name of the player you want to request play information for.
      * @param ?PlaysQuery $playsQuery Optional query to filter the returned result.
      *
      * @return Play[]
@@ -604,7 +605,7 @@ class Client
      * Get plays logged for an item ID.
      * Data is returned in backwards-chronological form.
      *
-     * @param int $itemId ID of the item you want to request play information for.
+     * @param BggId $itemId ID of the item you want to request play information for.
      * @param ItemType $itemType Type of the item you want to request play information for.
      * @param ?PlaysQuery $playsQuery Optional query to filter the returned result.
      *
