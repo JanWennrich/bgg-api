@@ -78,8 +78,6 @@ class Client
 
         $query = $this->buildThingQueryArray($thingQuery);
 
-        var_dump($query);
-
         $query['id'] = $id;
 
         $xml = $this->request('thing', $query);
