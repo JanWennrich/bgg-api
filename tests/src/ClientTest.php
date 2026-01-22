@@ -23,13 +23,23 @@ final class ClientTest extends TestCase
     /**
      * https://boardgamegeek.com/boardgame/39856/dixit
      */
-    public function testGetThing(): void
+    public function testGetThingWithUnknownId(): void
     {
         $client = new Client();
         $client->setAuthorization($this->getAuthorizationToken());
 
         $thing = $client->getThing(5371611111, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
-        $this->assertNotInstanceOf(Thing::class, $thing);
+
+        $this->assertNotInstanceOf(\JanWennrich\BoardGameGeekApi\Thing::class, $thing);
+    }
+
+    /**
+     * https://boardgamegeek.com/boardgame/39856/dixit
+     */
+    public function testGetThing(): void
+    {
+        $client = new Client();
+        $client->setAuthorization($this->getAuthorizationToken());
 
         $thing = $client->getThing(39856, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
         $this->assertInstanceOf(BoardGameGeekApi\Boardgame::class, $thing);
@@ -54,12 +64,24 @@ final class ClientTest extends TestCase
             $this->assertInstanceOf(Thing::class, $thing);
             $this->assertContains($thing->getName(), [ 'Zona: The Secret of Chernobyl', 'Dream Home' ]);
         }
+    }
+
+    public function testGetThingsWithUnknownIds(): void
+    {
+        $client = new Client();
+        $client->setAuthorization($this->getAuthorizationToken());
 
         $things = $client->getThings(
             [ 111111111111111, 222222222222222 ],
             new BoardGameGeekApi\Query\ThingQuery(withStats: true),
         );
         $this->assertCount(0, $things);
+    }
+
+    public function testGetThingsWithEmptyIds(): void
+    {
+        $client = new Client();
+        $client->setAuthorization($this->getAuthorizationToken());
 
         $this->expectException(InvalidArgumentException::class);
         $things = $client->getThings([], new BoardGameGeekApi\Query\ThingQuery(withStats: true)); // @phpstan-ignore argument.type (Testing the assertion requires passing an empty array)
@@ -109,11 +131,19 @@ final class ClientTest extends TestCase
     /**
      * https://www.boardgamegeek.com/xmlapi2/collection?username=nataniel
      */
+    public function testGetCollectionWithInvalidUsername(): void
+    {
+        $client = new Client();
+        $client->setAuthorization($this->getAuthorizationToken());
+
+        $this->expectException(BoardGameGeekApi\Exception::class);
+        $client->getCollection('notexistingusername');
+    }
+
     public function testGetCollection(): void
     {
         $client = new Client();
-        $this->expectException(BoardGameGeekApi\Exception::class);
-        $client->getCollection('notexistingusername');
+        $client->setAuthorization($this->getAuthorizationToken());
 
         $collection = $client->getCollection('nataniel');
         $this->assertNotEmpty($collection);
@@ -143,7 +173,7 @@ final class ClientTest extends TestCase
     /**
      * https://www.boardgamegeek.com/xmlapi2/user?name=nataniel
      */
-    public function testGetUser(): void
+    public function testGetUserWithInvalidName(): void
     {
         $client = new Client();
         $client->setAuthorization($this->getAuthorizationToken());
@@ -153,6 +183,12 @@ final class ClientTest extends TestCase
         } catch (BoardGameGeekApi\ClientRequestException $clientRequestException) {
             $this->assertSame(404, $clientRequestException->httpCode);
         }
+    }
+
+    public function testGetUser(): void
+    {
+        $client = new Client();
+        $client->setAuthorization($this->getAuthorizationToken());
 
         $item = $client->getUser('nataniel');
         $this->assertInstanceOf(User::class, $item);
@@ -161,11 +197,17 @@ final class ClientTest extends TestCase
         $this->assertStringStartsWith('https://cf.geekdo-static.com', $item->getAvatar());
     }
 
+    /**
+     * @return non-empty-string
+     */
     private function getUsername(): string
     {
         return $this->getEnvironmentVariable('BGG_USERNAME');
     }
 
+    /**
+     * @return non-empty-string
+     */
     private function getPassword(): string
     {
         return $this->getEnvironmentVariable('BGG_PASSWORD');
@@ -177,6 +219,9 @@ final class ClientTest extends TestCase
 
     }
 
+    /**
+     * @return non-empty-string
+     */
     public function getEnvironmentVariable(string $environmentVariable): string
     {
         $value = getenv($environmentVariable);
