@@ -633,17 +633,18 @@ class Client
 
     /**
      * @param RequestParams $params
-     * @throws Exception
-     * @throws \Exception
+     * @throws ClientRequestException
      */
     protected function request(string $action, array $params = []): \SimpleXMLElement
     {
         $this->logger->debug('BGG API request', ['action' => $action, 'params' => $params]);
 
+        $httpCode = null;
+        $previousException = null;
         $maxRetries = 3;
 
-        for ($attempt = 0; $attempt <= $maxRetries; $attempt++) {
-            if ($attempt > 0) {
+        for ($attempt = 1; $attempt <= $maxRetries; $attempt++) {
+            if ($attempt > 2) {
                 $this->logger->info('Retrying BGG API request (attempt {attempt})', [
                     'attempt' => $attempt,
                     'action' => $action,
@@ -664,6 +665,8 @@ class Client
                     'http_errors' => false, // we handle status codes ourselves
                 ]);
             } catch (GuzzleException $exception) {
+                $previousException = $exception;
+
                 $this->logger->error('BGG API transport error', [
                     'exception' => $exception,
                     'attempt' => $attempt,
@@ -733,8 +736,7 @@ class Client
             return $xml;
         }
 
-        // This should never be reached due to the exception in the last attempt
-        throw new Exception('API call failed');
+        throw new ClientRequestException('API call failed', $attempt, $httpCode, $previousException);
     }
 
     /**
