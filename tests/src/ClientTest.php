@@ -10,6 +10,7 @@ use JanWennrich\BoardGameGeekApi\User;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\TestCase;
 use JanWennrich\BoardGameGeekApi;
+use Webmozart\Assert\InvalidArgumentException;
 
 #[CoversMethod(Client::class, 'getThing')]
 #[CoversMethod(Client::class, 'getHotItems')]
@@ -24,14 +25,13 @@ final class ClientTest extends TestCase
      */
     public function testGetThing(): void
     {
-        $this->markTestIncomplete('Test requires authorization token');
-
-        // @phpstan-ignore deadCode.unreachable
         $client = new Client();
-        $thing = $client->getThing(5371611111, true);
+        $client->setAuthorization($this->getAuthorizationToken());
+
+        $thing = $client->getThing(5371611111, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
         $this->assertNotInstanceOf(Thing::class, $thing);
 
-        $thing = $client->getThing(39856, true);
+        $thing = $client->getThing(39856, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
         $this->assertInstanceOf(BoardGameGeekApi\Boardgame::class, $thing);
         $this->assertSame('Dixit', $thing->getName());
     }
@@ -41,11 +41,13 @@ final class ClientTest extends TestCase
      */
     public function testGetThings(): void
     {
-        $this->markTestIncomplete('Test requires authorization token');
-
-        // @phpstan-ignore deadCode.unreachable
         $client = new Client();
-        $things = $client->getThings([ 209671, 194880 ], true);
+        $client->setAuthorization($this->getAuthorizationToken());
+
+        $things = $client->getThings(
+            [ 209671, 194880 ],
+            new BoardGameGeekApi\Query\ThingQuery(withStats: true),
+        );
 
         $this->assertCount(2, $things);
         foreach ($things as $thing) {
@@ -53,10 +55,14 @@ final class ClientTest extends TestCase
             $this->assertContains($thing->getName(), [ 'Zona: The Secret of Chernobyl', 'Dream Home' ]);
         }
 
-        $things = $client->getThings([ '111111111111111111111', '222222222222222222' ], true);
+        $things = $client->getThings(
+            [ 111111111111111, 222222222222222 ],
+            new BoardGameGeekApi\Query\ThingQuery(withStats: true),
+        );
         $this->assertCount(0, $things);
 
-        $things = $client->getThings([], true);
+        $this->expectException(InvalidArgumentException::class);
+        $things = $client->getThings([], new BoardGameGeekApi\Query\ThingQuery(withStats: true)); // @phpstan-ignore argument.type (Testing the assertion requires passing an empty array)
         $this->assertCount(0, $things);
     }
 
@@ -65,10 +71,9 @@ final class ClientTest extends TestCase
      */
     public function testGetHotItems(): void
     {
-        $this->markTestIncomplete('Test requires authorization token');
-
-        // @phpstan-ignore deadCode.unreachable
         $client = new Client();
+        $client->setAuthorization($this->getAuthorizationToken());
+
         $items = $client->getHotItems();
 
         # empty hot list? error on BGG?
@@ -85,10 +90,9 @@ final class ClientTest extends TestCase
      */
     public function testSearch(): void
     {
-        $this->markTestIncomplete('Test requires authorization token');
-
-        // @phpstan-ignore deadCode.unreachable
         $client = new Client();
+        $client->setAuthorization($this->getAuthorizationToken());
+
         $search = $client->search(
             'Domek',
             new BoardGameGeekApi\Query\SearchQuery(
@@ -98,7 +102,6 @@ final class ClientTest extends TestCase
 
         $this->assertGreaterThan(1, count($search));
         foreach ($search as $result) {
-            $this->assertInstanceOf(BoardGameGeekApi\Search\Result::class, $result);
             $this->assertNotEmpty($result->getName());
         }
     }
@@ -142,12 +145,14 @@ final class ClientTest extends TestCase
      */
     public function testGetUser(): void
     {
-        $this->markTestIncomplete('Test requires authorization token');
-
-        // @phpstan-ignore deadCode.unreachable
         $client = new Client();
-        $item = $client->getUser('notexistingusername');
-        $this->assertNotInstanceOf(User::class, $item);
+        $client->setAuthorization($this->getAuthorizationToken());
+        try {
+            $client->getUser('notexistingusername');
+            $this->fail('Expected InvalidArgumentException for non-existing username.');
+        } catch (BoardGameGeekApi\ClientRequestException $clientRequestException) {
+            $this->assertSame(404, $clientRequestException->httpCode);
+        }
 
         $item = $client->getUser('nataniel');
         $this->assertInstanceOf(User::class, $item);
@@ -164,6 +169,12 @@ final class ClientTest extends TestCase
     private function getPassword(): string
     {
         return $this->getEnvironmentVariable('BGG_PASSWORD');
+    }
+
+    private function getAuthorizationToken(): string
+    {
+        return 'Bearer ' . $this->getEnvironmentVariable('BGG_AUTH_TOKEN');
+
     }
 
     public function getEnvironmentVariable(string $environmentVariable): string
