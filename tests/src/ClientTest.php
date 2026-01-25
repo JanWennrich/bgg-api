@@ -26,7 +26,7 @@ final class ClientTest extends TestCase
     public function testGetThingWithUnknownId(): void
     {
         $client = new Client();
-        $client->setAuthorization($this->getAuthorizationToken());
+        $client->setApiToken($this->getAuthorizationToken());
 
         $thing = $client->getThing(5371611111, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
 
@@ -39,7 +39,7 @@ final class ClientTest extends TestCase
     public function testGetThing(): void
     {
         $client = new Client();
-        $client->setAuthorization($this->getAuthorizationToken());
+        $client->setApiToken($this->getAuthorizationToken());
 
         $thing = $client->getThing(39856, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
         $this->assertInstanceOf(BoardGameGeekApi\Boardgame::class, $thing);
@@ -52,7 +52,7 @@ final class ClientTest extends TestCase
     public function testGetThings(): void
     {
         $client = new Client();
-        $client->setAuthorization($this->getAuthorizationToken());
+        $client->setApiToken($this->getAuthorizationToken());
 
         $things = $client->getThings(
             [ 209671, 194880 ],
@@ -69,7 +69,7 @@ final class ClientTest extends TestCase
     public function testGetThingsWithUnknownIds(): void
     {
         $client = new Client();
-        $client->setAuthorization($this->getAuthorizationToken());
+        $client->setApiToken($this->getAuthorizationToken());
 
         $things = $client->getThings(
             [ 111111111111111, 222222222222222 ],
@@ -81,7 +81,7 @@ final class ClientTest extends TestCase
     public function testGetThingsWithEmptyIds(): void
     {
         $client = new Client();
-        $client->setAuthorization($this->getAuthorizationToken());
+        $client->setApiToken($this->getAuthorizationToken());
 
         $this->expectException(InvalidArgumentException::class);
         $things = $client->getThings([], new BoardGameGeekApi\Query\ThingQuery(withStats: true)); // @phpstan-ignore argument.type (Testing the assertion requires passing an empty array)
@@ -94,7 +94,7 @@ final class ClientTest extends TestCase
     public function testGetHotItems(): void
     {
         $client = new Client();
-        $client->setAuthorization($this->getAuthorizationToken());
+        $client->setApiToken($this->getAuthorizationToken());
 
         $items = $client->getHotItems();
 
@@ -113,7 +113,7 @@ final class ClientTest extends TestCase
     public function testSearch(): void
     {
         $client = new Client();
-        $client->setAuthorization($this->getAuthorizationToken());
+        $client->setApiToken($this->getAuthorizationToken());
 
         $search = $client->search(
             'Domek',
@@ -134,7 +134,7 @@ final class ClientTest extends TestCase
     public function testGetCollectionWithInvalidUsername(): void
     {
         $client = new Client();
-        $client->setAuthorization($this->getAuthorizationToken());
+        $client->setApiToken($this->getAuthorizationToken());
 
         $this->expectException(BoardGameGeekApi\Exception::class);
         $client->getCollection('notexistingusername');
@@ -143,7 +143,7 @@ final class ClientTest extends TestCase
     public function testGetCollection(): void
     {
         $client = new Client();
-        $client->setAuthorization($this->getAuthorizationToken());
+        $client->setApiToken($this->getAuthorizationToken());
 
         $collection = $client->getCollection('nataniel');
         $this->assertNotEmpty($collection);
@@ -176,7 +176,7 @@ final class ClientTest extends TestCase
     public function testGetUserWithInvalidName(): void
     {
         $client = new Client();
-        $client->setAuthorization($this->getAuthorizationToken());
+        $client->setApiToken($this->getAuthorizationToken());
         try {
             $client->getUser('notexistingusername');
             $this->fail('Expected InvalidArgumentException for non-existing username.');
@@ -188,7 +188,7 @@ final class ClientTest extends TestCase
     public function testGetUser(): void
     {
         $client = new Client();
-        $client->setAuthorization($this->getAuthorizationToken());
+        $client->setApiToken($this->getAuthorizationToken());
 
         $item = $client->getUser('nataniel');
         $this->assertInstanceOf(User::class, $item);
@@ -215,8 +215,7 @@ final class ClientTest extends TestCase
 
     private function getAuthorizationToken(): string
     {
-        return 'Bearer ' . $this->getEnvironmentVariable('BGG_AUTH_TOKEN');
-
+        return $this->getEnvironmentVariable('BGG_AUTH_TOKEN');
     }
 
     /**

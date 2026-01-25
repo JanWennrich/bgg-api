@@ -28,7 +28,7 @@ class Client
 
     private string $userAgent = 'BGG XML API Client/1.0';
 
-    private ?string $authorization = null;
+    private ?string $apiToken = null;
 
     private readonly GuzzleClient $guzzleClient;
 
@@ -58,9 +58,9 @@ class Client
      * Set the Authorization header value to be sent with all API requests.
      * Pass null to disable sending the Authorization header.
      */
-    public function setAuthorization(?string $authorization): self
+    public function setApiToken(?string $apiToken): self
     {
-        $this->authorization = $authorization;
+        $this->apiToken = $apiToken;
         return $this;
     }
 
@@ -661,7 +661,7 @@ class Client
                     'query' => $params,
                     'headers' => array_filter([
                         'User-Agent' => $this->userAgent,
-                        'Authorization' => $this->authorization,
+                        'Authorization' => "Bearer $this->apiToken",
                     ]),
                     'http_errors' => false, // we handle status codes ourselves
                 ]);
