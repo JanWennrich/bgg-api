@@ -5,11 +5,13 @@ namespace JanWennrich\BoardGameGeekApi;
 use JanWennrich\BoardGameGeekApi\Collection\Item;
 
 /**
- * @implements \IteratorAggregate<int, Item>
+ * @phpstan-type CollectionItems Item[]
  */
-class Collection implements \IteratorAggregate, \Countable
+class Collection
 {
-    /** @var Collection\Item[] */
+    /**
+     * @var CollectionItems
+     */
     private array $items = [];
 
     public function __construct(private readonly \SimpleXMLElement $root)
@@ -20,15 +22,10 @@ class Collection implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @return \ArrayIterator<int, Item>
+     * @return CollectionItems
      */
-    public function getIterator(): \ArrayIterator
+    public function getItems(): array
     {
-        return new \ArrayIterator($this->items);
-    }
-
-    public function count(): int
-    {
-        return count($this->items);
+        return $this->items;
     }
 }

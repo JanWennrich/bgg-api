@@ -24,10 +24,10 @@ final class CollectionTest extends TestCase
         $expectedTotal = (int) $xml['totalitems'];
 
         // count() should read from the XML attribute
-        $this->assertCount($expectedTotal, $this->collection);
+        $this->assertCount($expectedTotal, $this->collection->getItems());
 
         // And number of parsed items should match as well
-        $itemsFromIterator = iterator_to_array($this->collection);
+        $itemsFromIterator = iterator_to_array($this->collection->getItems());
         $this->assertCount($expectedTotal, $itemsFromIterator);
 
         $this->assertContainsOnlyInstancesOf(Item::class, $itemsFromIterator);
@@ -35,7 +35,7 @@ final class CollectionTest extends TestCase
 
     public function testFirstItemFields(): void
     {
-        $items = iterator_to_array($this->collection);
+        $items = iterator_to_array($this->collection->getItems());
         $this->assertNotEmpty($items);
         /** @var Item $first */
         $first = $items[0];
@@ -66,7 +66,7 @@ final class CollectionTest extends TestCase
 
     public function testStatsAndRatingsAreNullWhenAbsent(): void
     {
-        $items = iterator_to_array($this->collection);
+        $items = iterator_to_array($this->collection->getItems());
         $this->assertNotEmpty($items);
         /** @var Item $any */
         $any = $items[0];
@@ -83,7 +83,7 @@ final class CollectionTest extends TestCase
     {
         $targetId = 359871; // Arcs
         $found = null;
-        foreach ($this->collection as $item) {
+        foreach ($this->collection->getItems() as $item) {
             if ($item->getObjectId() === $targetId) {
                 $found = $item;
                 break;
