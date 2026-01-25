@@ -2,25 +2,23 @@
 
 namespace JanWennrich\BoardGameGeekApi\Search;
 
-/**
- * @phpstan-type SearchResults Result[]
- */
-class Search
+final readonly class Search
 {
     /**
-     * @var SearchResults $results
+     * @param SearchResult[] $results
      */
-    private array $results = [];
+    public function __construct(
+        private int $total,
+        private array $results,
+    ) {}
 
-    public function __construct(private readonly \SimpleXMLElement $root)
+    public function getTotal(): int
     {
-        foreach ($this->root as $item) {
-            $this->results[] = new Result($item);
-        }
+        return $this->total;
     }
 
     /**
-     * @return SearchResults
+     * @return SearchResult[]
      */
     public function getResults(): array
     {

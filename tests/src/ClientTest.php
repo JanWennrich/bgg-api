@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace JanWennrich\BoardGameGeekApi\Test;
 
 use JanWennrich\BoardGameGeekApi\Client;
-use JanWennrich\BoardGameGeekApi\Thing;
-use JanWennrich\BoardGameGeekApi\User;
+use JanWennrich\BoardGameGeekApi\Thing\Thing;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\TestCase;
 use JanWennrich\BoardGameGeekApi;
@@ -30,7 +29,7 @@ final class ClientTest extends TestCase
 
         $thing = $client->getThing(5371611111, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
 
-        $this->assertNotInstanceOf(\JanWennrich\BoardGameGeekApi\Thing::class, $thing);
+        $this->assertNotInstanceOf(Thing::class, $thing);
     }
 
     /**
@@ -42,8 +41,8 @@ final class ClientTest extends TestCase
         $client->setApiToken($this->getAuthorizationToken());
 
         $thing = $client->getThing(39856, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
-        $this->assertInstanceOf(BoardGameGeekApi\Boardgame::class, $thing);
-        $this->assertSame('Dixit', $thing->getName());
+
+        $this->assertSame('Dixit', $thing?->getPrimaryName()?->getValue());
     }
 
     /**
@@ -62,7 +61,10 @@ final class ClientTest extends TestCase
         $this->assertCount(2, $things);
         foreach ($things as $thing) {
             $this->assertInstanceOf(Thing::class, $thing);
-            $this->assertContains($thing->getName(), [ 'Zona: The Secret of Chernobyl', 'Dream Home' ]);
+
+            $thingName = $thing->getPrimaryName()?->getValue();
+            $this->assertIsString($thingName);
+            $this->assertContains($thingName, [ 'Zona: The Secret of Chernobyl', 'Dream Home' ]);
         }
     }
 
@@ -101,7 +103,7 @@ final class ClientTest extends TestCase
         # empty hot list? error on BGG?
         # $this->assertNotEmpty($items);
         foreach ($items as $i => $item) {
-            $this->assertInstanceOf(BoardGameGeekApi\HotItem::class, $item);
+            $this->assertInstanceOf(BoardGameGeekApi\Hot\HotItem::class, $item);
             $this->assertSame($i + 1, $item->getRank());
             $this->assertNotEmpty($item->getName());
         }
@@ -147,10 +149,15 @@ final class ClientTest extends TestCase
         $client->setApiToken($this->getAuthorizationToken());
 
         $collection = $client->getCollection('nataniel');
-        $this->assertNotEmpty($collection);
-        foreach ($collection->getItems() as $item) {
-            $this->assertNotEmpty($item->getName());
-            $this->assertStringStartsWith('https://cf.geekdo-images.com', $item->getImage());
+        $this->assertNotEmpty($collection->getItems());
+        foreach ($collection->getItems() as $collectionItem) {
+            $itemName = $collectionItem->getName()->getValue();
+            $this->assertNotEmpty($itemName);
+
+
+            $itemImage = $collectionItem->getImage();
+            $this->assertIsString($itemImage);
+            $this->assertStringStartsWith('https://cf.geekdo-images.com', $itemImage);
         }
     }
 
@@ -166,7 +173,7 @@ final class ClientTest extends TestCase
 
         $client->login($username, $password);
 
-        $plays = $client->getPlaysForUser($username);
+        $plays = $client->getPlaysForUser($username)->getPlays();
 
         $this->assertNotEmpty($plays);
     }
@@ -192,10 +199,13 @@ final class ClientTest extends TestCase
         $client->setApiToken($this->getAuthorizationToken());
 
         $item = $client->getUser('nataniel');
-        $this->assertInstanceOf(User::class, $item);
+        $this->assertInstanceOf(BoardGameGeekApi\User\User::class, $item);
         $this->assertSame('Artur', $item->getFirstName());
         $this->assertSame(2004, $item->getYearRegistered());
-        $this->assertStringStartsWith('https://cf.geekdo-static.com', $item->getAvatar());
+
+        $avatarLink = $item->getAvatarLink();
+        $this->assertIsString($avatarLink);
+        $this->assertStringStartsWith('https://cf.geekdo-static.com', $avatarLink);
     }
 
     /**

@@ -13,6 +13,27 @@ use JanWennrich\BoardGameGeekApi\Query\SearchQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThreadQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThingQuery;
 use JanWennrich\BoardGameGeekApi\Query\UsersQuery;
+use JanWennrich\BoardGameGeekApi\Collection\Collection as V2CollectionItems;
+use JanWennrich\BoardGameGeekApi\Collection\CollectionMapper;
+use JanWennrich\BoardGameGeekApi\Family\FamilyItems as V2FamilyItems;
+use JanWennrich\BoardGameGeekApi\Family\FamilyMapper;
+use JanWennrich\BoardGameGeekApi\Forum\Forum as V2Forum;
+use JanWennrich\BoardGameGeekApi\Forum\ForumMapper;
+use JanWennrich\BoardGameGeekApi\ForumList\ForumList as V2ForumList;
+use JanWennrich\BoardGameGeekApi\ForumList\ForumListMapper;
+use JanWennrich\BoardGameGeekApi\Guild\Guild as V2Guild;
+use JanWennrich\BoardGameGeekApi\Guild\GuildMapper;
+use JanWennrich\BoardGameGeekApi\Hot\HotMapper;
+use JanWennrich\BoardGameGeekApi\Plays\Plays as V2Plays;
+use JanWennrich\BoardGameGeekApi\Plays\PlaysMapper;
+use JanWennrich\BoardGameGeekApi\Search\Search as V2SearchItems;
+use JanWennrich\BoardGameGeekApi\Search\SearchMapper;
+use JanWennrich\BoardGameGeekApi\Thing\Thing as V2Thing;
+use JanWennrich\BoardGameGeekApi\Thing\ThingMapper;
+use JanWennrich\BoardGameGeekApi\Thread\Thread as V2Thread;
+use JanWennrich\BoardGameGeekApi\Thread\ThreadMapper;
+use JanWennrich\BoardGameGeekApi\User\User as V2User;
+use JanWennrich\BoardGameGeekApi\User\UserMapper;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Webmozart\Assert\Assert;
@@ -34,8 +55,21 @@ class Client
 
     private readonly CookieJar $cookieJar;
 
-    public function __construct(private readonly LoggerInterface $logger = new NullLogger(), ?GuzzleClient $guzzleClient = null)
-    {
+    public function __construct(
+        private readonly LoggerInterface $logger = new NullLogger(),
+        ?GuzzleClient $guzzleClient = null,
+        private readonly ?ThingMapper $thingMapper = null,
+        private readonly ?ForumListMapper $forumListMapper = null,
+        private readonly ?ForumMapper $forumMapper = null,
+        private readonly ?ThreadMapper $threadMapper = null,
+        private readonly ?UserMapper $userMapper = null,
+        private readonly ?GuildMapper $guildMapper = null,
+        private readonly ?FamilyMapper $familyMapper = null,
+        private readonly ?CollectionMapper $collectionMapper = null,
+        private readonly ?HotMapper $hotMapper = null,
+        private readonly ?SearchMapper $searchMapper = null,
+        private readonly ?PlaysMapper $playsMapper = null,
+    ) {
         $this->cookieJar = new CookieJar();
 
         $this->guzzleClient = $guzzleClient ?? new GuzzleClient([
@@ -72,7 +106,7 @@ class Client
      *
      * @throws InvalidArgumentException
      */
-    public function getThing(int $id, ?ThingQuery $thingQuery = null): ?Thing
+    public function getThing(int $id, ?ThingQuery $thingQuery = null): ?V2Thing
     {
         Assert::positiveInteger($id);
 
@@ -82,14 +116,18 @@ class Client
 
         $xml = $this->request('thing', $query);
 
-        return Factory::fromXml($xml->item);
+        if (!isset($xml->item)) {
+            return null;
+        }
+
+        return ($this->thingMapper ?? new ThingMapper())->fromXml($xml->item);
     }
 
     /**
      * @param non-empty-array<BggId> $ids The ids of the things to retrieve. Must contain between 1 and 20 ids.
      * @param ?ThingQuery $thingQuery Query to modify and filter the returned result
      *
-     * @return Thing[]
+     * @return V2Thing[]
      *
      * @throws Exception
      * @throws InvalidArgumentException
@@ -106,14 +144,9 @@ class Client
         $xml = $this->request('thing', $query);
 
         $items = [];
+        $mapper = $this->thingMapper ?? new ThingMapper();
         foreach ($xml as $item) {
-            $thing = Factory::fromXml($item);
-
-            if (!$thing instanceof Thing) {
-                continue;
-            }
-
-            $items[] = $thing;
+            $items[] = $mapper->fromXml($item);
         }
 
         return $items;
@@ -125,14 +158,14 @@ class Client
      *
      * @throws Exception
      */
-    public function getForumList(int $id, ForumListType $forumListType): ForumList
+    public function getForumList(int $id, ForumListType $forumListType): V2ForumList
     {
         $xml = $this->request('forumlist', [
             'id' => $id,
             'type' => $forumListType->value,
         ]);
 
-        return new ForumList($xml);
+        return ($this->forumListMapper ?? new ForumListMapper())->fromXml($xml);
     }
 
     /**
@@ -142,7 +175,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getForum(int $id, int $page = 1): ForumThreadList
+    public function getForum(int $id, int $page = 1): V2Forum
     {
         Assert::positiveInteger($id);
         Assert::positiveInteger($page);
@@ -152,7 +185,7 @@ class Client
             'page' => $page,
         ]);
 
-        return new ForumThreadList($xml);
+        return ($this->forumMapper ?? new ForumMapper())->fromXml($xml);
     }
 
     /**
@@ -162,7 +195,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getThread(int $id, ?ThreadQuery $threadQuery = null): Thread
+    public function getThread(int $id, ?ThreadQuery $threadQuery = null): V2Thread
     {
         Assert::positiveInteger($id);
 
@@ -171,7 +204,7 @@ class Client
 
         $xml = $this->request('thread', $query);
 
-        return new Thread($xml);
+        return ($this->threadMapper ?? new ThreadMapper())->fromXml($xml);
     }
 
     /**
@@ -181,7 +214,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getUser(string $name, ?UsersQuery $usersQuery = null): ?User
+    public function getUser(string $name, ?UsersQuery $usersQuery = null): ?V2User
     {
         Assert::stringNotEmpty($name);
 
@@ -190,7 +223,7 @@ class Client
 
         $xml = $this->request('users', $query);
 
-        return empty($xml['id']) ? null : new User($xml);
+        return empty($xml['id']) ? null : ($this->userMapper ?? new UserMapper())->fromXml($xml);
     }
 
     /**
@@ -200,7 +233,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getGuild(int $id, ?GuildQuery $guildQuery = null): ?Guild
+    public function getGuild(int $id, ?GuildQuery $guildQuery = null): ?V2Guild
     {
         Assert::positiveInteger($id);
 
@@ -209,7 +242,7 @@ class Client
 
         $xml = $this->request('guild', $query);
 
-        return empty($xml['id']) ? null : new Guild($xml);
+        return empty($xml['id']) ? null : ($this->guildMapper ?? new GuildMapper())->fromXml($xml);
     }
 
     /**
@@ -449,7 +482,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getFamily(int $id, ?FamilyQuery $familyQuery = null): ?Family
+    public function getFamily(int $id, ?FamilyQuery $familyQuery = null): ?V2FamilyItems
     {
         Assert::positiveInteger($id);
 
@@ -463,19 +496,18 @@ class Client
             return null;
         }
 
-        return new Family($xml->item);
+        return ($this->familyMapper ?? new FamilyMapper())->fromXml($xml);
     }
 
     /**
      * @param non-empty-array<BggId> $ids The ids of the families to retrieve. Cannot be an empty array.
      * @param ?FamilyQuery $familyQuery Query to filter the returned result
      *
-     * @return Family[]
      *
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getFamilies(array $ids, ?FamilyQuery $familyQuery = null): array
+    public function getFamilies(array $ids, ?FamilyQuery $familyQuery = null): V2FamilyItems
     {
         Assert::minCount($ids, 1);
         Assert::allPositiveInteger($ids);
@@ -486,12 +518,7 @@ class Client
 
         $xml = $this->request('family', $query);
 
-        $items = [];
-        foreach ($xml as $item) {
-            $items[] = new Family($item);
-        }
-
-        return $items;
+        return ($this->familyMapper ?? new FamilyMapper())->fromXml($xml);
     }
 
     /**
@@ -520,7 +547,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getCollection(string $username, ?CollectionQuery $collectionQuery = null): Collection
+    public function getCollection(string $username, ?CollectionQuery $collectionQuery = null): V2CollectionItems
     {
         Assert::stringNotEmpty($username);
 
@@ -532,11 +559,11 @@ class Client
             throw new Exception($xml->error->message);
         }
 
-        return new Collection($xml);
+        return ($this->collectionMapper ?? new CollectionMapper())->fromXml($xml);
     }
 
     /**
-     * @return HotItem[]
+     * @return \JanWennrich\BoardGameGeekApi\Hot\HotItem[]
      * @throws Exception
      */
     public function getHotItems(HotItemType $hotItemType = HotItemType::BoardGame): array
@@ -545,12 +572,7 @@ class Client
             'type' => $hotItemType->value,
         ]);
 
-        $items = [];
-        foreach ($xml as $item) {
-            $items[] = new HotItem($item);
-        }
-
-        return $items;
+        return ($this->hotMapper ?? new HotMapper())->fromXml($xml);
     }
 
     /**
@@ -560,7 +582,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function search(string $searchTerm, ?SearchQuery $searchQuery = null): Search\Search
+    public function search(string $searchTerm, ?SearchQuery $searchQuery = null): V2SearchItems
     {
         Assert::stringNotEmpty($searchTerm);
 
@@ -569,7 +591,7 @@ class Client
 
         $xml = $this->request('search', $params);
 
-        return new Search\Search($xml);
+        return ($this->searchMapper ?? new SearchMapper())->fromXml($xml);
     }
 
     /**
@@ -579,12 +601,11 @@ class Client
      * @param non-empty-string $username Name of the player you want to request play information for.
      * @param ?PlaysQuery $playsQuery Optional query to filter the returned result.
      *
-     * @return Play[]
      *
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getPlaysForUser(string $username, ?PlaysQuery $playsQuery = null): array
+    public function getPlaysForUser(string $username, ?PlaysQuery $playsQuery = null): V2Plays
     {
         Assert::stringNotEmpty($username);
 
@@ -593,12 +614,7 @@ class Client
 
         $xml = $this->request('plays', $query);
 
-        $items = [];
-        foreach ($xml as $item) {
-            $items[] = new Play($item);
-        }
-
-        return $items;
+        return ($this->playsMapper ?? new PlaysMapper())->fromXml($xml);
     }
 
     /**
@@ -609,12 +625,11 @@ class Client
      * @param ItemType $itemType Type of the item you want to request play information for.
      * @param ?PlaysQuery $playsQuery Optional query to filter the returned result.
      *
-     * @return Play[]
      *
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getPlaysForItem(int $itemId, ItemType $itemType, ?PlaysQuery $playsQuery = null): array
+    public function getPlaysForItem(int $itemId, ItemType $itemType, ?PlaysQuery $playsQuery = null): V2Plays
     {
         Assert::positiveInteger($itemId);
 
@@ -624,12 +639,7 @@ class Client
 
         $xml = $this->request('plays', $query);
 
-        $items = [];
-        foreach ($xml as $item) {
-            $items[] = new Play($item);
-        }
-
-        return $items;
+        return ($this->playsMapper ?? new PlaysMapper())->fromXml($xml);
     }
 
     /**
