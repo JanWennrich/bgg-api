@@ -122,9 +122,10 @@ final class ClientTest extends TestCase
             ),
         );
 
-        $this->assertGreaterThan(1, count($search));
-        foreach ($search as $result) {
-            $this->assertNotEmpty($result->getName());
+        $searchResults = $search->getResults();
+        $this->assertGreaterThan(1, count($searchResults));
+        foreach ($searchResults as $searchResult) {
+            $this->assertNotEmpty($searchResult->getName());
         }
     }
 

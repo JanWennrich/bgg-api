@@ -560,7 +560,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function search(string $searchTerm, ?SearchQuery $searchQuery = null): Search\Query
+    public function search(string $searchTerm, ?SearchQuery $searchQuery = null): Search\Search
     {
         Assert::stringNotEmpty($searchTerm);
 
@@ -569,7 +569,7 @@ class Client
 
         $xml = $this->request('search', $params);
 
-        return new Search\Query($xml);
+        return new Search\Search($xml);
     }
 
     /**
