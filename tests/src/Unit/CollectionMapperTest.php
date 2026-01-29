@@ -45,7 +45,7 @@ final class CollectionMapperTest extends TestCase
         $this->assertSame(390092, $first->getObjectId());
         $this->assertSame(ThingType::BoardGame, $first->getType());
         $this->assertSame(113685788, $first->getCollectionId());
-        $this->assertSame('¡Aventureros al Tren! Legacy: Leyendas del Oeste', $first->getName()->getValue());
+        $this->assertSame('¡Aventureros al Tren! Legacy: Leyendas del Oeste', $first->getName());
         $this->assertSame("2023", $first->getYearPublished());
         $this->assertStringStartsWith('https://cf.geekdo-images.com/', $first->getImage() ?? '');
         $this->assertStringStartsWith('https://cf.geekdo-images.com/', $first->getThumbnail() ?? '');

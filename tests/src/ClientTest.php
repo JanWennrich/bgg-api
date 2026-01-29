@@ -151,7 +151,7 @@ final class ClientTest extends TestCase
         $collection = $client->getCollection('nataniel');
         $this->assertNotEmpty($collection->getItems());
         foreach ($collection->getItems() as $collectionItem) {
-            $itemName = $collectionItem->getName()->getValue();
+            $itemName = $collectionItem->getName();
             $this->assertNotEmpty($itemName);
 
 

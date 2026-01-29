@@ -14,10 +14,7 @@ final class CollectionMapper
         $items = [];
         foreach (Xml::xpath($root, 'item') as $itemNode) {
             $nameNode = $itemNode->name ?? null;
-            $name = new CollectionName(
-                $nameNode ? Xml::childText($nameNode) ?? '' : '',
-                $nameNode ? (Xml::attrInt($nameNode, 'sortindex') ?? 0) : 0,
-            );
+            $name = $nameNode ? (Xml::childText($nameNode) ?? '') : '';
 
             $stats = $this->mapStats($itemNode->stats ?? null);
             $status = $this->mapStatus($itemNode->status ?? null);

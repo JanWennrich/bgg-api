@@ -10,7 +10,7 @@ final readonly class CollectionItem
         private int $objectId,
         private ?ThingType $thingType,
         private int $collectionId,
-        private CollectionName $collectionName,
+        private string $name,
         private ?string $originalName,
         private ?string $yearPublished,
         private ?string $image,
@@ -40,9 +40,9 @@ final readonly class CollectionItem
         return $this->collectionId;
     }
 
-    public function getName(): CollectionName
+    public function getName(): string
     {
-        return $this->collectionName;
+        return $this->name;
     }
 
     public function getOriginalName(): ?string
