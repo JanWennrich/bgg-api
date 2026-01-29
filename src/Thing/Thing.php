@@ -2,6 +2,7 @@
 
 namespace JanWennrich\BoardGameGeekApi\Thing;
 
+use JanWennrich\BoardGameGeekApi\Common\Version;
 use JanWennrich\BoardGameGeekApi\ThingType;
 use JanWennrich\BoardGameGeekApi\Common\Link;
 use JanWennrich\BoardGameGeekApi\Common\Statistics;
@@ -14,7 +15,7 @@ final readonly class Thing
      * @param Link[] $links
      * @param Poll[] $polls
      * @param Video[] $videos
-     * @param \JanWennrich\BoardGameGeekApi\Common\Version[] $versions
+     * @param Version[] $versions
      * @param Listing[] $marketplaceListings
      */
     public function __construct(
@@ -163,7 +164,7 @@ final readonly class Thing
     }
 
     /**
-     * @return \JanWennrich\BoardGameGeekApi\Common\Version[]
+     * @return Version[]
      */
     public function getVersions(): array
     {
