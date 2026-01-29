@@ -9,7 +9,6 @@ use JanWennrich\BoardGameGeekApi\Common\Rank;
 use JanWennrich\BoardGameGeekApi\Common\Ratings;
 use JanWennrich\BoardGameGeekApi\Common\Statistics;
 use JanWennrich\BoardGameGeekApi\Common\Video;
-use JanWennrich\BoardGameGeekApi\Common\Videos;
 use JanWennrich\BoardGameGeekApi\Common\Version;
 use JanWennrich\BoardGameGeekApi\Xml;
 
@@ -122,14 +121,12 @@ final class ThingMapper
         return $polls;
     }
 
-    private function mapVideos(?\SimpleXMLElement $videosNode): ?Videos
+    /**
+     * @return Video[]|null
+     */
+    private function mapVideos(?\SimpleXMLElement $videosNode): ?array
     {
         if (!$videosNode instanceof \SimpleXMLElement) {
-            return null;
-        }
-
-        $total = Xml::attrInt($videosNode, 'total');
-        if ($total === null) {
             return null;
         }
 
@@ -147,7 +144,7 @@ final class ThingMapper
             );
         }
 
-        return new Videos($total, $videos);
+        return $videos;
     }
 
     /**

@@ -6,7 +6,7 @@ use JanWennrich\BoardGameGeekApi\ThingType;
 use JanWennrich\BoardGameGeekApi\Common\Link;
 use JanWennrich\BoardGameGeekApi\Common\Name;
 use JanWennrich\BoardGameGeekApi\Common\Statistics;
-use JanWennrich\BoardGameGeekApi\Common\Videos;
+use JanWennrich\BoardGameGeekApi\Common\Video;
 
 final readonly class Thing
 {
@@ -14,6 +14,7 @@ final readonly class Thing
      * @param Name[] $names
      * @param Link[] $links
      * @param Poll[] $polls
+     * @param Video[] $videos
      * @param \JanWennrich\BoardGameGeekApi\Common\Version[] $versions
      * @param Listing[] $marketplaceListings
      */
@@ -37,7 +38,7 @@ final readonly class Thing
         private ?int $minAge,
         private array $links,
         private array $polls,
-        private ?Videos $videos,
+        private ?array $videos,
         private array $versions,
         private ?Comments $comments,
         private ?Statistics $statistics,
@@ -174,7 +175,10 @@ final readonly class Thing
         return $this->polls;
     }
 
-    public function getVideos(): ?Videos
+    /**
+     * @return Video[]|null
+     */
+    public function getVideos(): ?array
     {
         return $this->videos;
     }
