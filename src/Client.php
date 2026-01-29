@@ -5,6 +5,7 @@ namespace JanWennrich\BoardGameGeekApi;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\GuzzleException;
+use JanWennrich\BoardGameGeekApi\Family\FamilyItem;
 use JanWennrich\BoardGameGeekApi\Query\CollectionQuery;
 use JanWennrich\BoardGameGeekApi\Query\FamilyQuery;
 use JanWennrich\BoardGameGeekApi\Query\GuildQuery;
@@ -15,7 +16,6 @@ use JanWennrich\BoardGameGeekApi\Query\ThingQuery;
 use JanWennrich\BoardGameGeekApi\Query\UsersQuery;
 use JanWennrich\BoardGameGeekApi\Collection\Collection as V2CollectionItems;
 use JanWennrich\BoardGameGeekApi\Collection\CollectionMapper;
-use JanWennrich\BoardGameGeekApi\Family\FamilyItems as V2FamilyItems;
 use JanWennrich\BoardGameGeekApi\Family\FamilyMapper;
 use JanWennrich\BoardGameGeekApi\Forum\Forum as V2Forum;
 use JanWennrich\BoardGameGeekApi\Forum\ForumMapper;
@@ -479,10 +479,11 @@ class Client
      * @param BggId $id The id of the family to retrieve.
      * @param ?FamilyQuery $familyQuery Query to filter the returned result
      *
+     * @return FamilyItem[]|null
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getFamily(int $id, ?FamilyQuery $familyQuery = null): ?V2FamilyItems
+    public function getFamily(int $id, ?FamilyQuery $familyQuery = null): ?array
     {
         Assert::positiveInteger($id);
 
@@ -503,11 +504,12 @@ class Client
      * @param non-empty-array<BggId> $ids The ids of the families to retrieve. Cannot be an empty array.
      * @param ?FamilyQuery $familyQuery Query to filter the returned result
      *
+     * @return FamilyItem[]
      *
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getFamilies(array $ids, ?FamilyQuery $familyQuery = null): V2FamilyItems
+    public function getFamilies(array $ids, ?FamilyQuery $familyQuery = null): array
     {
         Assert::minCount($ids, 1);
         Assert::allPositiveInteger($ids);

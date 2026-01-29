@@ -9,7 +9,10 @@ use JanWennrich\BoardGameGeekApi\Xml;
 
 final class FamilyMapper
 {
-    public function fromXml(\SimpleXMLElement $root): FamilyItems
+    /**
+     * @return FamilyItem[]
+     */
+    public function fromXml(\SimpleXMLElement $root): array
     {
         $items = [];
         foreach (Xml::xpath($root, 'item') as $itemNode) {
@@ -42,8 +45,6 @@ final class FamilyMapper
             );
         }
 
-        return new FamilyItems(
-            $items,
-        );
+        return $items;
     }
 }
