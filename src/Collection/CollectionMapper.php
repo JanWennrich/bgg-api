@@ -2,6 +2,7 @@
 
 namespace JanWennrich\BoardGameGeekApi\Collection;
 
+use JanWennrich\BoardGameGeekApi\ThingType;
 use JanWennrich\BoardGameGeekApi\Common\Link;
 use JanWennrich\BoardGameGeekApi\Common\Version;
 use JanWennrich\BoardGameGeekApi\Xml;
@@ -25,8 +26,7 @@ final class CollectionMapper
 
             $items[] = new CollectionItem(
                 Xml::attrInt($itemNode, 'objectid') ?? 0,
-                Xml::attrString($itemNode, 'objecttype') ?? '',
-                Xml::attrString($itemNode, 'subtype') ?? '',
+                ThingType::tryFrom(Xml::attrString($itemNode, 'subtype') ?? ''),
                 Xml::attrInt($itemNode, 'collid') ?? 0,
                 $name,
                 Xml::childText($itemNode->originalname ?? null),

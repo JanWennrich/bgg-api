@@ -2,12 +2,13 @@
 
 namespace JanWennrich\BoardGameGeekApi\Collection;
 
+use JanWennrich\BoardGameGeekApi\ThingType;
+
 final readonly class CollectionItem
 {
     public function __construct(
         private int $objectId,
-        private string $objectType,
-        private string $subtype,
+        private ?ThingType $thingType,
         private int $collectionId,
         private CollectionName $collectionName,
         private ?string $originalName,
@@ -29,14 +30,9 @@ final readonly class CollectionItem
         return $this->objectId;
     }
 
-    public function getObjectType(): string
+    public function getType(): ?ThingType
     {
-        return $this->objectType;
-    }
-
-    public function getSubtype(): string
-    {
-        return $this->subtype;
+        return $this->thingType;
     }
 
     public function getCollectionId(): int

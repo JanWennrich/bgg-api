@@ -7,6 +7,7 @@ namespace JanWennrich\BoardGameGeekApi\Test\Unit;
 use JanWennrich\BoardGameGeekApi\Collection;
 use JanWennrich\BoardGameGeekApi\Collection\CollectionMapper;
 use JanWennrich\BoardGameGeekApi\Collection\Item;
+use JanWennrich\BoardGameGeekApi\ThingType;
 use PHPUnit\Framework\TestCase;
 
 final class CollectionMapperTest extends TestCase
@@ -41,9 +42,8 @@ final class CollectionMapperTest extends TestCase
 
         $first = $items[0];
 
-        $this->assertSame('thing', $first->getObjectType());
         $this->assertSame(390092, $first->getObjectId());
-        $this->assertSame('boardgame', $first->getSubtype());
+        $this->assertSame(ThingType::BoardGame, $first->getType());
         $this->assertSame(113685788, $first->getCollectionId());
         $this->assertSame('¡Aventureros al Tren! Legacy: Leyendas del Oeste', $first->getName()->getValue());
         $this->assertSame("2023", $first->getYearPublished());
