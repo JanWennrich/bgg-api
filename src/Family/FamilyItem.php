@@ -4,12 +4,11 @@ namespace JanWennrich\BoardGameGeekApi\Family;
 
 use JanWennrich\BoardGameGeekApi\FamilyType;
 use JanWennrich\BoardGameGeekApi\Common\Link;
-use JanWennrich\BoardGameGeekApi\Common\Name;
 
 final readonly class FamilyItem
 {
     /**
-     * @param Name[] $names
+     * @param string[] $alternateNames
      * @param Link[] $links
      */
     public function __construct(
@@ -17,7 +16,8 @@ final readonly class FamilyItem
         private ?FamilyType $familyType,
         private ?string $thumbnail,
         private ?string $image,
-        private array $names,
+        private ?string $name,
+        private array $alternateNames,
         private ?string $description,
         private array $links,
     ) {}
@@ -42,12 +42,17 @@ final readonly class FamilyItem
         return $this->image;
     }
 
-    /**
-     * @return Name[]
-     */
-    public function getNames(): array
+    public function getName(): ?string
     {
-        return $this->names;
+        return $this->name;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getAlternateNames(): array
+    {
+        return $this->alternateNames;
     }
 
     public function getDescription(): ?string

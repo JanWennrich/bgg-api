@@ -4,14 +4,13 @@ namespace JanWennrich\BoardGameGeekApi\Thing;
 
 use JanWennrich\BoardGameGeekApi\ThingType;
 use JanWennrich\BoardGameGeekApi\Common\Link;
-use JanWennrich\BoardGameGeekApi\Common\Name;
 use JanWennrich\BoardGameGeekApi\Common\Statistics;
 use JanWennrich\BoardGameGeekApi\Common\Video;
 
 final readonly class Thing
 {
     /**
-     * @param Name[] $names
+     * @param string[] $alternateNames
      * @param Link[] $links
      * @param Poll[] $polls
      * @param Video[] $videos
@@ -23,7 +22,8 @@ final readonly class Thing
         private ?ThingType $thingType,
         private ?string $thumbnail,
         private ?string $image,
-        private array $names,
+        private ?string $name,
+        private array $alternateNames,
         private ?string $description,
         private ?int $yearPublished,
         private ?string $datePublished,
@@ -65,38 +65,17 @@ final readonly class Thing
         return $this->image;
     }
 
-    /**
-     * @return Name[]
-     */
-    public function getNames(): array
+    public function getName(): ?string
     {
-        return $this->names;
-    }
-
-    public function getPrimaryName(): ?Name
-    {
-        foreach ($this->names as $name) {
-            if ($name->getType() === 'primary') {
-                return $name;
-            }
-        }
-
-        return $this->names[0] ?? null;
+        return $this->name;
     }
 
     /**
-     * @return Name[]
+     * @return string[]
      */
-    public function getNamesByType(string $type): array
+    public function getAlternateNames(): array
     {
-        $names = [];
-        foreach ($this->names as $name) {
-            if ($name->getType() === $type) {
-                $names[] = $name;
-            }
-        }
-
-        return $names;
+        return $this->alternateNames;
     }
 
     public function getDescription(): ?string

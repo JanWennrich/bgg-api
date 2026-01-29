@@ -20,7 +20,7 @@ final class ThingMapperTest extends TestCase
 
     public function testGetName(): void
     {
-        $this->assertSame('Dream Home', $this->thing->getPrimaryName()?->getValue());
+        $this->assertSame('Dream Home', $this->thing->getName());
     }
 
     public function testGetLinks(): void

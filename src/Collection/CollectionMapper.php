@@ -3,7 +3,6 @@
 namespace JanWennrich\BoardGameGeekApi\Collection;
 
 use JanWennrich\BoardGameGeekApi\Common\Link;
-use JanWennrich\BoardGameGeekApi\Common\Name;
 use JanWennrich\BoardGameGeekApi\Common\Version;
 use JanWennrich\BoardGameGeekApi\Xml;
 
@@ -150,12 +149,21 @@ final class CollectionMapper
         $itemNode = $node->item ?? null;
         $item = null;
         if ($itemNode !== null) {
-            $names = [];
+            $name = null;
+            $alternateNames = [];
             foreach (Xml::xpath($itemNode, 'name') as $nameNode) {
-                $names[] = new Name(
-                    Xml::attrString($nameNode, 'type') ?? '',
-                    Xml::attrString($nameNode, 'value') ?? '',
-                );
+                $type = Xml::attrString($nameNode, 'type') ?? '';
+                $value = Xml::attrString($nameNode, 'value') ?? '';
+                if ($type === 'primary' && $name === null) {
+                    $name = $value;
+                    continue;
+                }
+
+                $alternateNames[] = $value;
+            }
+
+            if ($name === null && $alternateNames !== []) {
+                $name = array_shift($alternateNames);
             }
 
             $links = [];
@@ -173,7 +181,8 @@ final class CollectionMapper
                 Xml::attrString($itemNode, 'type') ?? '',
                 Xml::childText($itemNode->thumbnail ?? null),
                 Xml::childText($itemNode->image ?? null),
-                $names,
+                $name,
+                $alternateNames,
                 Xml::childIntValue($itemNode, 'yearpublished'),
                 $links,
                 Xml::childStringValue($itemNode, 'productcode'),

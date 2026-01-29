@@ -42,7 +42,7 @@ final class ClientTest extends TestCase
 
         $thing = $client->getThing(39856, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
 
-        $this->assertSame('Dixit', $thing?->getPrimaryName()?->getValue());
+        $this->assertSame('Dixit', $thing?->getName());
     }
 
     /**
@@ -62,7 +62,7 @@ final class ClientTest extends TestCase
         foreach ($things as $thing) {
             $this->assertInstanceOf(Thing::class, $thing);
 
-            $thingName = $thing->getPrimaryName()?->getValue();
+            $thingName = $thing->getName();
             $this->assertIsString($thingName);
             $this->assertContains($thingName, [ 'Zona: The Secret of Chernobyl', 'Dream Home' ]);
         }

@@ -4,7 +4,6 @@ namespace JanWennrich\BoardGameGeekApi\Thing;
 
 use JanWennrich\BoardGameGeekApi\ThingType;
 use JanWennrich\BoardGameGeekApi\Common\Link;
-use JanWennrich\BoardGameGeekApi\Common\Name;
 use JanWennrich\BoardGameGeekApi\Common\Rank;
 use JanWennrich\BoardGameGeekApi\Common\Ratings;
 use JanWennrich\BoardGameGeekApi\Common\Statistics;
@@ -16,7 +15,7 @@ final class ThingMapper
 {
     public function fromXml(\SimpleXMLElement $item): Thing
     {
-        $names = $this->mapNames(Xml::xpath($item, 'name'));
+        [$name, $alternateNames] = $this->mapNames(Xml::xpath($item, 'name'));
         $links = $this->mapLinks(Xml::xpath($item, 'link'));
         $polls = $this->mapPolls(Xml::xpath($item, 'poll'));
         $versions = $this->mapVersions($item->versions ?? null);
@@ -28,7 +27,8 @@ final class ThingMapper
             ThingType::tryFrom((string) $item['type']),
             Xml::childText($item->thumbnail ?? null),
             Xml::childText($item->image ?? null),
-            $names,
+            $name,
+            $alternateNames,
             Xml::childText($item->description ?? null),
             Xml::childIntValue($item, 'yearpublished'),
             Xml::childStringValue($item, 'datepublished'),
@@ -53,18 +53,28 @@ final class ThingMapper
 
     /**
      * @param \SimpleXMLElement[] $nodes
-     * @return Name[]
+     * @return array{0: ?string, 1: string[]}
      */
     private function mapNames(array $nodes): array
     {
-        $names = [];
+        $name = null;
+        $alternateNames = [];
         foreach ($nodes as $node) {
             $type = Xml::attrString($node, 'type') ?? '';
             $value = Xml::attrString($node, 'value') ?? '';
-            $names[] = new Name($type, $value);
+            if ($type === 'primary' && $name === null) {
+                $name = $value;
+                continue;
+            }
+
+            $alternateNames[] = $value;
         }
 
-        return $names;
+        if ($name === null && $alternateNames !== []) {
+            $name = array_shift($alternateNames);
+        }
+
+        return [$name, $alternateNames];
     }
 
     /**
@@ -159,7 +169,7 @@ final class ThingMapper
         $nodes = Xml::xpath($versionsNode, 'item');
         $versions = [];
         foreach ($nodes as $node) {
-            $names = $this->mapNames(Xml::xpath($node, 'name'));
+            [$name, $alternateNames] = $this->mapNames(Xml::xpath($node, 'name'));
 
             $links = [];
             foreach (Xml::xpath($node, 'link') as $linkNode) {
@@ -176,7 +186,8 @@ final class ThingMapper
                 Xml::attrString($node, 'type') ?? '',
                 Xml::childText($node->thumbnail ?? null),
                 Xml::childText($node->image ?? null),
-                $names,
+                $name,
+                $alternateNames,
                 Xml::childIntValue($node, 'yearpublished'),
                 $links,
                 Xml::childStringValue($node, 'productcode'),

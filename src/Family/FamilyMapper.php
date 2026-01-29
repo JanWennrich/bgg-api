@@ -4,7 +4,6 @@ namespace JanWennrich\BoardGameGeekApi\Family;
 
 use JanWennrich\BoardGameGeekApi\FamilyType;
 use JanWennrich\BoardGameGeekApi\Common\Link;
-use JanWennrich\BoardGameGeekApi\Common\Name;
 use JanWennrich\BoardGameGeekApi\Xml;
 
 final class FamilyMapper
@@ -16,12 +15,21 @@ final class FamilyMapper
     {
         $items = [];
         foreach (Xml::xpath($root, 'item') as $itemNode) {
-            $names = [];
+            $name = null;
+            $alternateNames = [];
             foreach (Xml::xpath($itemNode, 'name') as $nameNode) {
-                $names[] = new Name(
-                    Xml::attrString($nameNode, 'type') ?? '',
-                    Xml::attrString($nameNode, 'value') ?? '',
-                );
+                $type = Xml::attrString($nameNode, 'type') ?? '';
+                $value = Xml::attrString($nameNode, 'value') ?? '';
+                if ($type === 'primary' && $name === null) {
+                    $name = $value;
+                    continue;
+                }
+
+                $alternateNames[] = $value;
+            }
+
+            if ($name === null && $alternateNames !== []) {
+                $name = array_shift($alternateNames);
             }
 
             $links = [];
@@ -39,7 +47,8 @@ final class FamilyMapper
                 FamilyType::tryFrom(Xml::attrString($itemNode, 'type') ?? ''),
                 Xml::childText($itemNode->thumbnail ?? null),
                 Xml::childText($itemNode->image ?? null),
-                $names,
+                $name,
+                $alternateNames,
                 Xml::childText($itemNode->description ?? null),
                 $links,
             );

@@ -5,7 +5,7 @@ namespace JanWennrich\BoardGameGeekApi\Common;
 final readonly class Version
 {
     /**
-     * @param Name[] $names
+     * @param string[] $alternateNames
      * @param Link[] $links
      */
     public function __construct(
@@ -13,7 +13,8 @@ final readonly class Version
         private string $type,
         private ?string $thumbnail,
         private ?string $image,
-        private array $names,
+        private ?string $name,
+        private array $alternateNames,
         private ?int $yearPublished,
         private array $links,
         private ?string $productCode,
@@ -43,12 +44,17 @@ final readonly class Version
         return $this->image;
     }
 
-    /**
-     * @return Name[]
-     */
-    public function getNames(): array
+    public function getName(): ?string
     {
-        return $this->names;
+        return $this->name;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getAlternateNames(): array
+    {
+        return $this->alternateNames;
     }
 
     public function getYearPublished(): ?int
