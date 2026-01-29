@@ -8,7 +8,7 @@ final readonly class Ratings
      * @param Rank[]|null $ranks
      */
     public function __construct(
-        private ?string $date,
+        private ?\DateTimeImmutable $date,
         private int $usersRated,
         private float $average,
         private float $bayesAverage,
@@ -24,7 +24,7 @@ final readonly class Ratings
         private ?array $ranks,
     ) {}
 
-    public function getDate(): ?string
+    public function getDate(): ?\DateTimeImmutable
     {
         return $this->date;
     }

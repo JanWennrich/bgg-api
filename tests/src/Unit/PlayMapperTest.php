@@ -24,7 +24,7 @@ final class PlayMapperTest extends TestCase
     public function testBasicAttributes(): void
     {
         $this->assertSame(102838714, $this->play->getId());
-        $this->assertSame('2025-08-19', $this->play->getDate());
+        $this->assertEquals(new \DateTimeImmutable('2025-08-19'), $this->play->getDate());
         $this->assertSame(1, $this->play->getQuantity());
         $this->assertSame(0, $this->play->getLength());
         $this->assertFalse($this->play->isIncomplete());

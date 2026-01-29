@@ -20,7 +20,7 @@ final class UserMapper
             Xml::childStringValue($root, 'lastname'),
             Xml::childStringValue($root, 'avatarlink'),
             Xml::childIntValue($root, 'yearregistered'),
-            Xml::childStringValue($root, 'lastlogin'),
+            Xml::toDateTimeImmutable(Xml::childStringValue($root, 'lastlogin')),
             Xml::childStringValue($root, 'stateorprovince'),
             Xml::childStringValue($root, 'country'),
             Xml::childStringValue($root, 'webaddress'),

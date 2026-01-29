@@ -19,7 +19,7 @@ final class ForumListMapper
                 Xml::attrString($forumNode, 'description') ?? '',
                 Xml::attrInt($forumNode, 'numthreads') ?? 0,
                 Xml::attrInt($forumNode, 'numposts') ?? 0,
-                Xml::attrString($forumNode, 'lastpostdate') ?? '',
+                Xml::toDateTimeImmutable(Xml::attrString($forumNode, 'lastpostdate')),
             );
         }
 

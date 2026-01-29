@@ -5,14 +5,14 @@ namespace JanWennrich\BoardGameGeekApi\Thing;
 final readonly class Listing
 {
     public function __construct(
-        private string $listDate,
+        private ?\DateTimeImmutable $listDate,
         private ListingPrice $listingPrice,
         private string $condition,
         private string $notes,
         private ListingLink $listingLink,
     ) {}
 
-    public function getListDate(): string
+    public function getListDate(): ?\DateTimeImmutable
     {
         return $this->listDate;
     }

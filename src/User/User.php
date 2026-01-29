@@ -11,7 +11,7 @@ final readonly class User
         private ?string $lastName,
         private ?string $avatarLink,
         private ?int $yearRegistered,
-        private ?string $lastLogin,
+        private ?\DateTimeImmutable $lastLogin,
         private ?string $stateOrProvince,
         private ?string $country,
         private ?string $webAddress,
@@ -58,7 +58,7 @@ final readonly class User
         return $this->yearRegistered;
     }
 
-    public function getLastLogin(): ?string
+    public function getLastLogin(): ?\DateTimeImmutable
     {
         return $this->lastLogin;
     }

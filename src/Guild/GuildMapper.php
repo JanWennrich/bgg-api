@@ -25,7 +25,7 @@ final class GuildMapper
             foreach (Xml::xpath($membersNode, 'member') as $memberNode) {
                 $memberItems[] = new GuildMember(
                     Xml::attrString($memberNode, 'name') ?? '',
-                    Xml::attrString($memberNode, 'date') ?? '',
+                    Xml::toDateTimeImmutable(Xml::attrString($memberNode, 'date')),
                 );
             }
 
@@ -39,7 +39,7 @@ final class GuildMapper
         return new Guild(
             Xml::attrInt($root, 'id') ?? 0,
             Xml::attrString($root, 'name') ?? '',
-            Xml::attrString($root, 'created') ?? '',
+            Xml::toDateTimeImmutable(Xml::attrString($root, 'created')),
             Xml::childText($root->category ?? null) ?? '',
             Xml::childText($root->website ?? null) ?? '',
             Xml::childText($root->manager ?? null) ?? '',

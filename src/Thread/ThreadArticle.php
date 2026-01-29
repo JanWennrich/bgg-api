@@ -8,8 +8,8 @@ final readonly class ThreadArticle
         private int $id,
         private string $username,
         private string $link,
-        private string $postDate,
-        private string $editDate,
+        private ?\DateTimeImmutable $postDate,
+        private ?\DateTimeImmutable $editDate,
         private int $numEdits,
         private string $subject,
         private string $body,
@@ -30,12 +30,12 @@ final readonly class ThreadArticle
         return $this->link;
     }
 
-    public function getPostDate(): string
+    public function getPostDate(): ?\DateTimeImmutable
     {
         return $this->postDate;
     }
 
-    public function getEditDate(): string
+    public function getEditDate(): ?\DateTimeImmutable
     {
         return $this->editDate;
     }

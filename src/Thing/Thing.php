@@ -27,11 +27,11 @@ final readonly class Thing
         private array $alternateNames,
         private ?string $description,
         private ?int $yearPublished,
-        private ?string $datePublished,
+        private ?\DateTimeImmutable $datePublished,
         private ?int $issueIndex,
         private ?int $minPlayers,
         private ?int $maxPlayers,
-        private ?string $releaseDate,
+        private ?\DateTimeImmutable $releaseDate,
         private ?string $seriesCode,
         private ?int $playingTime,
         private ?int $minPlayTime,
@@ -89,7 +89,7 @@ final readonly class Thing
         return $this->yearPublished;
     }
 
-    public function getExactPublishDate(): ?string
+    public function getExactPublishDate(): ?\DateTimeImmutable
     {
         return $this->datePublished;
     }
@@ -109,7 +109,7 @@ final readonly class Thing
         return $this->maxPlayers;
     }
 
-    public function getReleaseDate(): ?string
+    public function getReleaseDate(): ?\DateTimeImmutable
     {
         return $this->releaseDate;
     }

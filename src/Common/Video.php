@@ -12,7 +12,7 @@ final readonly class Video
         private string $link,
         private string $username,
         private int $userId,
-        private string $postDate,
+        private ?\DateTimeImmutable $postDate,
     ) {}
 
     public function getId(): int
@@ -50,7 +50,7 @@ final readonly class Video
         return $this->userId;
     }
 
-    public function getPostDate(): string
+    public function getPostDate(): ?\DateTimeImmutable
     {
         return $this->postDate;
     }

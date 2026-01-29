@@ -11,7 +11,7 @@ final readonly class CollectionPrivateInfo
         private ?string $currentValueCurrency,
         private ?float $currentValue,
         private ?int $quantity,
-        private ?string $acquisitionDate,
+        private ?\DateTimeImmutable $acquisitionDate,
         private ?string $acquiredFrom,
         private ?string $inventoryLocation,
     ) {}
@@ -46,7 +46,7 @@ final readonly class CollectionPrivateInfo
         return $this->quantity;
     }
 
-    public function getAcquisitionDate(): ?string
+    public function getAcquisitionDate(): ?\DateTimeImmutable
     {
         return $this->acquisitionDate;
     }

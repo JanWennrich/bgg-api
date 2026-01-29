@@ -7,7 +7,7 @@ final readonly class Guild
     public function __construct(
         private int $id,
         private string $name,
-        private string $created,
+        private ?\DateTimeImmutable $created,
         private string $category,
         private string $website,
         private string $manager,
@@ -26,7 +26,7 @@ final readonly class Guild
         return $this->name;
     }
 
-    public function getCreated(): string
+    public function getCreated(): ?\DateTimeImmutable
     {
         return $this->created;
     }

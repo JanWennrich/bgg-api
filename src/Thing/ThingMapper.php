@@ -31,11 +31,11 @@ final class ThingMapper
             $alternateNames,
             Xml::childText($item->description ?? null),
             Xml::childIntValue($item, 'yearpublished'),
-            Xml::childStringValue($item, 'datepublished'),
+            Xml::toDateTimeImmutable(Xml::childStringValue($item, 'datepublished')),
             Xml::childIntValue($item, 'issueindex'),
             Xml::childIntValue($item, 'minplayers'),
             Xml::childIntValue($item, 'maxplayers'),
-            Xml::childStringValue($item, 'releasedate'),
+            Xml::toDateTimeImmutable(Xml::childStringValue($item, 'releasedate')),
             Xml::childStringValue($item, 'seriescode'),
             Xml::childIntValue($item, 'playingtime'),
             Xml::childIntValue($item, 'minplaytime'),
@@ -150,7 +150,7 @@ final class ThingMapper
                 Xml::attrString($videoNode, 'link') ?? '',
                 Xml::attrString($videoNode, 'username') ?? '',
                 Xml::attrInt($videoNode, 'userid') ?? 0,
-                Xml::attrString($videoNode, 'postdate') ?? '',
+                Xml::toDateTimeImmutable(Xml::attrString($videoNode, 'postdate')),
             );
         }
 
@@ -251,7 +251,7 @@ final class ThingMapper
             }
 
             $ratings[] = new Ratings(
-                Xml::attrString($node, 'date'),
+                Xml::toDateTimeImmutable(Xml::attrString($node, 'date')),
                 Xml::childIntValue($node, 'usersrated') ?? 0,
                 Xml::childFloatValue($node, 'average') ?? 0.0,
                 Xml::childFloatValue($node, 'bayesaverage') ?? 0.0,
@@ -296,7 +296,7 @@ final class ThingMapper
             );
 
             $listings[] = new Listing(
-                Xml::childStringValue($node, 'listdate') ?? '',
+                Xml::toDateTimeImmutable(Xml::childStringValue($node, 'listdate')),
                 $price,
                 Xml::childStringValue($node, 'condition') ?? '',
                 Xml::childStringValue($node, 'notes') ?? '',

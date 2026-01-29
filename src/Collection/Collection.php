@@ -9,7 +9,7 @@ final readonly class Collection
      */
     public function __construct(
         private int $totalItems,
-        private string $pubDate,
+        private ?\DateTimeImmutable $pubDate,
         private array $items,
     ) {}
 
@@ -18,7 +18,7 @@ final readonly class Collection
         return $this->totalItems;
     }
 
-    public function getPubDate(): string
+    public function getPubDate(): ?\DateTimeImmutable
     {
         return $this->pubDate;
     }

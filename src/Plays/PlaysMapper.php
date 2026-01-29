@@ -48,7 +48,7 @@ final class PlaysMapper
 
             $plays[] = new Play(
                 Xml::attrInt($playNode, 'id') ?? 0,
-                Xml::attrString($playNode, 'date') ?? '',
+                Xml::toDateTimeImmutable(Xml::attrString($playNode, 'date')),
                 Xml::attrInt($playNode, 'quantity') ?? 0,
                 Xml::attrInt($playNode, 'length') ?? 0,
                 Xml::attrBool($playNode, 'incomplete') ?? false,

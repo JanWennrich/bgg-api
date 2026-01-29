@@ -46,7 +46,7 @@ final class CollectionMapper
 
         return new Collection(
             Xml::attrInt($root, 'totalitems') ?? 0,
-            Xml::attrString($root, 'pubdate') ?? '',
+            Xml::toDateTimeImmutable(Xml::attrString($root, 'pubdate')),
             $items,
         );
     }
@@ -125,7 +125,7 @@ final class CollectionMapper
             Xml::attrString($node, 'cv_currency'),
             Xml::attrFloat($node, 'currvalue'),
             Xml::attrInt($node, 'quantity'),
-            Xml::attrString($node, 'acquisitiondate'),
+            Xml::toDateTimeImmutable(Xml::attrString($node, 'acquisitiondate')),
             Xml::attrString($node, 'acquiredfrom'),
             Xml::attrString($node, 'inventorylocation'),
         );

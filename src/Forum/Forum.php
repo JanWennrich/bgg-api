@@ -12,7 +12,7 @@ final readonly class Forum
         private string $title,
         private int $numThreads,
         private int $numPosts,
-        private string $lastPostDate,
+        private ?\DateTimeImmutable $lastPostDate,
         private bool $noPosting,
         private array $threads,
     ) {}
@@ -37,7 +37,7 @@ final readonly class Forum
         return $this->numPosts;
     }
 
-    public function getLastPostDate(): string
+    public function getLastPostDate(): ?\DateTimeImmutable
     {
         return $this->lastPostDate;
     }

@@ -9,8 +9,8 @@ final readonly class ForumThread
         private string $subject,
         private string $author,
         private int $numArticles,
-        private string $postDate,
-        private string $lastPostDate,
+        private ?\DateTimeImmutable $postDate,
+        private ?\DateTimeImmutable $lastPostDate,
     ) {}
 
     public function getId(): int
@@ -33,12 +33,12 @@ final readonly class ForumThread
         return $this->numArticles;
     }
 
-    public function getPostDate(): string
+    public function getPostDate(): ?\DateTimeImmutable
     {
         return $this->postDate;
     }
 
-    public function getLastPostDate(): string
+    public function getLastPostDate(): ?\DateTimeImmutable
     {
         return $this->lastPostDate;
     }

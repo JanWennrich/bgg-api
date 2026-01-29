@@ -73,6 +73,24 @@ final class Xml
         return $value === null ? null : (float) $value;
     }
 
+    public static function toDateTimeImmutable(?string $value): ?\DateTimeImmutable
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        $value = trim($value);
+        if ($value === '') {
+            return null;
+        }
+
+        try {
+            return new \DateTimeImmutable($value);
+        } catch (\Exception) {
+            return null;
+        }
+    }
+
     /**
      * @return \SimpleXMLElement[]
      */

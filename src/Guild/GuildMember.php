@@ -6,7 +6,7 @@ final readonly class GuildMember
 {
     public function __construct(
         private string $name,
-        private string $date,
+        private ?\DateTimeImmutable $date,
     ) {}
 
     public function getName(): string
@@ -14,7 +14,7 @@ final readonly class GuildMember
         return $this->name;
     }
 
-    public function getDate(): string
+    public function getDate(): ?\DateTimeImmutable
     {
         return $this->date;
     }

@@ -12,7 +12,7 @@ final readonly class ForumListEntry
         private string $description,
         private int $numThreads,
         private int $numPosts,
-        private string $lastPostDate,
+        private ?\DateTimeImmutable $lastPostDate,
     ) {}
 
     public function getId(): int
@@ -50,7 +50,7 @@ final readonly class ForumListEntry
         return $this->numPosts;
     }
 
-    public function getLastPostDate(): string
+    public function getLastPostDate(): ?\DateTimeImmutable
     {
         return $this->lastPostDate;
     }

@@ -9,7 +9,7 @@ final readonly class Play
      */
     public function __construct(
         private int $id,
-        private string $date,
+        private ?\DateTimeImmutable $date,
         private int $quantity,
         private int $length,
         private bool $incomplete,
@@ -25,7 +25,7 @@ final readonly class Play
         return $this->id;
     }
 
-    public function getDate(): string
+    public function getDate(): ?\DateTimeImmutable
     {
         return $this->date;
     }

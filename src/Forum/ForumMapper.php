@@ -17,8 +17,8 @@ final class ForumMapper
                     Xml::attrString($threadNode, 'subject') ?? '',
                     Xml::attrString($threadNode, 'author') ?? '',
                     Xml::attrInt($threadNode, 'numarticles') ?? 0,
-                    Xml::attrString($threadNode, 'postdate') ?? '',
-                    Xml::attrString($threadNode, 'lastpostdate') ?? '',
+                    Xml::toDateTimeImmutable(Xml::attrString($threadNode, 'postdate')),
+                    Xml::toDateTimeImmutable(Xml::attrString($threadNode, 'lastpostdate')),
                 );
             }
         }
@@ -28,7 +28,7 @@ final class ForumMapper
             Xml::attrString($root, 'title') ?? '',
             Xml::attrInt($root, 'numthreads') ?? 0,
             Xml::attrInt($root, 'numposts') ?? 0,
-            Xml::attrString($root, 'lastpostdate') ?? '',
+            Xml::toDateTimeImmutable(Xml::attrString($root, 'lastpostdate')),
             Xml::attrBool($root, 'noposting') ?? false,
             $threads,
         );
