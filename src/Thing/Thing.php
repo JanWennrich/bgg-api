@@ -89,7 +89,7 @@ final readonly class Thing
         return $this->yearPublished;
     }
 
-    public function getDatePublished(): ?string
+    public function getExactPublishDate(): ?string
     {
         return $this->datePublished;
     }
