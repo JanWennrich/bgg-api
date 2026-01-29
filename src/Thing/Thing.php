@@ -84,7 +84,7 @@ final readonly class Thing
         return $this->description;
     }
 
-    public function getYearPublished(): ?int
+    public function getPublishYear(): ?int
     {
         return $this->yearPublished;
     }
