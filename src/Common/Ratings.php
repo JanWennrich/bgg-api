@@ -4,6 +4,9 @@ namespace JanWennrich\BoardGameGeekApi\Common;
 
 final readonly class Ratings
 {
+    /**
+     * @param Rank[]|null $ranks
+     */
     public function __construct(
         private ?string $date,
         private int $usersRated,
@@ -18,7 +21,7 @@ final readonly class Ratings
         private int $numComments,
         private int $numWeights,
         private float $averageWeight,
-        private ?Ranks $ranks,
+        private ?array $ranks,
     ) {}
 
     public function getDate(): ?string
@@ -86,7 +89,10 @@ final readonly class Ratings
         return $this->averageWeight;
     }
 
-    public function getRanks(): ?Ranks
+    /**
+     * @return Rank[]|null
+     */
+    public function getRanks(): ?array
     {
         return $this->ranks;
     }

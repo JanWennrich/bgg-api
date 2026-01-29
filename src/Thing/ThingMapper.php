@@ -6,7 +6,6 @@ use JanWennrich\BoardGameGeekApi\ThingType;
 use JanWennrich\BoardGameGeekApi\Common\Link;
 use JanWennrich\BoardGameGeekApi\Common\Name;
 use JanWennrich\BoardGameGeekApi\Common\Rank;
-use JanWennrich\BoardGameGeekApi\Common\Ranks;
 use JanWennrich\BoardGameGeekApi\Common\Ratings;
 use JanWennrich\BoardGameGeekApi\Common\Statistics;
 use JanWennrich\BoardGameGeekApi\Common\Video;
@@ -257,7 +256,7 @@ final class ThingMapper
                 Xml::childIntValue($node, 'numcomments') ?? 0,
                 Xml::childIntValue($node, 'numweights') ?? 0,
                 Xml::childFloatValue($node, 'averageweight') ?? 0.0,
-                $ranks === [] ? null : new Ranks($ranks),
+                $ranks === [] ? null : $ranks,
             );
         }
 
