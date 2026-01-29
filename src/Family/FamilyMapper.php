@@ -17,7 +17,6 @@ final class FamilyMapper
             foreach (Xml::xpath($itemNode, 'name') as $nameNode) {
                 $names[] = new Name(
                     Xml::attrString($nameNode, 'type') ?? '',
-                    Xml::attrInt($nameNode, 'sortindex') ?? 0,
                     Xml::attrString($nameNode, 'value') ?? '',
                 );
             }

@@ -62,9 +62,8 @@ final class ThingMapper
         $names = [];
         foreach ($nodes as $node) {
             $type = Xml::attrString($node, 'type') ?? '';
-            $sortIndex = Xml::attrInt($node, 'sortindex') ?? 0;
             $value = Xml::attrString($node, 'value') ?? '';
-            $names[] = new Name($type, $sortIndex, $value);
+            $names[] = new Name($type, $value);
         }
 
         return $names;
