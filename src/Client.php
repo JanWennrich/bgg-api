@@ -116,7 +116,7 @@ class Client
 
         $xml = $this->request('thing', $query);
 
-        if (!isset($xml->item)) {
+        if (!property_exists($xml, 'item') || $xml->item === null) {
             return null;
         }
 
@@ -493,7 +493,7 @@ class Client
 
         $xml = $this->request('family', $query);
 
-        if (!isset($xml->item)) {
+        if (!property_exists($xml, 'item') || $xml->item === null) {
             return null;
         }
 
