@@ -49,23 +49,7 @@ return RectorConfig::configure()
     ->withPHPStanConfigs([__DIR__ . '/phpstan.dist.neon'])
     ->withSkip(
         [
-            // A switch expression in that file cannot be converted to a match expression as it does not behave the same, for some reason
-            ChangeSwitchToMatchRector::class => [__DIR__ . '/src/Boardgame/Link.php'],
             EncapsedStringsToSprintfRector::class,
             WrapEncapsedVariableInCurlyBracesRector::class,
-            // remove when entities rely less on XML
-            IssetOnPropertyObjectToPropertyExistsRector::class,
-            // remove when entities rely less on XML
-            ExplicitBoolCompareRector::class,
-            // remove when entities rely less on XML
-            DisallowedEmptyRuleFixerRector::class,
-            // remove when entities rely less on XML
-            RemoveUnusedPrivateMethodRector::class => [
-                __DIR__ . '/src/Collection/Item.php',
-            ],
-            // remove when entities rely less on XML
-            PrivatizeLocalGetterToPropertyRector::class => [
-                __DIR__ . '/src/Collection/Item.php',
-            ],
         ],
     );
