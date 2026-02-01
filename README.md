@@ -255,7 +255,7 @@ Instead it returns a `HTTP 202` response and will return the actual data with a 
 
 To simplify this, the client has built-in retry behavior when fetching data:
 - Retries up to **3 times**
-- Waits **5 seconds** between attempts
+- Waits **5 seconds** between attempts by default (configurable)
 - Automatically retries when BGG responds with **HTTP 202** (queued response)
 - Retries on transport errors and **5xx** responses 
 - Does **not** keep retrying on typical **4xx** client errors (e.g. missing authentication)
@@ -269,7 +269,10 @@ use JanWennrich\BoardGameGeekApi\Client;
 use JanWennrich\BoardGameGeekApi\RetryConfig;
 
 $client = new Client(
-    retryConfig: new RetryConfig(maxAttempts: 5, delayInSeconds: 2)
+    retryConfig: new RetryConfig(
+        maxAttempts: 5,
+        initialExponentialRetryDelayInSeconds: 1,
+    )
 );
 ```
 

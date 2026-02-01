@@ -656,17 +656,17 @@ class Client
         $httpCode = null;
         $previousException = null;
 
-        $maxAttempts = $this->retryConfig->maxAttempts;
-        $delaySeconds = $this->retryConfig->delayInSeconds;
-
-        for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
-            if ($attempt > 1 && $delaySeconds > 0) {
+        for ($attempt = 1; $attempt <= $this->retryConfig->maxAttempts; $attempt++) {
+            if ($attempt > 1) {
+                $delayInSeconds = $this->calculateRetryDelayInSeconds($attempt);
                 $this->logger->info('Retrying BGG API request (attempt {attempt})', [
                     'attempt' => $attempt,
                     'action' => $action,
                 ]);
 
-                sleep($delaySeconds);
+                if ($delayInSeconds > 0) {
+                    sleep($delayInSeconds);
+                }
             }
 
             $startTime = microtime(true);
@@ -767,6 +767,16 @@ class Client
         }
 
         throw new ClientRequestException('API call failed', $attempt, $httpCode, $previousException);
+    }
+
+    private function calculateRetryDelayInSeconds(int $attempt): int
+    {
+        $exponent = $attempt - 2;
+        if ($exponent < 0) {
+            $exponent = 0;
+        }
+
+        return $this->retryConfig->initialExponentialRetryDelayInSeconds * (2 ** $exponent);
     }
 
     /**

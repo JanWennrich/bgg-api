@@ -11,19 +11,19 @@ final readonly class RetryConfig
 {
     /**
      * @param positive-int $maxAttempts
-     * @param int<0,max> $delayInSeconds
+     * @param positive-int $initialExponentialRetryDelayInSeconds
      *
      * @throws InvalidArgumentException
      */
     public function __construct(
         public int $maxAttempts = 3,
-        public int $delayInSeconds = 5,
+        public int $initialExponentialRetryDelayInSeconds = 1,
         public bool $retryOnQueuedRequest = true,
         public bool $retryOnServerError = true,
         public bool $retryOnTransportErrors = true,
         public bool $retryOnInvalidXml = true,
     ) {
         Assert::positiveInteger($this->maxAttempts);
-        Assert::greaterThanEq($this->delayInSeconds, 0);
+        Assert::positiveInteger($this->initialExponentialRetryDelayInSeconds);
     }
 }
