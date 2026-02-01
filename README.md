@@ -262,6 +262,17 @@ To simplify this, the client has built-in retry behavior when fetching data:
 
 If all attempts fail, an `Exception` is thrown.
 
+You can customize retry behavior via `RetryConfig`:
+
+```php
+use JanWennrich\BoardGameGeekApi\Client;
+use JanWennrich\BoardGameGeekApi\RetryConfig;
+
+$client = new Client(
+    retryConfig: new RetryConfig(maxAttempts: 5, delayInSeconds: 2)
+);
+```
+
 ## Testing & Development
 
 To develop/test this library, do the following:

@@ -69,6 +69,7 @@ class Client
         private readonly ?HotMapper $hotMapper = null,
         private readonly ?SearchMapper $searchMapper = null,
         private readonly ?PlaysMapper $playsMapper = null,
+        private readonly RetryConfig $retryConfig = new RetryConfig(),
     ) {
         $this->cookieJar = new CookieJar();
 
@@ -654,16 +655,18 @@ class Client
 
         $httpCode = null;
         $previousException = null;
-        $maxRetries = 3;
 
-        for ($attempt = 1; $attempt <= $maxRetries; $attempt++) {
-            if ($attempt > 2) {
+        $maxAttempts = $this->retryConfig->maxAttempts;
+        $delaySeconds = $this->retryConfig->delayInSeconds;
+
+        for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
+            if ($attempt > 1 && $delaySeconds > 0) {
                 $this->logger->info('Retrying BGG API request (attempt {attempt})', [
                     'attempt' => $attempt,
                     'action' => $action,
                 ]);
 
-                sleep(5);
+                sleep($delaySeconds);
             }
 
             $startTime = microtime(true);
@@ -686,7 +689,11 @@ class Client
                     'action' => $action,
                 ]);
 
-                continue;
+                if ($this->retryConfig->retryOnTransportErrors) {
+                    continue;
+                }
+
+                break;
             }
 
             $httpCode = $httpResponse->getStatusCode();
@@ -707,7 +714,11 @@ class Client
                     'attempt' => $attempt,
                 ]);
 
-                continue;
+                if ($this->retryConfig->retryOnQueuedRequest) {
+                    continue;
+                }
+
+                break;
             }
 
             if ($httpCode >= 400 && $httpCode <= 499) {
@@ -729,8 +740,11 @@ class Client
                     'response' => substr($response, 0, 1000),
                 ]);
 
-                // Otherwise, continue to the next attempt
-                continue;
+                if ($this->retryConfig->retryOnServerError) {
+                    continue;
+                }
+
+                break;
             }
 
             $xml = simplexml_load_string($response);
@@ -741,8 +755,11 @@ class Client
                     'response' => substr($response, 0, 1000),
                 ]);
 
-                // Otherwise, continue to the next attempt
-                continue;
+                if ($this->retryConfig->retryOnInvalidXml) {
+                    continue;
+                }
+
+                break;
             }
 
             // If we got here, we have a valid response
