@@ -47,8 +47,6 @@ use Webmozart\Assert\InvalidArgumentException;
  */
 class Client
 {
-    public const API_URL = 'https://boardgamegeek.com/xmlapi2';
-
     private string $userAgent = 'BGG XML API Client/1.0';
 
     /**
@@ -79,7 +77,6 @@ class Client
         $this->cookieJar = new CookieJar();
 
         $this->guzzleClient = $guzzleClient ?? new GuzzleClient([
-            'base_uri' => self::API_URL . '/',
             'timeout' => 30,
             'cookies' => $this->cookieJar,
             'headers' => [
@@ -122,7 +119,7 @@ class Client
 
         $query['id'] = $id;
 
-        $xml = $this->request('thing', $query);
+        $xml = $this->request(BggApiEndpoint::Thing, $query);
 
         if (!property_exists($xml, 'item') || $xml->item === null) {
             return null;
@@ -149,7 +146,7 @@ class Client
 
         $query['id'] = implode(',', $ids);
 
-        $xml = $this->request('thing', $query);
+        $xml = $this->request(BggApiEndpoint::Thing, $query);
 
         $items = [];
         $mapper = $this->thingMapper ?? new ThingMapper();
@@ -168,7 +165,7 @@ class Client
      */
     public function getForumList(int $id, ForumListType $forumListType): V2ForumList
     {
-        $xml = $this->request('forumlist', [
+        $xml = $this->request(BggApiEndpoint::ForumList, [
             'id' => $id,
             'type' => $forumListType->value,
         ]);
@@ -188,7 +185,7 @@ class Client
         Assert::positiveInteger($id);
         Assert::positiveInteger($page);
 
-        $xml = $this->request('forum', [
+        $xml = $this->request(BggApiEndpoint::Forum, [
             'id' => $id,
             'page' => $page,
         ]);
@@ -210,7 +207,7 @@ class Client
         $query = $this->buildThreadQueryArray($threadQuery);
         $query['id'] = $id;
 
-        $xml = $this->request('thread', $query);
+        $xml = $this->request(BggApiEndpoint::Thread, $query);
 
         return ($this->threadMapper ?? new ThreadMapper())->fromXml($xml);
     }
@@ -229,7 +226,7 @@ class Client
         $query = $this->buildUsersQueryArray($usersQuery);
         $query['name'] = $name;
 
-        $xml = $this->request('users', $query);
+        $xml = $this->request(BggApiEndpoint::User, $query);
 
         return empty($xml['id']) ? null : ($this->userMapper ?? new UserMapper())->fromXml($xml);
     }
@@ -248,7 +245,7 @@ class Client
         $query = $this->buildGuildQueryArray($guildQuery);
         $query['id'] = $id;
 
-        $xml = $this->request('guild', $query);
+        $xml = $this->request(BggApiEndpoint::Guild, $query);
 
         return empty($xml['id']) ? null : ($this->guildMapper ?? new GuildMapper())->fromXml($xml);
     }
@@ -504,7 +501,7 @@ class Client
 
         $query['id'] = $id;
 
-        $xml = $this->request('family', $query);
+        $xml = $this->request(BggApiEndpoint::Family, $query);
 
         if (!property_exists($xml, 'item') || $xml->item === null) {
             return null;
@@ -531,7 +528,7 @@ class Client
 
         $query['id'] = implode(',', $ids);
 
-        $xml = $this->request('family', $query);
+        $xml = $this->request(BggApiEndpoint::Family, $query);
 
         return ($this->familyMapper ?? new FamilyMapper())->fromXml($xml);
     }
@@ -573,7 +570,7 @@ class Client
         $query = $this->buildCollectionQueryArray($collectionQuery);
         $query['username'] = $username;
 
-        $xml = $this->request('collection', $query);
+        $xml = $this->request(BggApiEndpoint::Collection, $query);
         if ($xml->getName() !== 'items') {
             $message = (string) ($xml->error->message ?? 'Unknown error');
             throw new Exception($message);
@@ -588,7 +585,7 @@ class Client
      */
     public function getHotItems(HotItemType $hotItemType = HotItemType::BoardGame): array
     {
-        $xml = $this->request('hot', [
+        $xml = $this->request(BggApiEndpoint::Hot, [
             'type' => $hotItemType->value,
         ]);
 
@@ -609,7 +606,7 @@ class Client
         $params = $this->buildSearchQueryArray($searchQuery);
         $params['query'] = $searchTerm;
 
-        $xml = $this->request('search', $params);
+        $xml = $this->request(BggApiEndpoint::Search, $params);
 
         return ($this->searchMapper ?? new SearchMapper())->fromXml($xml);
     }
@@ -632,7 +629,7 @@ class Client
         $query = $this->buildPlaysQueryArray($playsQuery);
         $query['username'] = $username;
 
-        $xml = $this->request('plays', $query);
+        $xml = $this->request(BggApiEndpoint::Plays, $query);
 
         return ($this->playsMapper ?? new PlaysMapper())->fromXml($xml);
     }
@@ -657,7 +654,7 @@ class Client
         $query['id'] = $itemId;
         $query['type'] = $itemType->value;
 
-        $xml = $this->request('plays', $query);
+        $xml = $this->request(BggApiEndpoint::Plays, $query);
 
         return ($this->playsMapper ?? new PlaysMapper())->fromXml($xml);
     }
@@ -666,9 +663,9 @@ class Client
      * @param RequestParams $params
      * @throws ClientRequestException
      */
-    protected function request(string $action, array $params = []): \SimpleXMLElement
+    protected function request(BggApiEndpoint $bggApiEndpoint, array $params = []): \SimpleXMLElement
     {
-        $this->logger->debug('BGG API request', ['action' => $action, 'params' => $params]);
+        $this->logger->debug('BGG API request', ['action' => $bggApiEndpoint, 'params' => $params]);
 
         $httpCode = null;
         $previousException = null;
@@ -681,7 +678,7 @@ class Client
                 $delayInSeconds = $this->calculateRetryDelayInSeconds($attempt);
                 $this->logger->info('Retrying BGG API request (attempt {attempt})', [
                     'attempt' => $attempt,
-                    'action' => $action,
+                    'action' => $bggApiEndpoint,
                 ]);
 
                 if ($delayInSeconds > 0) {
@@ -700,18 +697,22 @@ class Client
                     $headers['Authorization'] = "Bearer $this->apiToken";
                 }
 
-                $httpResponse = $this->guzzleClient->request('GET', $action, [
-                    'query' => $params,
-                    'headers' => $headers,
-                    'http_errors' => false, // we handle status codes ourselves
-                ]);
+                $httpResponse = $this->guzzleClient->request(
+                    'GET',
+                    "https://boardgamegeek.com/xmlapi2/$bggApiEndpoint->value",
+                    [
+                        'query' => $params,
+                        'headers' => $headers,
+                        'http_errors' => false, // we handle status codes ourselves
+                    ],
+                );
             } catch (GuzzleException $exception) {
                 $previousException = $exception;
 
                 $this->logger->error('BGG API transport error', [
                     'exception' => $exception,
                     'attempt' => $attempt,
-                    'action' => $action,
+                    'action' => $bggApiEndpoint,
                 ]);
 
                 if ($this->retryConfig->retryOnTransportErrors) {
@@ -728,14 +729,14 @@ class Client
             $this->logger->debug('BGG API response', [
                 'code' => $httpCode,
                 'duration' => round($duration, 2),
-                'action' => $action,
+                'action' => $bggApiEndpoint,
                 'attempt' => $attempt,
             ]);
 
             if ($httpCode === 202) {
                 $this->logger->info('BGG API returned 202, retrying', [
                     'code' => $httpCode,
-                    'action' => $action,
+                    'action' => $bggApiEndpoint,
                     'attempt' => $attempt,
                 ]);
 
@@ -749,7 +750,7 @@ class Client
             if ($httpCode >= 400 && $httpCode <= 499) {
                 $this->logger->error('BGG API returned client error', [
                     'code' => $httpCode,
-                    'action' => $action,
+                    'action' => $bggApiEndpoint,
                     'attempt' => $attempt,
                 ]);
 
@@ -760,7 +761,7 @@ class Client
             if ($httpCode >= 500) {
                 $this->logger->error('BGG API error response', [
                     'code' => $httpCode,
-                    'action' => $action,
+                    'action' => $bggApiEndpoint,
                     'attempt' => $attempt,
                     'response' => substr($response, 0, 1000),
                 ]);
@@ -775,7 +776,7 @@ class Client
             $xml = simplexml_load_string($response);
             if (!$xml instanceof \SimpleXMLElement) {
                 $this->logger->error('Failed to parse BGG API response as XML', [
-                    'action' => $action,
+                    'action' => $bggApiEndpoint,
                     'attempt' => $attempt,
                     'response' => substr($response, 0, 1000),
                 ]);
