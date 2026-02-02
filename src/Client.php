@@ -56,8 +56,9 @@ class Client
 
     private readonly GuzzleClient $guzzleClient;
 
-    private readonly CookieJar $cookieJar;
-
+    /**
+     * @param GuzzleClient|null $guzzleClient The given Guzzle Client must have cookies enabled to use the login functionality
+     */
     public function __construct(
         private readonly LoggerInterface $logger = new NullLogger(),
         ?GuzzleClient $guzzleClient = null,
@@ -72,13 +73,11 @@ class Client
         private readonly ?HotMapper $hotMapper = null,
         private readonly ?SearchMapper $searchMapper = null,
         private readonly ?PlaysMapper $playsMapper = null,
-        private readonly RetryConfig $retryConfig = new RetryConfig(),
+        private readonly RetryConfig $retryConfig = new RetryConfig()
     ) {
-        $this->cookieJar = new CookieJar();
-
         $this->guzzleClient = $guzzleClient ?? new GuzzleClient([
             'timeout' => 30,
-            'cookies' => $this->cookieJar,
+            'cookies' => new CookieJar(),
             'headers' => [
                 'Accept-Encoding' => 'gzip',
             ],
