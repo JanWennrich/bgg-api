@@ -60,6 +60,7 @@ class Client
      * @param GuzzleClient|null $guzzleClient The given Guzzle Client must have cookies enabled to use the login functionality
      */
     public function __construct(
+        private readonly RetryConfig $retryConfig = new RetryConfig(),
         private readonly LoggerInterface $logger = new NullLogger(),
         ?GuzzleClient $guzzleClient = null,
         private readonly ?ThingMapper $thingMapper = null,
@@ -72,8 +73,7 @@ class Client
         private readonly ?CollectionMapper $collectionMapper = null,
         private readonly ?HotMapper $hotMapper = null,
         private readonly ?SearchMapper $searchMapper = null,
-        private readonly ?PlaysMapper $playsMapper = null,
-        private readonly RetryConfig $retryConfig = new RetryConfig()
+        private readonly ?PlaysMapper $playsMapper = null
     ) {
         $this->guzzleClient = $guzzleClient ?? new GuzzleClient([
             'timeout' => 30,

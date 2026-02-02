@@ -59,6 +59,6 @@ final class ClientRetryTest extends TestCase
         $handlerStack = HandlerStack::create($mockHandler);
         $client = new GuzzleClient(['handler' => $handlerStack]);
 
-        return new Client(guzzleClient: $client, retryConfig: $retryConfig);
+        return new Client(retryConfig: $retryConfig, guzzleClient: $client);
     }
 }
