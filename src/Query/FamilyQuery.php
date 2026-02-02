@@ -11,13 +11,16 @@ use Webmozart\Assert\InvalidArgumentException;
 final readonly class FamilyQuery
 {
     /**
-     * @param FamilyType[] $withTypes Specify that, regardless of the type of family asked for by id, the results are filtered by the {@see FamilyType}(s) specified. Multiple {@see FamilyType}s can be specified.
+     * @param non-empty-array<FamilyType>|null $withTypes Specify that, regardless of the type of family asked for by id, the results are filtered by the {@see FamilyType}(s) specified. Multiple {@see FamilyType}s can be specified.
      *
      * @throws InvalidArgumentException
      */
     public function __construct(
-        public array $withTypes = [],
+        public ?array $withTypes = null,
     ) {
-        Assert::allIsInstanceOf($this->withTypes, FamilyType::class);
+        if (is_array($this->withTypes)) {
+            Assert::notEmpty($this->withTypes);
+            Assert::allIsInstanceOf($this->withTypes, FamilyType::class);
+        }
     }
 }

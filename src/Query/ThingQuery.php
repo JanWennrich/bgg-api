@@ -11,7 +11,7 @@ use Webmozart\Assert\InvalidArgumentException;
 final readonly class ThingQuery
 {
     /**
-     * @param ThingType[] $withTypes Specify that, regardless of the type of thing asked for by id, the results are filtered by the {@see ThingType}(s) specified. Multiple {@see ThingType}s can be specified.
+     * @param non-empty-array<ThingType>|null $withTypes Specify that, regardless of the type of thing asked for by id, the results are filtered by the {@see ThingType}(s) specified. Multiple {@see ThingType}s can be specified.
      * @param bool $withVersions Return version info for the item(s).
      * @param bool $withVideos Return videos for the item(s)
      * @param bool $withStats Return ranking and rating stats for the item(s).
@@ -24,7 +24,7 @@ final readonly class ThingQuery
      * @throws InvalidArgumentException
      */
     public function __construct(
-        public array $withTypes = [],
+        public ?array $withTypes = null,
         public bool $withVersions = false,
         public bool $withVideos = false,
         public bool $withStats = false,
@@ -34,7 +34,10 @@ final readonly class ThingQuery
         public int $page = 1,
         public int $pageSize = 10,
     ) {
-        Assert::allIsInstanceOf($this->withTypes, ThingType::class);
+        if (is_array($this->withTypes)) {
+            Assert::notEmpty($this->withTypes);
+            Assert::allIsInstanceOf($this->withTypes, ThingType::class);
+        }
 
         if ($this->withComments) {
             Assert::false($this->withRatingComments);

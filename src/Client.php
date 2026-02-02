@@ -253,7 +253,7 @@ class Client
 
     /**
      * @return ($thingQuery is null ? array{} : array{
-     *     types: literal-string,
+     *     types?: literal-string,
      *     versions: int<0,1>,
      *     videos: int<0,1>,
      *     stats: int<0,1>,
@@ -270,11 +270,7 @@ class Client
             return [];
         }
 
-        return [
-            'types' => implode(
-                ',',
-                array_map(static fn(ThingType $thingType) => $thingType->value, $thingQuery->withTypes),
-            ),
+        $result = [
             'versions' => (int) $thingQuery->withVersions,
             'videos' => (int) $thingQuery->withVideos,
             'stats' => (int) $thingQuery->withStats,
@@ -284,6 +280,15 @@ class Client
             'page' => $thingQuery->page,
             'pagesize' => $thingQuery->pageSize,
         ];
+
+        if (is_array($thingQuery->withTypes)) {
+            $result['types'] = implode(
+                ',',
+                array_map(static fn(ThingType $thingType): string => $thingType->value, $thingQuery->withTypes),
+            );
+        }
+
+        return $result;
     }
 
     /**
@@ -531,7 +536,7 @@ class Client
 
     /**
      * @return ($familyQuery is null ? array{} : array{
-     *     type: literal-string
+     *     type?: literal-string
      * })
      */
     private function buildFamilyQueryArray(?FamilyQuery $familyQuery = null): array
@@ -540,12 +545,16 @@ class Client
             return [];
         }
 
-        return [
-            'type' => implode(
+        $result = [];
+
+        if (is_array($familyQuery->withTypes)) {
+            $result['type'] = implode(
                 ',',
-                array_map(static fn(FamilyType $familyType) => $familyType->value, $familyQuery->withTypes),
-            ),
-        ];
+                array_map(static fn(FamilyType $familyType): string => $familyType->value, $familyQuery->withTypes),
+            );
+        }
+
+        return $result;
     }
 
     /**
