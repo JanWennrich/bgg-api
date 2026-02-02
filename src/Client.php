@@ -54,35 +54,31 @@ class Client
      */
     private ?string $apiToken = null;
 
-    private readonly GuzzleClient $guzzleClient;
-
     /**
-     * @param GuzzleClient|null $guzzleClient The given Guzzle Client must have cookies enabled to use the login functionality
+     * @param GuzzleClient $guzzleClient The given Guzzle Client must have cookies enabled to use the login functionality
      */
     public function __construct(
         private readonly RetryConfig $retryConfig = new RetryConfig(),
         private readonly LoggerInterface $logger = new NullLogger(),
-        ?GuzzleClient $guzzleClient = null,
-        private readonly ?ThingMapper $thingMapper = null,
-        private readonly ?ForumListMapper $forumListMapper = null,
-        private readonly ?ForumMapper $forumMapper = null,
-        private readonly ?ThreadMapper $threadMapper = null,
-        private readonly ?UserMapper $userMapper = null,
-        private readonly ?GuildMapper $guildMapper = null,
-        private readonly ?FamilyMapper $familyMapper = null,
-        private readonly ?CollectionMapper $collectionMapper = null,
-        private readonly ?HotMapper $hotMapper = null,
-        private readonly ?SearchMapper $searchMapper = null,
-        private readonly ?PlaysMapper $playsMapper = null
-    ) {
-        $this->guzzleClient = $guzzleClient ?? new GuzzleClient([
+        private readonly GuzzleClient $guzzleClient = new GuzzleClient([
             'timeout' => 30,
             'cookies' => new CookieJar(),
             'headers' => [
                 'Accept-Encoding' => 'gzip',
             ],
-        ]);
-    }
+        ]),
+        private readonly ThingMapper $thingMapper = new ThingMapper(),
+        private readonly ForumListMapper $forumListMapper = new ForumListMapper(),
+        private readonly ForumMapper $forumMapper = new ForumMapper(),
+        private readonly ThreadMapper $threadMapper = new ThreadMapper(),
+        private readonly UserMapper $userMapper = new UserMapper(),
+        private readonly GuildMapper $guildMapper = new GuildMapper(),
+        private readonly FamilyMapper $familyMapper = new FamilyMapper(),
+        private readonly CollectionMapper $collectionMapper = new CollectionMapper(),
+        private readonly HotMapper $hotMapper = new HotMapper(),
+        private readonly SearchMapper $searchMapper = new SearchMapper(),
+        private readonly PlaysMapper $playsMapper = new PlaysMapper(),
+    ) {}
 
     public function setUserAgent(string $userAgent): self
     {
@@ -124,7 +120,7 @@ class Client
             return null;
         }
 
-        return ($this->thingMapper ?? new ThingMapper())->fromXml($xml->item);
+        return $this->thingMapper->fromXml($xml->item);
     }
 
     /**
@@ -148,9 +144,8 @@ class Client
         $xml = $this->request(BggApiEndpoint::Thing, $query);
 
         $items = [];
-        $mapper = $this->thingMapper ?? new ThingMapper();
         foreach ($xml as $item) {
-            $items[] = $mapper->fromXml($item);
+            $items[] = $this->thingMapper->fromXml($item);
         }
 
         return $items;
@@ -169,7 +164,7 @@ class Client
             'type' => $forumListType->value,
         ]);
 
-        return ($this->forumListMapper ?? new ForumListMapper())->fromXml($xml);
+        return $this->forumListMapper->fromXml($xml);
     }
 
     /**
@@ -189,7 +184,7 @@ class Client
             'page' => $page,
         ]);
 
-        return ($this->forumMapper ?? new ForumMapper())->fromXml($xml);
+        return $this->forumMapper->fromXml($xml);
     }
 
     /**
@@ -208,7 +203,7 @@ class Client
 
         $xml = $this->request(BggApiEndpoint::Thread, $query);
 
-        return ($this->threadMapper ?? new ThreadMapper())->fromXml($xml);
+        return $this->threadMapper->fromXml($xml);
     }
 
     /**
@@ -227,7 +222,7 @@ class Client
 
         $xml = $this->request(BggApiEndpoint::User, $query);
 
-        return empty($xml['id']) ? null : ($this->userMapper ?? new UserMapper())->fromXml($xml);
+        return empty($xml['id']) ? null : $this->userMapper->fromXml($xml);
     }
 
     /**
@@ -246,7 +241,7 @@ class Client
 
         $xml = $this->request(BggApiEndpoint::Guild, $query);
 
-        return empty($xml['id']) ? null : ($this->guildMapper ?? new GuildMapper())->fromXml($xml);
+        return empty($xml['id']) ? null : $this->guildMapper->fromXml($xml);
     }
 
     /**
@@ -506,7 +501,7 @@ class Client
             return null;
         }
 
-        return ($this->familyMapper ?? new FamilyMapper())->fromXml($xml);
+        return $this->familyMapper->fromXml($xml);
     }
 
     /**
@@ -529,7 +524,7 @@ class Client
 
         $xml = $this->request(BggApiEndpoint::Family, $query);
 
-        return ($this->familyMapper ?? new FamilyMapper())->fromXml($xml);
+        return $this->familyMapper->fromXml($xml);
     }
 
     /**
@@ -575,7 +570,7 @@ class Client
             throw new Exception($message);
         }
 
-        return ($this->collectionMapper ?? new CollectionMapper())->fromXml($xml);
+        return $this->collectionMapper->fromXml($xml);
     }
 
     /**
@@ -588,7 +583,7 @@ class Client
             'type' => $hotItemType->value,
         ]);
 
-        return ($this->hotMapper ?? new HotMapper())->fromXml($xml);
+        return $this->hotMapper->fromXml($xml);
     }
 
     /**
@@ -607,7 +602,7 @@ class Client
 
         $xml = $this->request(BggApiEndpoint::Search, $params);
 
-        return ($this->searchMapper ?? new SearchMapper())->fromXml($xml);
+        return $this->searchMapper->fromXml($xml);
     }
 
     /**
@@ -630,7 +625,7 @@ class Client
 
         $xml = $this->request(BggApiEndpoint::Plays, $query);
 
-        return ($this->playsMapper ?? new PlaysMapper())->fromXml($xml);
+        return $this->playsMapper->fromXml($xml);
     }
 
     /**
@@ -655,7 +650,7 @@ class Client
 
         $xml = $this->request(BggApiEndpoint::Plays, $query);
 
-        return ($this->playsMapper ?? new PlaysMapper())->fromXml($xml);
+        return $this->playsMapper->fromXml($xml);
     }
 
     /**
