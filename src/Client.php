@@ -47,8 +47,6 @@ use Webmozart\Assert\InvalidArgumentException;
  */
 class Client
 {
-    private string $userAgent = 'BGG XML API Client/1.0';
-
     /**
      * @var non-empty-string|null
      */
@@ -59,6 +57,7 @@ class Client
      */
     public function __construct(
         private readonly RetryConfig $retryConfig = new RetryConfig(),
+        private string $userAgent = 'BGG XML API Client/1.0',
         private readonly LoggerInterface $logger = new NullLogger(),
         private readonly GuzzleClient $guzzleClient = new GuzzleClient([
             'timeout' => 30,
