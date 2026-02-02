@@ -57,7 +57,7 @@ class Client
      */
     public function __construct(
         private readonly RetryConfig $retryConfig = new RetryConfig(),
-        private string $userAgent = 'BGG XML API Client/1.0',
+        private string $userAgent = 'jan-wennrich/bgg-api Client/1.0',
         private readonly LoggerInterface $logger = new NullLogger(),
         private readonly GuzzleClient $guzzleClient = new GuzzleClient([
             'timeout' => 30,
