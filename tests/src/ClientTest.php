@@ -224,6 +224,9 @@ final class ClientTest extends TestCase
         return $this->getEnvironmentVariable('BGG_PASSWORD');
     }
 
+    /**
+     * @return non-empty-string
+     */
     private function getAuthorizationToken(): string
     {
         return $this->getEnvironmentVariable('BGG_AUTH_TOKEN');
