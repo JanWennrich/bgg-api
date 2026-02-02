@@ -677,12 +677,17 @@ class Client
             $startTime = microtime(true);
 
             try {
+                $headers = [
+                    'User-Agent' => $this->userAgent,
+                ];
+
+                if ($this->apiToken !== null) {
+                    $headers['Authorization'] = "Bearer $this->apiToken";
+                }
+
                 $httpResponse = $this->guzzleClient->request('GET', $action, [
                     'query' => $params,
-                    'headers' => array_filter([
-                        'User-Agent' => $this->userAgent,
-                        'Authorization' => "Bearer $this->apiToken",
-                    ]),
+                    'headers' => $headers,
                     'http_errors' => false, // we handle status codes ourselves
                 ]);
             } catch (GuzzleException $exception) {
