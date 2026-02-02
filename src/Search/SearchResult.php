@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JanWennrich\BoardGameGeekApi\Search;
 
 use JanWennrich\BoardGameGeekApi\SearchType;

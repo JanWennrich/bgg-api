@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JanWennrich\BoardGameGeekApi;
 
 use GuzzleHttp\Client as GuzzleClient;
@@ -573,7 +575,8 @@ class Client
 
         $xml = $this->request('collection', $query);
         if ($xml->getName() !== 'items') {
-            throw new Exception($xml->error->message);
+            $message = (string) ($xml->error->message ?? 'Unknown error');
+            throw new Exception($message);
         }
 
         return ($this->collectionMapper ?? new CollectionMapper())->fromXml($xml);

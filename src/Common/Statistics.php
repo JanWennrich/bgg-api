@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JanWennrich\BoardGameGeekApi\Common;
 
 final readonly class Statistics

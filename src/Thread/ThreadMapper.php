@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JanWennrich\BoardGameGeekApi\Thread;
 
 use JanWennrich\BoardGameGeekApi\Xml;
