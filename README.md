@@ -21,15 +21,21 @@ composer require jan-wennrich/bgg-api
 
 ### Creating the client
 
+Quickstart:
+
 ```php
 use JanWennrich\BoardGameGeekApi\Client;
 
-$client = new Client(?LoggerInterface $logger = null, ?GuzzleClient $guzzleClient = null);
+$client = Client::autocreate();
 ```
 
-You can optionally pass:
-- a `Psr\Log\LoggerInterface` (optional; defaults to `NullLogger`)
-- a `custom GuzzleHttp\Client` (optional)
+This creates a `Client` instance with sane defaults, suitable for most users.
+
+Alternatively you may use the constructor to configure the client to your needs. You may pass:
+- a custom **PSR-18 HTTP client** plus **PSR-17 request/stream factories**
+- a `\JanWennrich\BoardGameGeekApi\RetryConfig` to configure retry behavior
+- a custom User-Agent string
+- a `Psr\Log\LoggerInterface`
 
 ### Authentication
 
@@ -268,7 +274,7 @@ You can customize retry behavior via `RetryConfig`:
 use JanWennrich\BoardGameGeekApi\Client;
 use JanWennrich\BoardGameGeekApi\RetryConfig;
 
-$client = new Client(
+$client = Client::autocreate(
     retryConfig: new RetryConfig(
         maxAttempts: 5,
         initialExponentialRetryDelayInSeconds: 1,

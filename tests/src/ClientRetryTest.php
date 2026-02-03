@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JanWennrich\BoardGameGeekApi;
-
 namespace JanWennrich\BoardGameGeekApi\Test;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\Psr7\Response;
 use JanWennrich\BoardGameGeekApi\Client;
 use JanWennrich\BoardGameGeekApi\ClientRequestException;
@@ -58,7 +57,13 @@ final class ClientRetryTest extends TestCase
         $mockHandler = new MockHandler($responses);
         $handlerStack = HandlerStack::create($mockHandler);
         $client = new GuzzleClient(['handler' => $handlerStack]);
+        $httpFactory = new HttpFactory();
 
-        return new Client(retryConfig: $retryConfig, guzzleClient: $client);
+        return new Client(
+            psr18Client: $client,
+            requestFactory: $httpFactory,
+            streamFactory: $httpFactory,
+            retryConfig: $retryConfig,
+        );
     }
 }

@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace JanWennrich\BoardGameGeekApi;
 
-use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Cookie\CookieJar;
-use GuzzleHttp\Exception\GuzzleException;
+use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
 use JanWennrich\BoardGameGeekApi\Family\FamilyItem;
 use JanWennrich\BoardGameGeekApi\Query\CollectionQuery;
 use JanWennrich\BoardGameGeekApi\Query\FamilyQuery;
@@ -36,6 +35,9 @@ use JanWennrich\BoardGameGeekApi\Thread\Thread as V2Thread;
 use JanWennrich\BoardGameGeekApi\Thread\ThreadMapper;
 use JanWennrich\BoardGameGeekApi\User\User as V2User;
 use JanWennrich\BoardGameGeekApi\User\UserMapper;
+use Psr\Http\Client\ClientInterface as Psr18Client;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Webmozart\Assert\Assert;
@@ -53,19 +55,15 @@ class Client
     private ?string $apiToken = null;
 
     /**
-     * @param GuzzleClient $guzzleClient The given Guzzle Client must have cookies enabled to use the login functionality
+     * @param Psr18Client $psr18Client The HTTP Client must support storing and sending cookies, to use the login functionality
      */
     public function __construct(
+        private readonly Psr18Client $psr18Client,
+        private readonly RequestFactoryInterface $requestFactory,
+        private readonly StreamFactoryInterface $streamFactory,
         private readonly RetryConfig $retryConfig = new RetryConfig(),
         private string $userAgent = 'jan-wennrich/bgg-api Client/1.0',
         private readonly LoggerInterface $logger = new NullLogger(),
-        private readonly GuzzleClient $guzzleClient = new GuzzleClient([
-            'timeout' => 30,
-            'cookies' => new CookieJar(),
-            'headers' => [
-                'Accept-Encoding' => 'gzip',
-            ],
-        ]),
         private readonly ThingMapper $thingMapper = new ThingMapper(),
         private readonly ForumListMapper $forumListMapper = new ForumListMapper(),
         private readonly ForumMapper $forumMapper = new ForumMapper(),
@@ -78,6 +76,18 @@ class Client
         private readonly SearchMapper $searchMapper = new SearchMapper(),
         private readonly PlaysMapper $playsMapper = new PlaysMapper(),
     ) {}
+
+    /**
+     * Build a client using php-http/discovery to locate PSR-18/PSR-17 implementations.
+     */
+    public static function autocreate(): self
+    {
+        return new self(
+            psr18Client: Psr18ClientDiscovery::find(),
+            requestFactory: Psr17FactoryDiscovery::findRequestFactory(),
+            streamFactory: Psr17FactoryDiscovery::findStreamFactory(),
+        );
+    }
 
     public function setUserAgent(string $userAgent): self
     {
@@ -682,24 +692,22 @@ class Client
             $startTime = microtime(true);
 
             try {
-                $headers = [
-                    'User-Agent' => $this->userAgent,
-                ];
+                $url = "https://boardgamegeek.com/xmlapi2/$bggApiEndpoint->value";
 
-                if ($this->apiToken !== null) {
-                    $headers['Authorization'] = "Bearer $this->apiToken";
+                if ($params !== []) {
+                    $url .= '?' . http_build_query($params);
                 }
 
-                $httpResponse = $this->guzzleClient->request(
-                    'GET',
-                    "https://boardgamegeek.com/xmlapi2/$bggApiEndpoint->value",
-                    [
-                        'query' => $params,
-                        'headers' => $headers,
-                        'http_errors' => false, // we handle status codes ourselves
-                    ],
-                );
-            } catch (GuzzleException $exception) {
+                $request = $this->requestFactory
+                    ->createRequest('GET', $url)
+                    ->withHeader('User-Agent', $this->userAgent);
+
+                if ($this->apiToken !== null) {
+                    $request = $request->withHeader('Authorization', "Bearer $this->apiToken");
+                }
+
+                $httpResponse = $this->psr18Client->sendRequest($request);
+            } catch (\Throwable $exception) {
                 $previousException = $exception;
 
                 $this->logger->error('BGG API transport error', [
@@ -801,6 +809,7 @@ class Client
     /**
      * Log in via username and password.
      * This grants access to data of the given user without an {@see https://boardgamegeek.com/using_the_xml_api authorization token}.
+     * In order for this to work, the {@see Psr18Client} used by this class must support sending and receiving cookies.
      *
      * @throws \Exception
      */
@@ -811,24 +820,25 @@ class Client
         $this->logger->info('Logging in to BGG');
 
         try {
-            $response = $this->guzzleClient->request('POST', $url, [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'User-Agent' => $this->userAgent,
+            $body = json_encode([
+                'credentials' => [
+                    'username' => $username,
+                    'password' => $password,
                 ],
-                'json' => [
-                    'credentials' => [
-                        'username' => $username,
-                        'password' => $password,
-                    ],
-                ],
-                'http_errors' => false,
-            ]);
-        } catch (GuzzleException $guzzleException) {
+            ], JSON_THROW_ON_ERROR);
+
+            $request = $this->requestFactory
+                ->createRequest('POST', $url)
+                ->withHeader('Content-Type', 'application/json')
+                ->withHeader('User-Agent', $this->userAgent)
+                ->withBody($this->streamFactory->createStream($body));
+
+            $response = $this->psr18Client->sendRequest($request);
+        } catch (\Throwable $throwable) {
             $this->logger->error('BGG login request failed', [
-                'exception' => $guzzleException,
+                'exception' => $throwable,
             ]);
-            throw new \Exception('Login request failed', 0, $guzzleException);
+            throw new \Exception('Login request failed', 0, $throwable);
         }
 
         $status = $response->getStatusCode();

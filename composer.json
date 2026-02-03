@@ -16,13 +16,18 @@
   "require": {
     "php": "^8.2",
     "ext-simplexml": "*",
-    "guzzlehttp/guzzle": "^7.10",
+    "php-http/discovery": "^1.20",
+    "psr/http-client": "^1.0",
+    "psr/http-client-implementation": "^1",
+    "psr/http-factory": "^1.0",
+    "psr/http-factory-implementation": "^1",
     "psr/log": "^1.1 || ^2.0 || ^3.0",
     "webmozart/assert": "^2.1"
   },
   "require-dev": {
     "ergebnis/composer-normalize": "^2.48.2",
     "friendsofphp/php-cs-fixer": "^3.92.3",
+    "guzzlehttp/guzzle": "^7.10",
     "guzzlehttp/psr7": "^2",
     "phpstan/extension-installer": "^1.4.3",
     "phpstan/phpstan": "2.1.38",
@@ -45,6 +50,7 @@
   "config": {
     "allow-plugins": {
       "ergebnis/composer-normalize": true,
+      "php-http/discovery": false,
       "phpstan/extension-installer": true
     },
     "optimize-autoloader": true,

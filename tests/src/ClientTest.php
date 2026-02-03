@@ -24,7 +24,7 @@ final class ClientTest extends TestCase
      */
     public function testGetThingWithUnknownId(): void
     {
-        $client = new Client();
+        $client = Client::autocreate();
         $client->setApiToken($this->getAuthorizationToken());
 
         $thing = $client->getThing(5371611111, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
@@ -37,7 +37,7 @@ final class ClientTest extends TestCase
      */
     public function testGetThing(): void
     {
-        $client = new Client();
+        $client = Client::autocreate();
         $client->setApiToken($this->getAuthorizationToken());
 
         $thing = $client->getThing(39856, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
@@ -50,7 +50,7 @@ final class ClientTest extends TestCase
      */
     public function testGetThings(): void
     {
-        $client = new Client();
+        $client = Client::autocreate();
         $client->setApiToken($this->getAuthorizationToken());
 
         $things = $client->getThings(
@@ -70,7 +70,7 @@ final class ClientTest extends TestCase
 
     public function testGetThingsWithUnknownIds(): void
     {
-        $client = new Client();
+        $client = Client::autocreate();
         $client->setApiToken($this->getAuthorizationToken());
 
         $things = $client->getThings(
@@ -82,7 +82,7 @@ final class ClientTest extends TestCase
 
     public function testGetThingsWithEmptyIds(): void
     {
-        $client = new Client();
+        $client = Client::autocreate();
         $client->setApiToken($this->getAuthorizationToken());
 
         $this->expectException(InvalidArgumentException::class);
@@ -95,7 +95,7 @@ final class ClientTest extends TestCase
      */
     public function testGetHotItems(): void
     {
-        $client = new Client();
+        $client = Client::autocreate();
         $client->setApiToken($this->getAuthorizationToken());
 
         $items = $client->getHotItems();
@@ -114,7 +114,7 @@ final class ClientTest extends TestCase
      */
     public function testSearch(): void
     {
-        $client = new Client();
+        $client = Client::autocreate();
         $client->setApiToken($this->getAuthorizationToken());
 
         $search = $client->search(
@@ -136,7 +136,7 @@ final class ClientTest extends TestCase
      */
     public function testGetCollectionWithInvalidUsername(): void
     {
-        $client = new Client();
+        $client = Client::autocreate();
         $client->setApiToken($this->getAuthorizationToken());
 
         $this->expectException(BoardGameGeekApi\Exception::class);
@@ -145,7 +145,7 @@ final class ClientTest extends TestCase
 
     public function testGetCollection(): void
     {
-        $client = new Client();
+        $client = Client::autocreate();
         $client->setApiToken($this->getAuthorizationToken());
 
         $collection = $client->getCollection('nataniel');
@@ -166,7 +166,7 @@ final class ClientTest extends TestCase
      */
     public function testGetPlays(): void
     {
-        $client = new Client();
+        $client = $this->makeCookieClient();
 
         $username = $this->getUsername();
         $password = $this->getPassword();
@@ -178,12 +178,25 @@ final class ClientTest extends TestCase
         $this->assertNotEmpty($plays);
     }
 
+    private function makeCookieClient(): Client
+    {
+        $cookieJar = new \GuzzleHttp\Cookie\CookieJar();
+        $client = new \GuzzleHttp\Client(['cookies' => $cookieJar]);
+        $httpFactory = new \GuzzleHttp\Psr7\HttpFactory();
+
+        return new Client(
+            psr18Client: $client,
+            requestFactory: $httpFactory,
+            streamFactory: $httpFactory,
+        );
+    }
+
     /**
      * https://www.boardgamegeek.com/xmlapi2/user?name=nataniel
      */
     public function testGetUserWithInvalidName(): void
     {
-        $client = new Client();
+        $client = Client::autocreate();
         $client->setApiToken($this->getAuthorizationToken());
         try {
             $client->getUser('notexistingusername');
@@ -195,7 +208,7 @@ final class ClientTest extends TestCase
 
     public function testGetUser(): void
     {
-        $client = new Client();
+        $client = Client::autocreate();
         $client->setApiToken($this->getAuthorizationToken());
 
         $item = $client->getUser('nataniel');
