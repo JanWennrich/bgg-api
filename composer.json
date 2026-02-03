@@ -55,10 +55,10 @@
       "composer normalize --dry-run",
       "composer validate --strict",
       "vendor/bin/composer-dependency-analyser",
-      "vendor/bin/phpstan",
-      "vendor/bin/phpunit",
+      "vendor/bin/php-cs-fixer check",
       "vendor/bin/rector --dry-run",
-      "vendor/bin/php-cs-fixer check"
+      "vendor/bin/phpstan",
+      "vendor/bin/phpunit"
     ]
   }
 }
