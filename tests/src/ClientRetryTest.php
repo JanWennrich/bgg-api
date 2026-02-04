@@ -11,6 +11,8 @@ use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\Psr7\Response;
 use JanWennrich\BoardGameGeekApi\Client;
 use JanWennrich\BoardGameGeekApi\ClientRequestException;
+use JanWennrich\BoardGameGeekApi\SleepService;
+use JanWennrich\BoardGameGeekApi\SleepServiceInterface;
 use JanWennrich\BoardGameGeekApi\RetryConfig;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\TestCase;
@@ -49,21 +51,59 @@ final class ClientRetryTest extends TestCase
         }
     }
 
+    public function testExponentialBackoffUsesExpectedDelays(): void
+    {
+        $sleepService = $this->createMock(SleepServiceInterface::class);
+        $invokedCount = $this->exactly(2);
+        $sleepService->expects($invokedCount)
+            ->method('sleep')
+            ->willReturnCallback(function (...$parameters) use ($invokedCount): void {
+                if ($invokedCount->numberOfInvocations() === 1) {
+                    $this->assertSame(1, $parameters[0]);
+                }
+                if ($invokedCount->numberOfInvocations() === 2) {
+                    $this->assertSame(2, $parameters[0]);
+                }
+            });
+
+        $client = $this->makeClient(
+            [
+                new Response(202, [], 'queued'),
+                new Response(202, [], 'queued'),
+                new Response(202, [], 'queued'),
+            ],
+            new RetryConfig(maxAttempts: 3, initialExponentialRetryDelayInSeconds: 1),
+            $sleepService,
+        );
+
+        try {
+            $client->getHotItems();
+            $this->fail(sprintf("Expected %s to be thrown.", ClientRequestException::class));
+        } catch (ClientRequestException) {
+            // Expected: retries exhausted.
+        }
+    }
+
     /**
      * @param list<ResponseInterface> $responses
      */
-    private function makeClient(array $responses, RetryConfig $retryConfig): Client
-    {
+    private function makeClient(
+        array $responses,
+        RetryConfig $retryConfig,
+        ?SleepServiceInterface $sleepService = null,
+    ): Client {
         $mockHandler = new MockHandler($responses);
         $handlerStack = HandlerStack::create($mockHandler);
         $client = new GuzzleClient(['handler' => $handlerStack]);
         $httpFactory = new HttpFactory();
+        $sleepService ??= new SleepService();
 
         return new Client(
             psr18Client: $client,
             requestFactory: $httpFactory,
             streamFactory: $httpFactory,
             retryConfig: $retryConfig,
+            sleepService: $sleepService,
         );
     }
 }
