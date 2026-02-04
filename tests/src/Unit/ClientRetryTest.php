@@ -84,6 +84,29 @@ final class ClientRetryTest extends TestCase
         }
     }
 
+    public function testQueuedRequestDoesNotRetryWhenDisabled(): void
+    {
+        $sleepService = $this->createMock(SleepServiceInterface::class);
+        $sleepService->expects($this->never())->method('sleep');
+
+        $client = $this->makeClient(
+            [
+                new Response(202, [], 'queued'),
+            ],
+            new RetryConfig(
+                retryOnQueuedRequest: false,
+            ),
+            $sleepService,
+        );
+
+        try {
+            $client->getHotItems();
+            $this->fail(sprintf("Expected %s to be thrown.", ClientRequestException::class));
+        } catch (ClientRequestException $clientRequestException) {
+            $this->assertSame(1, $clientRequestException->attemptNumber);
+        }
+    }
+
     /**
      * @param list<ResponseInterface> $responses
      */
