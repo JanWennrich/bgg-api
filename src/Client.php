@@ -63,6 +63,7 @@ class Client
         private readonly StreamFactoryInterface $streamFactory,
         private readonly RetryConfig $retryConfig = new RetryConfig(),
         private string $userAgent = 'jan-wennrich/bgg-api Client/1.0',
+        private readonly SleepServiceInterface $sleepService = new SleepService(),
         private readonly LoggerInterface $logger = new NullLogger(),
         private readonly ThingMapper $thingMapper = new ThingMapper(),
         private readonly ForumListMapper $forumListMapper = new ForumListMapper(),
@@ -684,9 +685,7 @@ class Client
                     'action' => $bggApiEndpoint,
                 ]);
 
-                if ($delayInSeconds > 0) {
-                    sleep($delayInSeconds);
-                }
+                $this->sleepService->sleep($delayInSeconds);
             }
 
             $startTime = microtime(true);
@@ -796,6 +795,10 @@ class Client
         throw new ClientRequestException('API call failed', $lastAttempt, $httpCode, $previousException);
     }
 
+    /**
+     * @param positive-int $attempt
+     * @return non-negative-int
+     */
     private function calculateRetryDelayInSeconds(int $attempt): int
     {
         $exponent = $attempt - 2;
