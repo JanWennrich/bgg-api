@@ -23,9 +23,13 @@ final class ClientRetryTest extends TestCase
 {
     public function testAttemptNumberWhenClientErrorBreaksEarly(): void
     {
-        $client = $this->makeClient([
-            new Response(400, [], 'client error'),
-        ], new RetryConfig(maxAttempts: 3, initialExponentialRetryDelayInSeconds: 1));
+        $client = $this->makeClient(
+            [
+                new Response(400, [], 'client error'),
+            ],
+            new RetryConfig(maxAttempts: 3, initialExponentialRetryDelayInSeconds: 1),
+            $this->createStub(SleepServiceInterface::class)
+        );
 
         try {
             $client->getHotItems();
@@ -37,11 +41,15 @@ final class ClientRetryTest extends TestCase
 
     public function testAttemptNumberWhenRetriesAreExhausted(): void
     {
-        $client = $this->makeClient([
-            new Response(202, [], 'queued'),
-            new Response(202, [], 'queued'),
-            new Response(202, [], 'queued'),
-        ], new RetryConfig(maxAttempts: 3, initialExponentialRetryDelayInSeconds: 1));
+        $client = $this->makeClient(
+            [
+                new Response(202, [], 'queued'),
+                new Response(202, [], 'queued'),
+                new Response(202, [], 'queued'),
+            ],
+            new RetryConfig(maxAttempts: 3, initialExponentialRetryDelayInSeconds: 1),
+            $this->createStub(SleepServiceInterface::class)
+        );
 
         try {
             $client->getHotItems();
