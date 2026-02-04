@@ -17,14 +17,18 @@ use JanWennrich\BoardGameGeekApi\Query\ThreadQuery;
 use JanWennrich\BoardGameGeekApi\Query\UsersQuery;
 use JanWennrich\BoardGameGeekApi\SearchType;
 use JanWennrich\BoardGameGeekApi\ThingType;
+use GuzzleHttp\Psr7\HttpFactory;
+use Psr\Http\Client\ClientInterface as Psr18Client;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 use Webmozart\Assert\InvalidArgumentException;
 
 final class AssertionTest extends TestCase
 {
     public function testGetThingRejectsNonPositiveId(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getThing(0); // @phpstan-ignore argument.type (Testing positive integer assertion.)
@@ -32,7 +36,7 @@ final class AssertionTest extends TestCase
 
     public function testGetThingsRejectsEmptyIds(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getThings([]); // @phpstan-ignore argument.type (Testing empty ids assertion.)
@@ -40,7 +44,7 @@ final class AssertionTest extends TestCase
 
     public function testGetThingsRejectsNonPositiveIds(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getThings([0]); // @phpstan-ignore argument.type (Testing positive integer assertion.)
@@ -48,7 +52,7 @@ final class AssertionTest extends TestCase
 
     public function testGetThingsRejectsTooManyIds(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getThings(range(1, 21));
@@ -56,7 +60,7 @@ final class AssertionTest extends TestCase
 
     public function testGetForumRejectsNonPositiveId(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getForum(0); // @phpstan-ignore argument.type (Testing positive integer assertion.)
@@ -64,7 +68,7 @@ final class AssertionTest extends TestCase
 
     public function testGetForumRejectsNonPositivePage(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getForum(1, 0); // @phpstan-ignore argument.type (Testing positive integer assertion.)
@@ -72,7 +76,7 @@ final class AssertionTest extends TestCase
 
     public function testGetThreadRejectsNonPositiveId(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getThread(0); // @phpstan-ignore argument.type (Testing positive integer assertion.)
@@ -80,7 +84,7 @@ final class AssertionTest extends TestCase
 
     public function testGetUserRejectsEmptyName(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getUser(''); // @phpstan-ignore argument.type (Testing non-empty string assertion.)
@@ -88,7 +92,7 @@ final class AssertionTest extends TestCase
 
     public function testGetGuildRejectsNonPositiveId(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getGuild(0); // @phpstan-ignore argument.type (Testing positive integer assertion.)
@@ -96,7 +100,7 @@ final class AssertionTest extends TestCase
 
     public function testGetFamilyRejectsNonPositiveId(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getFamily(0); // @phpstan-ignore argument.type (Testing positive integer assertion.)
@@ -104,7 +108,7 @@ final class AssertionTest extends TestCase
 
     public function testGetFamiliesRejectsEmptyIds(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getFamilies([]); // @phpstan-ignore argument.type (Testing non-empty ids assertion.)
@@ -112,7 +116,7 @@ final class AssertionTest extends TestCase
 
     public function testGetFamiliesRejectsNonPositiveIds(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getFamilies([0]); // @phpstan-ignore argument.type (Testing positive integer assertion.)
@@ -120,7 +124,7 @@ final class AssertionTest extends TestCase
 
     public function testGetCollectionRejectsEmptyUsername(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getCollection(''); // @phpstan-ignore argument.type (Testing non-empty string assertion.)
@@ -128,7 +132,7 @@ final class AssertionTest extends TestCase
 
     public function testSearchRejectsEmptyQuery(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->search(''); // @phpstan-ignore argument.type (Testing non-empty string assertion.)
@@ -136,7 +140,7 @@ final class AssertionTest extends TestCase
 
     public function testGetPlaysForUserRejectsEmptyUsername(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getPlaysForUser(''); // @phpstan-ignore argument.type (Testing non-empty string assertion.)
@@ -144,7 +148,7 @@ final class AssertionTest extends TestCase
 
     public function testGetPlaysForItemRejectsNonPositiveId(): void
     {
-        $client = Client::autocreate();
+        $client = $this->makeClient();
 
         $this->expectException(InvalidArgumentException::class);
         $client->getPlaysForItem(0, ItemType::Thing); // @phpstan-ignore argument.type (Testing positive integer assertion.)
@@ -327,5 +331,14 @@ final class AssertionTest extends TestCase
     public function testForumListTypeAcceptsValidValue(): void
     {
         $this->assertSame(ForumListType::Thing, ForumListType::from('thing'));
+    }
+
+    private function makeClient(): Client
+    {
+        return new Client(
+            psr18Client: $this->createStub(Psr18Client::class),
+            requestFactory: $this->createStub(RequestFactoryInterface::class),
+            streamFactory: $this->createStub(StreamFactoryInterface::class),
+        );
     }
 }

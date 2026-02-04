@@ -11,7 +11,7 @@ final class SearchMapperTest extends TestCase
 {
     public function testQuery(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../files/search.xml') ?: $this->fail('Could not load XML file');
+        $xml = simplexml_load_file(__DIR__ . '/../../files/search.xml') ?: $this->fail('Could not load XML file');
         $search = (new BoardGameGeekApi\Search\SearchMapper())->fromXml($xml);
 
         $this->assertCount(82, $search->getResults());

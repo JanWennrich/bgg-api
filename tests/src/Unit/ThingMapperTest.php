@@ -14,7 +14,7 @@ final class ThingMapperTest extends TestCase
 
     protected function setUp(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../files/thing.xml') ?: $this->fail('Could not load XML file');
+        $xml = simplexml_load_file(__DIR__ . '/../../files/thing.xml') ?: $this->fail('Could not load XML file');
         $this->thing = (new Thing\ThingMapper())->fromXml($xml->item[0]);
     }
 

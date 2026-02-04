@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit>
     <testsuites>
-        <testsuite name="Test Suite">
-            <directory>tests/src</directory>
+        <testsuite name="Unit Tests">
+            <directory>tests/src/Unit</directory>
+        </testsuite>
+        <testsuite name="Integration Tests">
+            <directory>tests/src/Integration</directory>
         </testsuite>
     </testsuites>
 </phpunit>
