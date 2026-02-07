@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace JanWennrich\BoardGameGeekApi\Family;
 
-use JanWennrich\BoardGameGeekApi\FamilyType;
+use JanWennrich\BoardGameGeekApi\Family\FamilyType;
 use JanWennrich\BoardGameGeekApi\Common\Link;
 
 final readonly class FamilyItem

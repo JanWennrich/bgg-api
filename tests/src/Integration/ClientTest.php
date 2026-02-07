@@ -120,7 +120,7 @@ final class ClientTest extends TestCase
         $search = $client->search(
             'Domek',
             new BoardGameGeekApi\Query\SearchQuery(
-                onlyTypes: [ BoardGameGeekApi\SearchType::BoardGame ],
+                onlyTypes: [ BoardGameGeekApi\Search\SearchType::BoardGame ],
             ),
         );
 

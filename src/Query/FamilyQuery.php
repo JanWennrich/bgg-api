@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace JanWennrich\BoardGameGeekApi\Query;
 
-use JanWennrich\BoardGameGeekApi\FamilyType;
+use JanWennrich\BoardGameGeekApi\Family\FamilyType;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 

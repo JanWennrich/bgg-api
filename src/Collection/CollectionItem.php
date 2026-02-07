@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace JanWennrich\BoardGameGeekApi\Collection;
 
-use JanWennrich\BoardGameGeekApi\ThingType;
+use JanWennrich\BoardGameGeekApi\Thing\ThingType;
 
 final readonly class CollectionItem
 {

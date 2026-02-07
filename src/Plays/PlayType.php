@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JanWennrich\BoardGameGeekApi;
+namespace JanWennrich\BoardGameGeekApi\Plays;
 
 enum PlayType: string
 {

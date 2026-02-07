@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace JanWennrich\BoardGameGeekApi\Collection;
 
-use JanWennrich\BoardGameGeekApi\ThingType;
+use JanWennrich\BoardGameGeekApi\Thing\ThingType;
 use JanWennrich\BoardGameGeekApi\Common\Link;
 use JanWennrich\BoardGameGeekApi\Common\Version;
 use JanWennrich\BoardGameGeekApi\Xml;

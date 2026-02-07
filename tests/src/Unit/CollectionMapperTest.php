@@ -7,7 +7,7 @@ namespace JanWennrich\BoardGameGeekApi\Test\Unit;
 use JanWennrich\BoardGameGeekApi\Collection;
 use JanWennrich\BoardGameGeekApi\Collection\CollectionMapper;
 use JanWennrich\BoardGameGeekApi\Collection\Item;
-use JanWennrich\BoardGameGeekApi\ThingType;
+use JanWennrich\BoardGameGeekApi\Thing\ThingType;
 use PHPUnit\Framework\TestCase;
 
 final class CollectionMapperTest extends TestCase
