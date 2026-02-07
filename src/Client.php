@@ -169,6 +169,8 @@ class Client
      */
     public function getForumList(int $id, ForumListType $forumListType): ForumList
     {
+        Assert::positiveInteger($id);
+
         $xml = $this->request(BggApiEndpoint::ForumList, [
             'id' => $id,
             'type' => $forumListType->value,
