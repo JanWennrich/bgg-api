@@ -15,27 +15,27 @@ use JanWennrich\BoardGameGeekApi\Query\SearchQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThreadQuery;
 use JanWennrich\BoardGameGeekApi\Query\ThingQuery;
 use JanWennrich\BoardGameGeekApi\Query\UsersQuery;
-use JanWennrich\BoardGameGeekApi\Collection\Collection as V2CollectionItems;
+use JanWennrich\BoardGameGeekApi\Collection\Collection;
 use JanWennrich\BoardGameGeekApi\Collection\CollectionMapper;
 use JanWennrich\BoardGameGeekApi\Family\FamilyMapper;
-use JanWennrich\BoardGameGeekApi\Forum\Forum as V2Forum;
+use JanWennrich\BoardGameGeekApi\Forum\Forum;
 use JanWennrich\BoardGameGeekApi\Forum\ForumMapper;
-use JanWennrich\BoardGameGeekApi\ForumList\ForumList as V2ForumList;
+use JanWennrich\BoardGameGeekApi\ForumList\ForumList;
 use JanWennrich\BoardGameGeekApi\ForumList\ForumListMapper;
-use JanWennrich\BoardGameGeekApi\Guild\Guild as V2Guild;
+use JanWennrich\BoardGameGeekApi\Guild\Guild;
 use JanWennrich\BoardGameGeekApi\Guild\GuildMapper;
 use JanWennrich\BoardGameGeekApi\Hot\HotMapper;
-use JanWennrich\BoardGameGeekApi\Plays\Plays as V2Plays;
+use JanWennrich\BoardGameGeekApi\Plays\Plays;
 use JanWennrich\BoardGameGeekApi\Plays\PlaysMapper;
-use JanWennrich\BoardGameGeekApi\Search\Search as V2SearchItems;
+use JanWennrich\BoardGameGeekApi\Search\Search;
 use JanWennrich\BoardGameGeekApi\Search\SearchMapper;
-use JanWennrich\BoardGameGeekApi\Thing\Thing as V2Thing;
+use JanWennrich\BoardGameGeekApi\Thing\Thing;
 use JanWennrich\BoardGameGeekApi\Thing\ThingMapper;
-use JanWennrich\BoardGameGeekApi\Thread\Thread as V2Thread;
+use JanWennrich\BoardGameGeekApi\Thread\Thread;
 use JanWennrich\BoardGameGeekApi\Thread\ThreadMapper;
-use JanWennrich\BoardGameGeekApi\User\User as V2User;
+use JanWennrich\BoardGameGeekApi\User\User;
 use JanWennrich\BoardGameGeekApi\User\UserMapper;
-use Psr\Http\Client\ClientInterface as Psr18Client;
+use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Log\LoggerInterface;
@@ -55,10 +55,10 @@ class Client
     private ?string $apiToken = null;
 
     /**
-     * @param Psr18Client $psr18Client The HTTP Client must support storing and sending cookies, to use the login functionality
+     * @param ClientInterface $psr18Client The HTTP Client must support storing and sending cookies, to use the login functionality
      */
     public function __construct(
-        private readonly Psr18Client $psr18Client,
+        private readonly ClientInterface $psr18Client,
         private readonly RequestFactoryInterface $requestFactory,
         private readonly StreamFactoryInterface $streamFactory,
         private readonly RetryConfig $retryConfig = new RetryConfig(),
@@ -116,7 +116,7 @@ class Client
      *
      * @throws InvalidArgumentException
      */
-    public function getThing(int $id, ?ThingQuery $thingQuery = null): ?V2Thing
+    public function getThing(int $id, ?ThingQuery $thingQuery = null): ?Thing
     {
         Assert::positiveInteger($id);
 
@@ -137,7 +137,7 @@ class Client
      * @param non-empty-array<BggId> $ids The ids of the things to retrieve. Must contain between 1 and 20 ids.
      * @param ?ThingQuery $thingQuery Query to modify and filter the returned result
      *
-     * @return V2Thing[]
+     * @return Thing[]
      *
      * @throws Exception
      * @throws InvalidArgumentException
@@ -167,7 +167,7 @@ class Client
      *
      * @throws Exception
      */
-    public function getForumList(int $id, ForumListType $forumListType): V2ForumList
+    public function getForumList(int $id, ForumListType $forumListType): ForumList
     {
         $xml = $this->request(BggApiEndpoint::ForumList, [
             'id' => $id,
@@ -184,7 +184,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getForum(int $id, int $page = 1): V2Forum
+    public function getForum(int $id, int $page = 1): Forum
     {
         Assert::positiveInteger($id);
         Assert::positiveInteger($page);
@@ -204,7 +204,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getThread(int $id, ?ThreadQuery $threadQuery = null): V2Thread
+    public function getThread(int $id, ?ThreadQuery $threadQuery = null): Thread
     {
         Assert::positiveInteger($id);
 
@@ -223,7 +223,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getUser(string $name, ?UsersQuery $usersQuery = null): ?V2User
+    public function getUser(string $name, ?UsersQuery $usersQuery = null): ?User
     {
         Assert::stringNotEmpty($name);
 
@@ -242,7 +242,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getGuild(int $id, ?GuildQuery $guildQuery = null): ?V2Guild
+    public function getGuild(int $id, ?GuildQuery $guildQuery = null): ?Guild
     {
         Assert::positiveInteger($id);
 
@@ -312,7 +312,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getCollection(string $username, ?CollectionQuery $collectionQuery = null): V2CollectionItems
+    public function getCollection(string $username, ?CollectionQuery $collectionQuery = null): Collection
     {
         Assert::stringNotEmpty($username);
 
@@ -348,7 +348,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function search(string $searchTerm, ?SearchQuery $searchQuery = null): V2SearchItems
+    public function search(string $searchTerm, ?SearchQuery $searchQuery = null): Search
     {
         Assert::stringNotEmpty($searchTerm);
 
@@ -371,7 +371,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getPlaysForUser(string $username, ?PlaysQuery $playsQuery = null): V2Plays
+    public function getPlaysForUser(string $username, ?PlaysQuery $playsQuery = null): Plays
     {
         Assert::stringNotEmpty($username);
 
@@ -395,7 +395,7 @@ class Client
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function getPlaysForItem(int $itemId, ItemType $itemType, ?PlaysQuery $playsQuery = null): V2Plays
+    public function getPlaysForItem(int $itemId, ItemType $itemType, ?PlaysQuery $playsQuery = null): Plays
     {
         Assert::positiveInteger($itemId);
 
