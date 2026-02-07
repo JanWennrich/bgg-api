@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\ThingType;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
-final readonly class ThingQuery
+final readonly class ThingQuery implements QueryInterface
 {
     /**
      * @param non-empty-array<ThingType>|null $withTypes Specify that, regardless of the type of thing asked for by id, the results are filtered by the {@see ThingType}(s) specified. Multiple {@see ThingType}s can be specified.
@@ -51,5 +51,43 @@ final readonly class ThingQuery
 
         Assert::greaterThanEq($this->pageSize, 10);
         Assert::lessThanEq($this->pageSize, 100);
+    }
+
+    /**
+     * @internal
+     *
+     * @return array{
+     *     types?: literal-string,
+     *     versions: int<0,1>,
+     *     videos: int<0,1>,
+     *     stats: int<0,1>,
+     *     marketplace: int<0,1>,
+     *     comments: int<0,1>,
+     *     ratingcomments: int<0,1>,
+     *     page: positive-int,
+     *     pagesize: int<10, 100>
+     * }
+     */
+    public function toQueryParameters(): array
+    {
+        $result = [
+            'versions' => (int) $this->withVersions,
+            'videos' => (int) $this->withVideos,
+            'stats' => (int) $this->withStats,
+            'marketplace' => (int) $this->withMarketplaceData,
+            'comments' => (int) $this->withComments,
+            'ratingcomments' => (int) $this->withRatingComments,
+            'page' => $this->page,
+            'pagesize' => $this->pageSize,
+        ];
+
+        if (is_array($this->withTypes)) {
+            $result['types'] = implode(
+                ',',
+                array_map(static fn(ThingType $thingType): string => $thingType->value, $this->withTypes),
+            );
+        }
+
+        return $result;
     }
 }

@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\GuildMemberSort;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
-final readonly class GuildQuery
+final readonly class GuildQuery implements QueryInterface
 {
     /**
      * @param bool $withMembers Include member roster in the results.
@@ -23,5 +23,23 @@ final readonly class GuildQuery
         public int $page = 1,
     ) {
         Assert::positiveInteger($this->page);
+    }
+
+    /**
+     * @internal
+     *
+     * @return array{
+     *     members: int<0,1>,
+     *     sort: value-of<GuildMemberSort>,
+     *     page: positive-int
+     * }
+     */
+    public function toQueryParameters(): array
+    {
+        return [
+            'members' => (int) $this->withMembers,
+            'sort' => $this->sort->value,
+            'page' => $this->page,
+        ];
     }
 }

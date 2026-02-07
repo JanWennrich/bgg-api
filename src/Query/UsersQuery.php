@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\UserDomain;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
-final readonly class UsersQuery
+final readonly class UsersQuery implements QueryInterface
 {
     /**
      * @param bool $withBuddies Turns on optional buddies reporting. Results are paged; see page parameter.
@@ -29,5 +29,29 @@ final readonly class UsersQuery
         public int $page = 1,
     ) {
         Assert::positiveInteger($this->page);
+    }
+
+    /**
+     * @internal
+     *
+     * @return array{
+     *     buddies: int<0,1>,
+     *     guilds: int<0,1>,
+     *     hot: int<0,1>,
+     *     top: int<0,1>,
+     *     domain: value-of<UserDomain>,
+     *     page: positive-int
+     * }
+     */
+    public function toQueryParameters(): array
+    {
+        return [
+            'buddies' => (int) $this->withBuddies,
+            'guilds' => (int) $this->withGuilds,
+            'hot' => (int) $this->withHot,
+            'top' => (int) $this->withTop,
+            'domain' => $this->domain->value,
+            'page' => $this->page,
+        ];
     }
 }

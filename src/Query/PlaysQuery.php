@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\PlayType;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
-final readonly class PlaysQuery
+final readonly class PlaysQuery implements QueryInterface
 {
     /**
      * @param ?\DateTimeImmutable $minDate Returns only plays of the specified date or later.
@@ -25,5 +25,25 @@ final readonly class PlaysQuery
         public int $page = 1,
     ) {
         Assert::positiveInteger($this->page);
+    }
+
+    /**
+     * @internal
+     *
+     * @return array{
+     *     mindate?: non-empty-string,
+     *     maxdate?: non-empty-string,
+     *     subtype: value-of<PlayType>,
+     *     page: positive-int
+     * }
+     */
+    public function toQueryParameters(): array
+    {
+        return array_filter([
+            'mindate' => $this->minDate?->format('Y-m-d'),
+            'maxdate' => $this->maxDate?->format('Y-m-d'),
+            'subtype' => $this->playType->value,
+            'page' => $this->page,
+        ], static fn(mixed $value): bool => $value !== null);
     }
 }

@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\FamilyType;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
-final readonly class FamilyQuery
+final readonly class FamilyQuery implements QueryInterface
 {
     /**
      * @param non-empty-array<FamilyType>|null $withTypes Specify that, regardless of the type of family asked for by id, the results are filtered by the {@see FamilyType}(s) specified. Multiple {@see FamilyType}s can be specified.
@@ -22,5 +22,25 @@ final readonly class FamilyQuery
             Assert::notEmpty($this->withTypes);
             Assert::allIsInstanceOf($this->withTypes, FamilyType::class);
         }
+    }
+
+    /**
+     * @internal
+     * @return array{
+     *     type?: literal-string
+     * }
+     */
+    public function toQueryParameters(): array
+    {
+        $result = [];
+
+        if (is_array($this->withTypes)) {
+            $result['type'] = implode(
+                ',',
+                array_map(static fn(FamilyType $familyType): string => $familyType->value, $this->withTypes),
+            );
+        }
+
+        return $result;
     }
 }

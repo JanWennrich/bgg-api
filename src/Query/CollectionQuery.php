@@ -8,7 +8,7 @@ use JanWennrich\BoardGameGeekApi\ThingType;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
-final readonly class CollectionQuery
+final readonly class CollectionQuery implements QueryInterface
 {
     /**
      * @param bool $withVersions Return version info for each collection item.
@@ -111,5 +111,80 @@ final readonly class CollectionQuery
         Assert::nullOrGreaterThanEq($this->maxPlays, 0);
 
         Assert::nullOrPositiveInteger($this->collectionId);
+    }
+
+    /**
+     * @internal
+     *
+     * @return array{
+     *     version: int<0,1>,
+     *     subtype: value-of<ThingType>,
+     *     excludesubtype?: value-of<ThingType>,
+     *     id?: non-empty-string,
+     *     brief: int<0,1>,
+     *     stats: int<0,1>,
+     *     own?: int<0,1>,
+     *     rated?: int<0,1>,
+     *     played?: int<0,1>,
+     *     comment?: int<0,1>,
+     *     trade?: int<0,1>,
+     *     want?: int<0,1>,
+     *     wishlist?: int<0,1>,
+     *     wishlistpriority?: int<1,5>,
+     *     preordered?: int<0,1>,
+     *     wanttoplay?: int<0,1>,
+     *     wanttobuy?: int<0,1>,
+     *     prevowned?: int<0,1>,
+     *     hasparts?: int<0,1>,
+     *     wantparts?: int<0,1>,
+     *     minrating?: int<1,10>,
+     *     rating?: int<1,10>,
+     *     minbggrating?: int<1,10>,
+     *     bggrating?: int<1,10>,
+     *     minplays?: int<0,max>,
+     *     maxplays?: int<0,max>,
+     *     showprivate: int<0,1>,
+     *     collid?: positive-int,
+     *     modifiedsince?: non-empty-string
+     * }
+     */
+    public function toQueryParameters(): array
+    {
+        $ids = null;
+        if (is_array($this->ids)) {
+            $ids = implode(',', $this->ids);
+        }
+
+        return array_filter([
+            'version' => (int) $this->withVersions,
+            'subtype' => $this->onlyThingsWithType->value,
+            'excludesubtype' => $this->excludeThingsWithType?->value,
+            'id' => $ids,
+            'brief' => (int) $this->onlyBrief,
+            'stats' => (int) $this->withStats,
+            'own' => $this->isOwned === null ? null : (int) $this->isOwned,
+            'rated' => $this->isRated === null ? null : (int) $this->isRated,
+            'played' => $this->isPlayed === null ? null : (int) $this->isPlayed,
+            'comment' => $this->isCommented === null ? null : (int) $this->isCommented,
+            'trade' => $this->isForTrade === null ? null : (int) $this->isForTrade,
+            'want' => $this->isWanted === null ? null : (int) $this->isWanted,
+            'wishlist' => $this->isWishlisted === null ? null : (int) $this->isWishlisted,
+            'wishlistpriority' => $this->wishlistPriority,
+            'preordered' => $this->isPreOrdered === null ? null : (int) $this->isPreOrdered,
+            'wanttoplay' => $this->wantToPlay === null ? null : (int) $this->wantToPlay,
+            'wanttobuy' => $this->wantToBuy === null ? null : (int) $this->wantToBuy,
+            'prevowned' => $this->isPreviouslyOwned === null ? null : (int) $this->isPreviouslyOwned,
+            'hasparts' => $this->hasParts === null ? null : (int) $this->hasParts,
+            'wantparts' => $this->wantParts === null ? null : (int) $this->wantParts,
+            'minrating' => $this->minPersonalRating,
+            'rating' => $this->maxPersonalRating,
+            'minbggrating' => $this->minBggRating,
+            'bggrating' => $this->maxBggRating,
+            'minplays' => $this->minPlays,
+            'maxplays' => $this->maxPlays,
+            'showprivate' => (int) $this->showPrivate,
+            'collid' => $this->collectionId,
+            'modifiedsince' => $this->modifiedSince?->format('Y-m-d H:i:s'),
+        ], static fn(mixed $value): bool => $value !== null);
     }
 }

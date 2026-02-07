@@ -120,7 +120,7 @@ class Client
     {
         Assert::positiveInteger($id);
 
-        $query = $this->buildThingQueryArray($thingQuery);
+        $query = $thingQuery?->toQueryParameters() ?? [];
 
         $query['id'] = $id;
 
@@ -147,7 +147,7 @@ class Client
         Assert::countBetween($ids, 1, 20);
         Assert::allPositiveInteger($ids);
 
-        $query = $this->buildThingQueryArray($thingQuery);
+        $query = $thingQuery?->toQueryParameters() ?? [];
 
         $query['id'] = implode(',', $ids);
 
@@ -208,7 +208,7 @@ class Client
     {
         Assert::positiveInteger($id);
 
-        $query = $this->buildThreadQueryArray($threadQuery);
+        $query = $threadQuery?->toQueryParameters() ?? [];
         $query['id'] = $id;
 
         $xml = $this->request(BggApiEndpoint::Thread, $query);
@@ -227,7 +227,7 @@ class Client
     {
         Assert::stringNotEmpty($name);
 
-        $query = $this->buildUsersQueryArray($usersQuery);
+        $query = $usersQuery?->toQueryParameters() ?? [];
         $query['name'] = $name;
 
         $xml = $this->request(BggApiEndpoint::User, $query);
@@ -246,246 +246,12 @@ class Client
     {
         Assert::positiveInteger($id);
 
-        $query = $this->buildGuildQueryArray($guildQuery);
+        $query = $guildQuery?->toQueryParameters() ?? [];
         $query['id'] = $id;
 
         $xml = $this->request(BggApiEndpoint::Guild, $query);
 
         return empty($xml['id']) ? null : $this->guildMapper->fromXml($xml);
-    }
-
-    /**
-     * @return ($thingQuery is null ? array{} : array{
-     *     types?: literal-string,
-     *     versions: int<0,1>,
-     *     videos: int<0,1>,
-     *     stats: int<0,1>,
-     *     marketplace: int<0,1>,
-     *     comments: int<0,1>,
-     *     ratingcomments: int<0,1>,
-     *     page: positive-int,
-     *     pagesize: int<10, 100>
-     * })
-     */
-    private function buildThingQueryArray(?ThingQuery $thingQuery = null): array
-    {
-        if (!$thingQuery instanceof ThingQuery) {
-            return [];
-        }
-
-        $result = [
-            'versions' => (int) $thingQuery->withVersions,
-            'videos' => (int) $thingQuery->withVideos,
-            'stats' => (int) $thingQuery->withStats,
-            'marketplace' => (int) $thingQuery->withMarketplaceData,
-            'comments' => (int) $thingQuery->withComments,
-            'ratingcomments' => (int) $thingQuery->withRatingComments,
-            'page' => $thingQuery->page,
-            'pagesize' => $thingQuery->pageSize,
-        ];
-
-        if (is_array($thingQuery->withTypes)) {
-            $result['types'] = implode(
-                ',',
-                array_map(static fn(ThingType $thingType): string => $thingType->value, $thingQuery->withTypes),
-            );
-        }
-
-        return $result;
-    }
-
-    /**
-     * @return ($threadQuery is null ? array{} : array{
-     *     minarticleid?: positive-int,
-     *     minarticledate?: non-empty-string,
-     *     count?: int<1,1000>,
-     * })
-     */
-    private function buildThreadQueryArray(?ThreadQuery $threadQuery = null): array
-    {
-        if (!$threadQuery instanceof ThreadQuery) {
-            return [];
-        }
-
-        return array_filter([
-            'minarticleid' => $threadQuery->minArticleId,
-            'minarticledate' => $threadQuery->minArticleDate?->format('Y-m-d H:i:s'),
-            'count' => $threadQuery->count,
-        ], static fn(mixed $value): bool => $value !== null);
-    }
-
-    /**
-     * @return ($usersQuery is null ? array{} : array{
-     *     buddies: int<0,1>,
-     *     guilds: int<0,1>,
-     *     hot: int<0,1>,
-     *     top: int<0,1>,
-     *     domain: value-of<UserDomain>,
-     *     page: positive-int
-     * })
-     */
-    private function buildUsersQueryArray(?UsersQuery $usersQuery = null): array
-    {
-        if (!$usersQuery instanceof UsersQuery) {
-            return [];
-        }
-
-        return [
-            'buddies' => (int) $usersQuery->withBuddies,
-            'guilds' => (int) $usersQuery->withGuilds,
-            'hot' => (int) $usersQuery->withHot,
-            'top' => (int) $usersQuery->withTop,
-            'domain' => $usersQuery->domain->value,
-            'page' => $usersQuery->page,
-        ];
-    }
-
-    /**
-     * @return ($guildQuery is null ? array{} : array{
-     *     members: int<0,1>,
-     *     sort: value-of<GuildMemberSort>,
-     *     page: positive-int
-     * })
-     */
-    private function buildGuildQueryArray(?GuildQuery $guildQuery = null): array
-    {
-        if (!$guildQuery instanceof GuildQuery) {
-            return [];
-        }
-
-        return [
-            'members' => (int) $guildQuery->withMembers,
-            'sort' => $guildQuery->sort->value,
-            'page' => $guildQuery->page,
-        ];
-    }
-
-    /**
-     * @return ($searchQuery is null ? array{} : array{
-     *     type?: non-empty-string,
-     *     exact: int<0,1>
-     * })
-     */
-    private function buildSearchQueryArray(?SearchQuery $searchQuery = null): array
-    {
-        if (!$searchQuery instanceof SearchQuery) {
-            return [];
-        }
-
-        $onlyTypesString = null;
-        if ($searchQuery->onlyTypes !== []) {
-            $onlyTypesString = implode(
-                ',',
-                array_map(
-                    static fn(SearchType $searchType): string => $searchType->value,
-                    $searchQuery->onlyTypes,
-                ),
-            );
-        }
-
-        return array_filter([
-            'type' => $onlyTypesString,
-            'exact' => (int) $searchQuery->onlyExact,
-        ], static fn(mixed $value): bool => $value !== null);
-    }
-
-    /**
-     * @return ($collectionQuery is null ? array{} : array{
-     *     version: int<0,1>,
-     *     subtype: value-of<ThingType>,
-     *     excludesubtype?: value-of<ThingType>,
-     *     id?: non-empty-string,
-     *     brief: int<0,1>,
-     *     stats: int<0,1>,
-     *     own?: int<0,1>,
-     *     rated?: int<0,1>,
-     *     played?: int<0,1>,
-     *     comment?: int<0,1>,
-     *     trade?: int<0,1>,
-     *     want?: int<0,1>,
-     *     wishlist?: int<0,1>,
-     *     wishlistpriority?: int<1,5>,
-     *     preordered?: int<0,1>,
-     *     wanttoplay?: int<0,1>,
-     *     wanttobuy?: int<0,1>,
-     *     prevowned?: int<0,1>,
-     *     hasparts?: int<0,1>,
-     *     wantparts?: int<0,1>,
-     *     minrating?: int<1,10>,
-     *     rating?: int<1,10>,
-     *     minbggrating?: int<1,10>,
-     *     bggrating?: int<1,10>,
-     *     minplays?: int<0,max>,
-     *     maxplays?: int<0,max>,
-     *     showprivate: int<0,1>,
-     *     collid?: positive-int,
-     *     modifiedsince?: non-empty-string
-     * })
-     */
-    private function buildCollectionQueryArray(?CollectionQuery $collectionQuery = null): array
-    {
-        if (!$collectionQuery instanceof CollectionQuery) {
-            return [];
-        }
-
-        $ids = null;
-        if (is_array($collectionQuery->ids)) {
-            $ids = implode(',', $collectionQuery->ids);
-        }
-
-        return array_filter([
-            'version' => (int) $collectionQuery->withVersions,
-            'subtype' => $collectionQuery->onlyThingsWithType->value,
-            'excludesubtype' => $collectionQuery->excludeThingsWithType?->value,
-            'id' => $ids,
-            'brief' => (int) $collectionQuery->onlyBrief,
-            'stats' => (int) $collectionQuery->withStats,
-            'own' => $collectionQuery->isOwned === null ? null : (int) $collectionQuery->isOwned,
-            'rated' => $collectionQuery->isRated === null ? null : (int) $collectionQuery->isRated,
-            'played' => $collectionQuery->isPlayed === null ? null : (int) $collectionQuery->isPlayed,
-            'comment' => $collectionQuery->isCommented === null ? null : (int) $collectionQuery->isCommented,
-            'trade' => $collectionQuery->isForTrade === null ? null : (int) $collectionQuery->isForTrade,
-            'want' => $collectionQuery->isWanted === null ? null : (int) $collectionQuery->isWanted,
-            'wishlist' => $collectionQuery->isWishlisted === null ? null : (int) $collectionQuery->isWishlisted,
-            'wishlistpriority' => $collectionQuery->wishlistPriority,
-            'preordered' => $collectionQuery->isPreOrdered === null ? null : (int) $collectionQuery->isPreOrdered,
-            'wanttoplay' => $collectionQuery->wantToPlay === null ? null : (int) $collectionQuery->wantToPlay,
-            'wanttobuy' => $collectionQuery->wantToBuy === null ? null : (int) $collectionQuery->wantToBuy,
-            'prevowned' => $collectionQuery->isPreviouslyOwned === null ? null : (int) $collectionQuery->isPreviouslyOwned,
-            'hasparts' => $collectionQuery->hasParts === null ? null : (int) $collectionQuery->hasParts,
-            'wantparts' => $collectionQuery->wantParts === null ? null : (int) $collectionQuery->wantParts,
-            'minrating' => $collectionQuery->minPersonalRating,
-            'rating' => $collectionQuery->maxPersonalRating,
-            'minbggrating' => $collectionQuery->minBggRating,
-            'bggrating' => $collectionQuery->maxBggRating,
-            'minplays' => $collectionQuery->minPlays,
-            'maxplays' => $collectionQuery->maxPlays,
-            'showprivate' => (int) $collectionQuery->showPrivate,
-            'collid' => $collectionQuery->collectionId,
-            'modifiedsince' => $collectionQuery->modifiedSince?->format('Y-m-d H:i:s'),
-        ], static fn(mixed $value): bool => $value !== null);
-    }
-
-    /**
-     * @return ($playsQuery is null ? array{} : array{
-     *     mindate?: non-empty-string,
-     *     maxdate?: non-empty-string,
-     *     subtype: value-of<PlayType>,
-     *     page: positive-int
-     * })
-     */
-    private function buildPlaysQueryArray(?PlaysQuery $playsQuery = null): array
-    {
-        if (!$playsQuery instanceof PlaysQuery) {
-            return [];
-        }
-
-        return array_filter([
-            'mindate' => $playsQuery->minDate?->format('Y-m-d'),
-            'maxdate' => $playsQuery->maxDate?->format('Y-m-d'),
-            'subtype' => $playsQuery->playType->value,
-            'page' => $playsQuery->page,
-        ], static fn(mixed $value): bool => $value !== null);
     }
 
 
@@ -501,7 +267,7 @@ class Client
     {
         Assert::positiveInteger($id);
 
-        $query = $this->buildFamilyQueryArray($familyQuery);
+        $query = $familyQuery?->toQueryParameters() ?? [];
 
         $query['id'] = $id;
 
@@ -528,7 +294,7 @@ class Client
         Assert::minCount($ids, 1);
         Assert::allPositiveInteger($ids);
 
-        $query = $this->buildFamilyQueryArray($familyQuery);
+        $query = $familyQuery?->toQueryParameters() ?? [];
 
         $query['id'] = implode(',', $ids);
 
@@ -537,28 +303,7 @@ class Client
         return $this->familyMapper->fromXml($xml);
     }
 
-    /**
-     * @return ($familyQuery is null ? array{} : array{
-     *     type?: literal-string
-     * })
-     */
-    private function buildFamilyQueryArray(?FamilyQuery $familyQuery = null): array
-    {
-        if (!$familyQuery instanceof FamilyQuery) {
-            return [];
-        }
 
-        $result = [];
-
-        if (is_array($familyQuery->withTypes)) {
-            $result['type'] = implode(
-                ',',
-                array_map(static fn(FamilyType $familyType): string => $familyType->value, $familyQuery->withTypes),
-            );
-        }
-
-        return $result;
-    }
 
     /**
      * @param non-empty-string $username Username to get the collection for
@@ -571,7 +316,7 @@ class Client
     {
         Assert::stringNotEmpty($username);
 
-        $query = $this->buildCollectionQueryArray($collectionQuery);
+        $query = $collectionQuery?->toQueryParameters() ?? [];
         $query['username'] = $username;
 
         $xml = $this->request(BggApiEndpoint::Collection, $query);
@@ -607,7 +352,7 @@ class Client
     {
         Assert::stringNotEmpty($searchTerm);
 
-        $params = $this->buildSearchQueryArray($searchQuery);
+        $params = $searchQuery?->toQueryParameters() ?? [];
         $params['query'] = $searchTerm;
 
         $xml = $this->request(BggApiEndpoint::Search, $params);
@@ -630,7 +375,7 @@ class Client
     {
         Assert::stringNotEmpty($username);
 
-        $query = $this->buildPlaysQueryArray($playsQuery);
+        $query = $playsQuery?->toQueryParameters() ?? [];
         $query['username'] = $username;
 
         $xml = $this->request(BggApiEndpoint::Plays, $query);
@@ -654,7 +399,7 @@ class Client
     {
         Assert::positiveInteger($itemId);
 
-        $query = $this->buildPlaysQueryArray($playsQuery);
+        $query = $playsQuery?->toQueryParameters() ?? [];
         $query['id'] = $itemId;
         $query['type'] = $itemType->value;
 
