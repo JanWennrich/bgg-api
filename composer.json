@@ -33,6 +33,7 @@
     "phpstan/phpstan": "2.1.38",
     "phpstan/phpstan-deprecation-rules": "^2.0",
     "phpstan/phpstan-phpunit": "^2.0.11",
+    "phpstan/phpstan-strict-rules": "^2.0",
     "phpstan/phpstan-webmozart-assert": "^2.0",
     "phpunit/phpunit": "^12.5.4",
     "rector/rector": "^2.3",
