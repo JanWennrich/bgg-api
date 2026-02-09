@@ -15,8 +15,8 @@ final class SearchMapper
         foreach (Xml::xpath($root, 'item') as $itemNode) {
             $nameNode = $itemNode->name ?? null;
             $name = new SearchName(
-                $nameNode ? (Xml::attrString($nameNode, 'type') ?? '') : '',
-                $nameNode ? (Xml::attrString($nameNode, 'value') ?? '') : '',
+                $nameNode instanceof \SimpleXMLElement ? (Xml::attrString($nameNode, 'type') ?? '') : '',
+                $nameNode instanceof \SimpleXMLElement ? (Xml::attrString($nameNode, 'value') ?? '') : '',
             );
 
             $items[] = new SearchResult(

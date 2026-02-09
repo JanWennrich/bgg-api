@@ -287,14 +287,14 @@ final class ThingMapper
         foreach ($nodes as $node) {
             $priceNode = $node->price ?? null;
             $price = new ListingPrice(
-                $priceNode ? (Xml::attrString($priceNode, 'currency') ?? '') : '',
-                $priceNode ? (Xml::attrFloat($priceNode, 'value') ?? 0.0) : 0.0,
+                $priceNode instanceof \SimpleXMLElement ? (Xml::attrString($priceNode, 'currency') ?? '') : '',
+                $priceNode instanceof \SimpleXMLElement ? (Xml::attrFloat($priceNode, 'value') ?? 0.0) : 0.0,
             );
 
             $linkNode = $node->link ?? null;
             $link = new ListingLink(
-                $linkNode ? (Xml::attrString($linkNode, 'href') ?? '') : '',
-                $linkNode ? (Xml::attrString($linkNode, 'title') ?? '') : '',
+                $linkNode instanceof \SimpleXMLElement ? (Xml::attrString($linkNode, 'href') ?? '') : '',
+                $linkNode instanceof \SimpleXMLElement ? (Xml::attrString($linkNode, 'title') ?? '') : '',
             );
 
             $listings[] = new Listing(

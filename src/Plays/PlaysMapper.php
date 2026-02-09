@@ -24,9 +24,9 @@ final class PlaysMapper
             }
 
             $item = new PlayItem(
-                $itemNode ? (Xml::attrString($itemNode, 'name') ?? '') : '',
-                $itemNode ? (Xml::attrString($itemNode, 'objecttype') ?? '') : '',
-                $itemNode ? (Xml::attrInt($itemNode, 'objectid') ?? 0) : 0,
+                $itemNode instanceof \SimpleXMLElement ? (Xml::attrString($itemNode, 'name') ?? '') : '',
+                $itemNode instanceof \SimpleXMLElement ? (Xml::attrString($itemNode, 'objecttype') ?? '') : '',
+                $itemNode instanceof \SimpleXMLElement ? (Xml::attrInt($itemNode, 'objectid') ?? 0) : 0,
                 $subtypes,
             );
 

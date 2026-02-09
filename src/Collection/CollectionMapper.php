@@ -16,7 +16,7 @@ final class CollectionMapper
         $items = [];
         foreach (Xml::xpath($root, 'item') as $itemNode) {
             $nameNode = $itemNode->name ?? null;
-            $name = $nameNode ? (Xml::childText($nameNode) ?? '') : '';
+            $name = $nameNode instanceof \SimpleXMLElement ? (Xml::childText($nameNode) ?? '') : '';
 
             $stats = $this->mapStats($itemNode->stats ?? null);
             $status = $this->mapStatus($itemNode->status ?? null);
