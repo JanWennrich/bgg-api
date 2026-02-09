@@ -16,13 +16,21 @@ final class CollectionMapperTest extends TestCase
 
     protected function setUp(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/collection.xml') ?: $this->fail('Could not load XML file');
+        $xml = simplexml_load_file(__DIR__ . '/../../files/collection.xml');
+        if ($xml === false) {
+            $this->fail('Could not load XML file');
+        }
+
         $this->collection = (new CollectionMapper())->fromXml($xml);
     }
 
     public function testCountMatchesXmlAndIterator(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/collection.xml') ?: $this->fail('Could not load XML file');
+        $xml = simplexml_load_file(__DIR__ . '/../../files/collection.xml');
+        if ($xml === false) {
+            $this->fail('Could not load XML file');
+        }
+
         $expectedTotal = (int) $xml['totalitems'];
 
         // count() should read from the XML attribute

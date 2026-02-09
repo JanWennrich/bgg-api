@@ -16,7 +16,10 @@ final class PlayMapperTest extends TestCase
 
     protected function setUp(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/play.xml') ?: $this->fail('Could not load XML file');
+        $xml = simplexml_load_file(__DIR__ . '/../../files/play.xml');
+        if ($xml === false) {
+            $this->fail('Could not load XML file');
+        }
 
         $this->play = (new PlaysMapper())->fromXml($xml)->getPlays()[0];
     }

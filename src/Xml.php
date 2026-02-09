@@ -98,6 +98,11 @@ final class Xml
      */
     public static function xpath(\SimpleXMLElement $element, string $path): array
     {
-        return $element->xpath($path) ?: [];
+        $nodes = $element->xpath($path);
+        if ($nodes === false || $nodes === null) {
+            return [];
+        }
+
+        return $nodes;
     }
 }
