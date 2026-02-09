@@ -28,7 +28,7 @@ final class PlayMapperTest extends TestCase
         $this->assertSame(1, $this->play->getQuantity());
         $this->assertSame(0, $this->play->getLength());
         $this->assertFalse($this->play->isIncomplete());
-        $this->assertFalse($this->play->isNoWinStats());
+        $this->assertFalse($this->play->isNowInStats());
         $this->assertSame('Home', $this->play->getLocation());
     }
 
@@ -54,7 +54,7 @@ final class PlayMapperTest extends TestCase
         $p0 = $players[0];
         $this->assertInstanceOf(PlayPlayer::class, $p0);
         $this->assertSame('andiballone', $p0->getUsername());
-        $this->assertSame(2919673, $p0->getUserid());
+        $this->assertSame(2919673, $p0->getUserId());
         $this->assertSame('Andi', $p0->getName());
         $this->assertSame("50", $p0->getScore());
         $this->assertFalse($p0->isWin());
