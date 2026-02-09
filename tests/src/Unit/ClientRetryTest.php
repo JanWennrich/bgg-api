@@ -28,14 +28,14 @@ final class ClientRetryTest extends TestCase
                 new Response(400, [], 'client error'),
             ],
             new RetryConfig(maxAttempts: 3, initialExponentialRetryDelayInSeconds: 1),
-            $this->createStub(SleepServiceInterface::class)
+            self::createStub(SleepServiceInterface::class)
         );
 
         try {
             $client->getHotItems();
-            $this->fail('Expected ClientRequestException to be thrown.');
+            self::fail('Expected ClientRequestException to be thrown.');
         } catch (ClientRequestException $clientRequestException) {
-            $this->assertSame(1, $clientRequestException->attemptNumber);
+            self::assertSame(1, $clientRequestException->attemptNumber);
         }
     }
 
@@ -48,14 +48,14 @@ final class ClientRetryTest extends TestCase
                 new Response(202, [], 'queued'),
             ],
             new RetryConfig(maxAttempts: 3, initialExponentialRetryDelayInSeconds: 1),
-            $this->createStub(SleepServiceInterface::class)
+            self::createStub(SleepServiceInterface::class)
         );
 
         try {
             $client->getHotItems();
-            $this->fail('Expected ClientRequestException to be thrown.');
+            self::fail('Expected ClientRequestException to be thrown.');
         } catch (ClientRequestException $clientRequestException) {
-            $this->assertSame(3, $clientRequestException->attemptNumber);
+            self::assertSame(3, $clientRequestException->attemptNumber);
         }
     }
 
@@ -67,10 +67,10 @@ final class ClientRetryTest extends TestCase
             ->method('sleep')
             ->willReturnCallback(function (...$parameters) use ($invokedCount): void {
                 if ($invokedCount->numberOfInvocations() === 1) {
-                    $this->assertSame(1, $parameters[0]);
+                    self::assertSame(1, $parameters[0]);
                 }
                 if ($invokedCount->numberOfInvocations() === 2) {
-                    $this->assertSame(2, $parameters[0]);
+                    self::assertSame(2, $parameters[0]);
                 }
             });
 
@@ -86,7 +86,7 @@ final class ClientRetryTest extends TestCase
 
         try {
             $client->getHotItems();
-            $this->fail(sprintf("Expected %s to be thrown.", ClientRequestException::class));
+            self::fail(sprintf("Expected %s to be thrown.", ClientRequestException::class));
         } catch (ClientRequestException) {
             // Expected: retries exhausted.
         }
@@ -109,9 +109,9 @@ final class ClientRetryTest extends TestCase
 
         try {
             $client->getHotItems();
-            $this->fail(sprintf("Expected %s to be thrown.", ClientRequestException::class));
+            self::fail(sprintf("Expected %s to be thrown.", ClientRequestException::class));
         } catch (ClientRequestException $clientRequestException) {
-            $this->assertSame(1, $clientRequestException->attemptNumber);
+            self::assertSame(1, $clientRequestException->attemptNumber);
         }
     }
 

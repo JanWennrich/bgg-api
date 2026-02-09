@@ -13,12 +13,12 @@ final class SearchMapperTest extends TestCase
     {
         $xml = simplexml_load_file(__DIR__ . '/../../files/search.xml');
         if ($xml === false) {
-            $this->fail('Could not load XML file');
+            self::fail('Could not load XML file');
         }
 
         $search = (new BoardGameGeekApi\Search\SearchMapper())->fromXml($xml);
 
-        $this->assertCount(82, $search->getResults());
-        $this->assertSame(82, $search->getTotal());
+        self::assertCount(82, $search->getResults());
+        self::assertSame(82, $search->getTotal());
     }
 }

@@ -18,7 +18,7 @@ final class CollectionMapperTest extends TestCase
     {
         $xml = simplexml_load_file(__DIR__ . '/../../files/collection.xml');
         if ($xml === false) {
-            $this->fail('Could not load XML file');
+            self::fail('Could not load XML file');
         }
 
         $this->collection = (new CollectionMapper())->fromXml($xml);
@@ -28,64 +28,64 @@ final class CollectionMapperTest extends TestCase
     {
         $xml = simplexml_load_file(__DIR__ . '/../../files/collection.xml');
         if ($xml === false) {
-            $this->fail('Could not load XML file');
+            self::fail('Could not load XML file');
         }
 
         $expectedTotal = (int) $xml['totalitems'];
 
         // count() should read from the XML attribute
-        $this->assertCount($expectedTotal, $this->collection->getItems());
+        self::assertCount($expectedTotal, $this->collection->getItems());
 
         // And number of parsed items should match as well
         $itemsFromIterator = iterator_to_array($this->collection->getItems());
-        $this->assertCount($expectedTotal, $itemsFromIterator);
+        self::assertCount($expectedTotal, $itemsFromIterator);
 
-        $this->assertContainsOnlyInstancesOf(Collection\CollectionItem::class, $itemsFromIterator);
+        self::assertContainsOnlyInstancesOf(Collection\CollectionItem::class, $itemsFromIterator);
     }
 
     public function testFirstItemFields(): void
     {
         $items = $this->collection->getItems();
-        $this->assertNotEmpty($items);
+        self::assertNotEmpty($items);
 
         $first = $items[0];
 
-        $this->assertSame(390092, $first->getObjectId());
-        $this->assertSame(ThingType::BoardGame, $first->getType());
-        $this->assertSame(113685788, $first->getCollectionId());
-        $this->assertSame('¡Aventureros al Tren! Legacy: Leyendas del Oeste', $first->getName());
-        $this->assertSame("2023", $first->getYearPublished());
-        $this->assertStringStartsWith('https://cf.geekdo-images.com/', $first->getImage() ?? '');
-        $this->assertStringStartsWith('https://cf.geekdo-images.com/', $first->getThumbnail() ?? '');
+        self::assertSame(390092, $first->getObjectId());
+        self::assertSame(ThingType::BoardGame, $first->getType());
+        self::assertSame(113685788, $first->getCollectionId());
+        self::assertSame('¡Aventureros al Tren! Legacy: Leyendas del Oeste', $first->getName());
+        self::assertSame("2023", $first->getYearPublished());
+        self::assertStringStartsWith('https://cf.geekdo-images.com/', $first->getImage() ?? '');
+        self::assertStringStartsWith('https://cf.geekdo-images.com/', $first->getThumbnail() ?? '');
 
         $collectionStatus = $first->getStatus();
-        $this->assertTrue($collectionStatus->isOwn());
-        $this->assertFalse($collectionStatus->isPrevOwned());
-        $this->assertFalse($collectionStatus->isForTrade());
-        $this->assertFalse($collectionStatus->isWant());
-        $this->assertFalse($collectionStatus->isWantToPlay());
-        $this->assertFalse($collectionStatus->isWantToBuy());
-        $this->assertFalse($collectionStatus->isWishlist());
-        $this->assertFalse($collectionStatus->isPreordered());
-        //        $this->assertInstanceOf(\DateTimeImmutable::class, $itemStatus->getLastModified());
-        //        $this->assertSame('2023-12-18 14:21:07', $itemStatus->getLastModified()->format('Y-m-d H:i:s'));
+        self::assertTrue($collectionStatus->isOwn());
+        self::assertFalse($collectionStatus->isPrevOwned());
+        self::assertFalse($collectionStatus->isForTrade());
+        self::assertFalse($collectionStatus->isWant());
+        self::assertFalse($collectionStatus->isWantToPlay());
+        self::assertFalse($collectionStatus->isWantToBuy());
+        self::assertFalse($collectionStatus->isWishlist());
+        self::assertFalse($collectionStatus->isPreordered());
+        //        self::assertInstanceOf(\DateTimeImmutable::class, $itemStatus->getLastModified());
+        //        self::assertSame('2023-12-18 14:21:07', $itemStatus->getLastModified()->format('Y-m-d H:i:s'));
 
-        $this->assertSame(6, $first->getNumPlays());
+        self::assertSame(6, $first->getNumPlays());
     }
 
     public function testStatsAndRatingsAreNullWhenAbsent(): void
     {
         $items = $this->collection->getItems();
-        $this->assertNotEmpty($items);
+        self::assertNotEmpty($items);
 
         $any = $items[0];
 
-        $this->assertNull($any->getStats()?->getMinPlayers());
-        $this->assertNull($any->getStats()?->getMaxPlayers());
-        $this->assertNull($any->getStats()?->getPlayingTime());
-        $this->assertNull($any->getStats()?->getMinPlayTime());
-        $this->assertNull($any->getStats()?->getMaxPlayTime());
-        $this->assertNull($any->getStats()?->getRating()->getAverage());
+        self::assertNull($any->getStats()?->getMinPlayers());
+        self::assertNull($any->getStats()?->getMaxPlayers());
+        self::assertNull($any->getStats()?->getPlayingTime());
+        self::assertNull($any->getStats()?->getMinPlayTime());
+        self::assertNull($any->getStats()?->getMaxPlayTime());
+        self::assertNull($any->getStats()?->getRating()->getAverage());
     }
 
     public function testPrevOwnedItemExistsAndParsed(): void
@@ -99,13 +99,13 @@ final class CollectionMapperTest extends TestCase
             }
         }
 
-        $this->assertInstanceOf(Collection\CollectionItem::class, $found, 'Expected to find objectid=359871 in collection.xml');
+        self::assertInstanceOf(Collection\CollectionItem::class, $found, 'Expected to find objectid=359871 in collection.xml');
 
         $collectionStatus = $found->getStatus();
-        $this->assertFalse($collectionStatus->isOwn());
-        $this->assertTrue($collectionStatus->isPrevOwned());
-        $this->assertSame(1, $found->getNumPlays());
-        //        $this->assertInstanceOf(\DateTimeImmutable::class, $itemStatus->getLastModified());
-        //        $this->assertSame('2025-07-13 15:49:07', $itemStatus->getLastModified()->format('Y-m-d H:i:s'));
+        self::assertFalse($collectionStatus->isOwn());
+        self::assertTrue($collectionStatus->isPrevOwned());
+        self::assertSame(1, $found->getNumPlays());
+        //        self::assertInstanceOf(\DateTimeImmutable::class, $itemStatus->getLastModified());
+        //        self::assertSame('2025-07-13 15:49:07', $itemStatus->getLastModified()->format('Y-m-d H:i:s'));
     }
 }

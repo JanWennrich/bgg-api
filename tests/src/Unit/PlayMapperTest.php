@@ -18,7 +18,7 @@ final class PlayMapperTest extends TestCase
     {
         $xml = simplexml_load_file(__DIR__ . '/../../files/play.xml');
         if ($xml === false) {
-            $this->fail('Could not load XML file');
+            self::fail('Could not load XML file');
         }
 
         $this->play = (new PlaysMapper())->fromXml($xml)->getPlays()[0];
@@ -26,45 +26,45 @@ final class PlayMapperTest extends TestCase
 
     public function testBasicAttributes(): void
     {
-        $this->assertSame(102838714, $this->play->getId());
-        $this->assertEquals(new \DateTimeImmutable('2025-08-19'), $this->play->getDate());
-        $this->assertSame(1, $this->play->getQuantity());
-        $this->assertSame(0, $this->play->getLength());
-        $this->assertFalse($this->play->isIncomplete());
-        $this->assertFalse($this->play->isNowInStats());
-        $this->assertSame('Home', $this->play->getLocation());
+        self::assertSame(102838714, $this->play->getId());
+        self::assertEquals(new \DateTimeImmutable('2025-08-19'), $this->play->getDate());
+        self::assertSame(1, $this->play->getQuantity());
+        self::assertSame(0, $this->play->getLength());
+        self::assertFalse($this->play->isIncomplete());
+        self::assertFalse($this->play->isNowInStats());
+        self::assertSame('Home', $this->play->getLocation());
     }
 
     public function testItemInfo(): void
     {
         $playItem = $this->play->getItem();
 
-        $this->assertSame(155987, $playItem->getObjectId());
-        $this->assertSame('Abyss', $playItem->getName());
-        $this->assertEquals([new PlaySubtypeValue('boardgame')], $playItem->getSubtypes());
+        self::assertSame(155987, $playItem->getObjectId());
+        self::assertSame('Abyss', $playItem->getName());
+        self::assertEquals([new PlaySubtypeValue('boardgame')], $playItem->getSubtypes());
     }
 
     public function testComments(): void
     {
-        $this->assertSame('Played with expansions: - [thing=232197]Abyss: Leviathan[/thing]', $this->play->getComments());
+        self::assertSame('Played with expansions: - [thing=232197]Abyss: Leviathan[/thing]', $this->play->getComments());
     }
 
     public function testPlayers(): void
     {
         $players = $this->play->getPlayers();
-        $this->assertCount(4, $players);
+        self::assertCount(4, $players);
 
         $p0 = $players[0];
-        $this->assertInstanceOf(PlayPlayer::class, $p0);
-        $this->assertSame('andiballone', $p0->getUsername());
-        $this->assertSame(2919673, $p0->getUserId());
-        $this->assertSame('Andi', $p0->getName());
-        $this->assertSame("50", $p0->getScore());
-        $this->assertFalse($p0->isWin());
+        self::assertInstanceOf(PlayPlayer::class, $p0);
+        self::assertSame('andiballone', $p0->getUsername());
+        self::assertSame(2919673, $p0->getUserId());
+        self::assertSame('Andi', $p0->getName());
+        self::assertSame("50", $p0->getScore());
+        self::assertFalse($p0->isWin());
 
         $winner = $players[1];
-        $this->assertInstanceOf(PlayPlayer::class, $winner);
-        $this->assertTrue($winner->isWin());
-        $this->assertSame("82", $winner->getScore());
+        self::assertInstanceOf(PlayPlayer::class, $winner);
+        self::assertTrue($winner->isWin());
+        self::assertSame("82", $winner->getScore());
     }
 }

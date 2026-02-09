@@ -325,20 +325,20 @@ final class AssertionTest extends TestCase
     public function testSearchQueryAcceptsMultipleTypes(): void
     {
         $searchQuery = new SearchQuery(onlyTypes: [SearchType::BoardGame, SearchType::BoardGameExpansion]);
-        $this->assertSame([SearchType::BoardGame, SearchType::BoardGameExpansion], $searchQuery->onlyTypes);
+        self::assertSame([SearchType::BoardGame, SearchType::BoardGameExpansion], $searchQuery->onlyTypes);
     }
 
     public function testForumListTypeAcceptsValidValue(): void
     {
-        $this->assertSame(ForumListType::Thing, ForumListType::from('thing'));
+        self::assertSame(ForumListType::Thing, ForumListType::from('thing'));
     }
 
     private function makeClient(): Client
     {
         return new Client(
-            psr18Client: $this->createStub(Psr18Client::class),
-            requestFactory: $this->createStub(RequestFactoryInterface::class),
-            streamFactory: $this->createStub(StreamFactoryInterface::class),
+            psr18Client: self::createStub(Psr18Client::class),
+            requestFactory: self::createStub(RequestFactoryInterface::class),
+            streamFactory: self::createStub(StreamFactoryInterface::class),
         );
     }
 }

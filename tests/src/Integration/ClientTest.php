@@ -29,7 +29,7 @@ final class ClientTest extends TestCase
 
         $thing = $client->getThing(5371611111, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
 
-        $this->assertNotInstanceOf(Thing::class, $thing);
+        self::assertNotInstanceOf(Thing::class, $thing);
     }
 
     /**
@@ -42,7 +42,7 @@ final class ClientTest extends TestCase
 
         $thing = $client->getThing(39856, new BoardGameGeekApi\Query\ThingQuery(withStats: true));
 
-        $this->assertSame('Dixit', $thing?->getName());
+        self::assertSame('Dixit', $thing?->getName());
     }
 
     /**
@@ -58,13 +58,13 @@ final class ClientTest extends TestCase
             new BoardGameGeekApi\Query\ThingQuery(withStats: true),
         );
 
-        $this->assertCount(2, $things);
+        self::assertCount(2, $things);
         foreach ($things as $thing) {
-            $this->assertInstanceOf(Thing::class, $thing);
+            self::assertInstanceOf(Thing::class, $thing);
 
             $thingName = $thing->getName();
-            $this->assertIsString($thingName);
-            $this->assertContains($thingName, [ 'Zona: The Secret of Chernobyl', 'Dream Home' ]);
+            self::assertIsString($thingName);
+            self::assertContains($thingName, [ 'Zona: The Secret of Chernobyl', 'Dream Home' ]);
         }
     }
 
@@ -77,7 +77,7 @@ final class ClientTest extends TestCase
             [ 111111111111111, 222222222222222 ],
             new BoardGameGeekApi\Query\ThingQuery(withStats: true),
         );
-        $this->assertCount(0, $things);
+        self::assertCount(0, $things);
     }
 
     public function testGetThingsWithEmptyIds(): void
@@ -87,7 +87,7 @@ final class ClientTest extends TestCase
 
         $this->expectException(InvalidArgumentException::class);
         $things = $client->getThings([], new BoardGameGeekApi\Query\ThingQuery(withStats: true)); // @phpstan-ignore argument.type (Testing the assertion requires passing an empty array)
-        $this->assertCount(0, $things);
+        self::assertCount(0, $things);
     }
 
     /**
@@ -101,11 +101,11 @@ final class ClientTest extends TestCase
         $items = $client->getHotItems();
 
         # empty hot list? error on BGG?
-        # $this->assertNotEmpty($items);
+        # self::assertNotEmpty($items);
         foreach ($items as $i => $item) {
-            $this->assertInstanceOf(BoardGameGeekApi\Hot\HotItem::class, $item);
-            $this->assertSame($i + 1, $item->getRank());
-            $this->assertNotEmpty($item->getName());
+            self::assertInstanceOf(BoardGameGeekApi\Hot\HotItem::class, $item);
+            self::assertSame($i + 1, $item->getRank());
+            self::assertNotEmpty($item->getName());
         }
     }
 
@@ -125,9 +125,9 @@ final class ClientTest extends TestCase
         );
 
         $searchResults = $search->getResults();
-        $this->assertGreaterThan(1, count($searchResults));
+        self::assertGreaterThan(1, count($searchResults));
         foreach ($searchResults as $searchResult) {
-            $this->assertNotEmpty($searchResult->getName());
+            self::assertNotEmpty($searchResult->getName());
         }
     }
 
@@ -149,15 +149,15 @@ final class ClientTest extends TestCase
         $client->setApiToken($this->getAuthorizationToken());
 
         $collection = $client->getCollection('nataniel');
-        $this->assertNotEmpty($collection->getItems());
+        self::assertNotEmpty($collection->getItems());
         foreach ($collection->getItems() as $collectionItem) {
             $itemName = $collectionItem->getName();
-            $this->assertNotEmpty($itemName);
+            self::assertNotEmpty($itemName);
 
 
             $itemImage = $collectionItem->getImage();
-            $this->assertIsString($itemImage);
-            $this->assertStringStartsWith('https://cf.geekdo-images.com', $itemImage);
+            self::assertIsString($itemImage);
+            self::assertStringStartsWith('https://cf.geekdo-images.com', $itemImage);
         }
     }
 
@@ -175,7 +175,7 @@ final class ClientTest extends TestCase
 
         $plays = $client->getPlaysForUser($username)->getPlays();
 
-        $this->assertNotEmpty($plays);
+        self::assertNotEmpty($plays);
     }
 
     private function makeCookieClient(): Client
@@ -200,9 +200,9 @@ final class ClientTest extends TestCase
         $client->setApiToken($this->getAuthorizationToken());
         try {
             $client->getUser('notexistingusername');
-            $this->fail('Expected InvalidArgumentException for non-existing username.');
+            self::fail('Expected InvalidArgumentException for non-existing username.');
         } catch (BoardGameGeekApi\ClientRequestException $clientRequestException) {
-            $this->assertSame(404, $clientRequestException->httpCode);
+            self::assertSame(404, $clientRequestException->httpCode);
         }
     }
 
@@ -212,13 +212,13 @@ final class ClientTest extends TestCase
         $client->setApiToken($this->getAuthorizationToken());
 
         $item = $client->getUser('nataniel');
-        $this->assertInstanceOf(BoardGameGeekApi\User\User::class, $item);
-        $this->assertSame('Artur', $item->getFirstName());
-        $this->assertSame(2004, $item->getYearRegistered());
+        self::assertInstanceOf(BoardGameGeekApi\User\User::class, $item);
+        self::assertSame('Artur', $item->getFirstName());
+        self::assertSame(2004, $item->getYearRegistered());
 
         $avatarLink = $item->getAvatarLink();
-        $this->assertIsString($avatarLink);
-        $this->assertStringStartsWith('https://cf.geekdo-static.com', $avatarLink);
+        self::assertIsString($avatarLink);
+        self::assertStringStartsWith('https://cf.geekdo-static.com', $avatarLink);
     }
 
     /**
@@ -253,7 +253,7 @@ final class ClientTest extends TestCase
         $value = getenv($environmentVariable);
 
         if ($value === false || !is_string($value) || $value === '') {
-            $this->markTestSkipped('Environment variable ' . $environmentVariable . ' required for this test, is not set');
+            self::markTestSkipped('Environment variable ' . $environmentVariable . ' required for this test, is not set');
         }
 
         return $value;
