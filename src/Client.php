@@ -236,7 +236,11 @@ class Client
 
         $xml = $this->request(BggApiEndpoint::User, $query);
 
-        return empty($xml['id']) ? null : $this->userMapper->fromXml($xml);
+        if (!isset($xml['id'])) {
+            return null;
+        }
+
+        return $this->userMapper->fromXml($xml);
     }
 
     /**
@@ -255,7 +259,11 @@ class Client
 
         $xml = $this->request(BggApiEndpoint::Guild, $query);
 
-        return empty($xml['id']) ? null : $this->guildMapper->fromXml($xml);
+        if (!isset($xml['id'])) {
+            return null;
+        }
+
+        return $this->guildMapper->fromXml($xml);
     }
 
 
