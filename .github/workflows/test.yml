@@ -20,3 +20,7 @@ jobs:
 
       - name: "Test"
         run: "composer test"
+        env:
+          BGG_AUTH_TOKEN: "${{ secrets.BGG_AUTH_TOKEN }}"
+          BGG_USERNAME: "${{ secrets.BGG_USERNAME }}"
+          BGG_PASSWORD: "${{ secrets.BGG_PASSWORD }}"
