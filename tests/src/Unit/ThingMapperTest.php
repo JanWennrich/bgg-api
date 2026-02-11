@@ -36,7 +36,7 @@ final class ThingMapperTest extends TestCase
     #[\PHPUnit\Framework\Attributes\DoesNotPerformAssertions]
     public function testGetDesigners(): void
     {
-        self::markTestSkipped('Boardgame designers are currently not available. They are part of link list');
+        self::markTestIncomplete('Boardgame designers are currently not available. They are part of link list');
         //        $items = $this->thing->getLinks();
         //        self::assertCount(1, $items);
         //
@@ -49,7 +49,7 @@ final class ThingMapperTest extends TestCase
     #[\PHPUnit\Framework\Attributes\DoesNotPerformAssertions]
     public function testGetCategories(): void
     {
-        self::markTestSkipped('Categories are currently not available. They are part of link list');
+        self::markTestIncomplete('Categories are currently not available. They are part of link list');
 
         //        $items = $this->thing->getBoardgameCategories();
         //        self::assertCount(1, $items);
@@ -63,7 +63,7 @@ final class ThingMapperTest extends TestCase
     #[\PHPUnit\Framework\Attributes\DoesNotPerformAssertions]
     public function testGetMechanics(): void
     {
-        self::markTestSkipped('Mechanics are currently not available. They are part of link list');
+        self::markTestIncomplete('Mechanics are currently not available. They are part of link list');
 
         //        $items = $this->thing->getBoardgameMechanics();
         //        self::assertCount(4, $items);
@@ -77,7 +77,7 @@ final class ThingMapperTest extends TestCase
     #[\PHPUnit\Framework\Attributes\DoesNotPerformAssertions]
     public function testGetExpansions(): void
     {
-        self::markTestSkipped('Expansions are currently not available. They are part of link list');
+        self::markTestIncomplete('Expansions are currently not available. They are part of link list');
 
         //        $items = $this->thing->getBoardgameExpansions();
         //        self::assertCount(2, $items);
@@ -91,7 +91,7 @@ final class ThingMapperTest extends TestCase
     #[\PHPUnit\Framework\Attributes\DoesNotPerformAssertions]
     public function testGetArtists(): void
     {
-        self::markTestSkipped('Artists are currently not available. They are part of link list');
+        self::markTestIncomplete('Artists are currently not available. They are part of link list');
 
         //        $items = $this->thing->getBoardgameArtists();
         //        self::assertCount(1, $items);
@@ -105,7 +105,7 @@ final class ThingMapperTest extends TestCase
     #[\PHPUnit\Framework\Attributes\DoesNotPerformAssertions]
     public function testGetPublishers(): void
     {
-        self::markTestSkipped('Publishers are currently not available. They are part of link list');
+        self::markTestIncomplete('Publishers are currently not available. They are part of link list');
 
         //        $items = $this->thing->getBoardgamePublishers();
         //        self::assertCount(7, $items);
