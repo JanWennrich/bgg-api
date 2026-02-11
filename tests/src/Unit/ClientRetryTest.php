@@ -65,14 +65,7 @@ final class ClientRetryTest extends TestCase
         $invokedCount = $this->exactly(2);
         $sleepService->expects($invokedCount)
             ->method('sleep')
-            ->willReturnCallback(function (...$parameters) use ($invokedCount): void {
-                if ($invokedCount->numberOfInvocations() === 1) {
-                    self::assertSame(1, $parameters[0]);
-                }
-                if ($invokedCount->numberOfInvocations() === 2) {
-                    self::assertSame(2, $parameters[0]);
-                }
-            });
+            ->withParameterSetsInOrder(1, 2);
 
         $client = $this->makeClient(
             [
