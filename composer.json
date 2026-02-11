@@ -35,7 +35,7 @@
     "phpstan/phpstan-phpunit": "^2.0.11",
     "phpstan/phpstan-strict-rules": "^2.0",
     "phpstan/phpstan-webmozart-assert": "^2.0",
-    "phpunit/phpunit": "^12.5.4",
+    "phpunit/phpunit": "^13",
     "rector/rector": "^2.3",
     "shipmonk/composer-dependency-analyser": "^1.8.4",
     "staabm/phpstan-psr3": "^1.0"
