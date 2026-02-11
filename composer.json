@@ -30,7 +30,7 @@
     "guzzlehttp/guzzle": "^7.10",
     "guzzlehttp/psr7": "^2",
     "phpstan/extension-installer": "^1.4.3",
-    "phpstan/phpstan": "2.1.38",
+    "phpstan/phpstan": "2.1.39",
     "phpstan/phpstan-deprecation-rules": "^2.0",
     "phpstan/phpstan-phpunit": "^2.0.11",
     "phpstan/phpstan-strict-rules": "^2.0",
