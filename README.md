@@ -295,6 +295,21 @@ Tests can be executed by calling:
 composer test
 ```
 
+To opt in to live API tests, the following environment variables with credentials have to be set, when running `composer test`:
+- `BGG_AUTH_TOKEN`
+- `BGG_USERNAME`
+- `BGG_PASSWORD`
+
+### Fixture Recording
+
+To capture real API responses as XML fixtures, use the fixture recorder command:
+
+```bash
+BGG_AUTH_TOKEN=... BGG_USERNAME=... BGG_PASSWORD=... php tests/record-fixtures.php
+```
+
+The recorder writes fixtures into `tests/fixtures/<endpoint>/` and requires all three environment variables to be set.
+
 The library uses the following tools to ensure functionality & stability:
 - [PHPUnit](https://github.com/sebastianbergmann/phpunit) for testing
 - [PHPStan](https://github.com/phpstan/phpstan) for static analysis

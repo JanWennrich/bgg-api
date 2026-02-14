@@ -36,9 +36,11 @@
     "phpstan/phpstan-strict-rules": "^2.0",
     "phpstan/phpstan-webmozart-assert": "^2.0",
     "phpunit/phpunit": "^13",
+    "psr/http-message": "^2",
     "rector/rector": "^2.3",
     "shipmonk/composer-dependency-analyser": "^1.8.4",
-    "staabm/phpstan-psr3": "^1.0"
+    "staabm/phpstan-psr3": "^1.0",
+    "symfony/console": "^8.0"
   },
   "autoload": {
     "psr-4": {
