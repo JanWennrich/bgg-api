@@ -49,7 +49,7 @@ SETI: Search for Extraterrestrial Intelligence pays homage to space and planetar
 										      	               				<yearpublished value="2024" />
 						               				<minplayers value="1" />
 						               				<maxplayers value="4" />
-						      			<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="599">
+						      			<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="600">
 			
 		<results numplayers="1">		
 					<result value="Best" numvotes="26" />
@@ -70,7 +70,7 @@ SETI: Search for Extraterrestrial Intelligence pays homage to space and planetar
 				</results>					
 			
 		<results numplayers="4">		
-					<result value="Best" numvotes="109" />
+					<result value="Best" numvotes="110" />
 					<result value="Recommended" numvotes="204" />
 					<result value="Not Recommended" numvotes="152" />
 				</results>					
@@ -634,7 +634,7 @@ SETI: Search for Extraterrestrial Intelligence pays homage to space and planetar
 	
 
 	
-		<comments page="1" totalitems="17379">
+		<comments page="1" totalitems="17394">
 			<comment username="DanZDK" rating="1" value="" />
 			<comment username="JuliaBenova" rating="1" value="" />
 			<comment username="douvaria" rating="1" value="" />

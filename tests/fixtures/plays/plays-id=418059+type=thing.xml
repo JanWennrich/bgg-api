@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><plays total="60779" page="1" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+<?xml version="1.0" encoding="utf-8"?><plays total="60843" page="1" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
 <play id="104578123" userid="3561375" date="3111-10-08" quantity="1" length="120" incomplete="0" nowinstats="0" location="">
 			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
 				<subtypes>
@@ -148,6 +148,271 @@ Played with expansions:
 						<player username="" userid="0" name="Paul  (41)" startposition="" color="" score="" new="0" rating="0" win="0" />
 						</players>
 					</play>
+	<play id="110386176" userid="3450473" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="머.">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>#bgstats</comments>
+									<players>
+									<player username="sw0117b" userid="3450473" name="Seung Woo Lee" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="머." startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="박." startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="승." startposition="" color="" score="" new="1" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110386000" userid="3938471" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="수목원 보드게임즈">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>#bgstats</comments>
+									<players>
+									<player username="" userid="0" name="고수가될꺼야" startposition="" color="" score="207" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="나애" startposition="" color="" score="211" new="0" rating="0" win="0" />
+						<player username="edin0814" userid="3938471" name="박동규" startposition="" color="" score="247" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110385865" userid="1684384" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Automa" startposition="" color="" score="139" new="0" rating="0" win="0" />
+						<player username="Ardbegman" userid="1684384" name="Nico De Muyt" startposition="" color="" score="199" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110385538" userid="3330481" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>#BGCatalog</comments>
+									<players>
+									<player username="Alexgoguz" userid="3330481" name="Alex GG" startposition="" color="Morado" score="186" new="0" rating="0" win="1" />
+						<player username="" userid="0" name="Chemico" startposition="" color="Verde" score="156" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Jero" startposition="" color="Naranja" score="157" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110385358" userid="2819048" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="Reiger Straat">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Dumidu" startposition="" color="" score="190" new="1" rating="0" win="0" />
+						<player username="Wildjagter" userid="2819048" name="Franz" startposition="" color="" score="231" new="0" rating="0" win="1" />
+						<player username="Rayth57" userid="3735511" name="Ryno Truter" startposition="" color="" score="178" new="1" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110385354" userid="1753642" date="2026-02-15" quantity="1" length="179" incomplete="0" nowinstats="0" location="Hladosi">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Played with expansions:
+- [thing=445048]SETI: Space Agencies[/thing]</comments>
+									<players>
+									<player username="Winsz" userid="1753642" name="Já" startposition="" color="Futurespan institute" score="156" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Milan" startposition="" color="Cosmos strategy group" score="157" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Terezka" startposition="start player" color="Sentinel probe network" score="137" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Zuzka" startposition="" color="Turing system" score="201" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110383587" userid="2732949" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+								</play>
+	<play id="110383449" userid="4501764" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="H.">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="CremeFrech" userid="4501764" name="Anne" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="J." startposition="" color="" score="" new="1" rating="0" win="0" />
+						<player username="" userid="0" name="M." startposition="" color="" score="" new="1" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110383255" userid="3850881" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+								</play>
+	<play id="110383009" userid="1785023" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="진호님 집(지니어스)">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Played with expansions:
+- [thing=445048]SETI: Space Agencies[/thing]</comments>
+									<players>
+									<player username="" userid="0" name="또또" startposition="" color="" score="242" new="0" rating="0" win="1" />
+						<player username="" userid="0" name="바이덕" startposition="" color="" score="125" new="1" rating="0" win="0" />
+						<player username="" userid="0" name="손진호" startposition="" color="" score="189" new="1" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110382442" userid="1320213" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="Atlantis">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="Kohei_Arai_Lippo" userid="1320213" name="Kohei Arai Lippo" startposition="" color="" score="263" new="0" rating="0" win="1" />
+						<player username="" userid="0" name="Milka" startposition="" color="" score="198" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110380232" userid="3152640" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="Dom">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Jola Wolsztyńska" startposition="" color="" score="" new="1" rating="0" win="0" />
+						<player username="josevxx" userid="3152640" name="Rafał" startposition="start player" color="" score="" new="1" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110379864" userid="3302154" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="Otros">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Javier Del Olmo *Ludonostrum" startposition="1" color="Naranja" score="null" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Nestor Gomez * Ludonostrum" startposition="2" color="Verde" score="null" new="0" rating="0" win="0" />
+						<player username="angulito" userid="3302154" name="Natalia" startposition="3" color="Blanco" score="null" new="0" rating="0" win="0" />
+						<player username="wachino" userid="3301143" name="Juan Andrés Claramunt" startposition="4" color="Morado" score="null" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110378839" userid="237751" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="Méliusz">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Varga Zoltán" startposition="" color="" score="172" new="1" rating="0" win="0" />
+						<player username="" userid="0" name="Zelizi Gábor" startposition="" color="" score="141" new="1" rating="0" win="0" />
+						<player username="" userid="0" name="Szőke Tamás" startposition="" color="" score="220" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110378263" userid="4367246" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+								</play>
+	<play id="110377630" userid="2032770" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="Queen's Realm">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>#BGCatalog</comments>
+									<players>
+									<player username="" userid="0" name="DC" startposition="" color="Green" score="336" new="0" rating="0" win="1" />
+						<player username="CptnMorgan21" userid="181595" name="Neil" startposition="" color="Purple" score="288" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Scoot" startposition="" color="Yellow" score="177" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110376956" userid="4167808" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="Casa">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>#BGCatalog</comments>
+									<players>
+									<player username="aerialblue" userid="4167808" name="Andres" startposition="" color="White" score="132" new="0" rating="0" win="1" />
+						<player username="samuquiroga03" userid="4236215" name="Samuel" startposition="" color="Green" score="130" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Diego" startposition="" color="Purple" score="90" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110376107" userid="2820056" date="2026-02-15" quantity="1" length="87" incomplete="0" nowinstats="0" location="8동 히앤히 하우스">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="권용희" startposition="" color="" score="196" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="익." startposition="" color="" score="199" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110375800" userid="4142692" date="2026-02-15" quantity="1" length="250" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="Shacaska" userid="4142692" name="Shahid" startposition="" color="" score="" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110374229" userid="4192448" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="stephz98" userid="4192448" name="Steph" startposition="" color="" score="130" new="0" rating="0" win="1" />
+						<player username="" userid="0" name="A." startposition="" color="" score="106" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110372917" userid="4293751" date="2026-02-15" quantity="1" length="166" incomplete="0" nowinstats="0" location="Colonia caroya">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>#BGCatalog</comments>
+									<players>
+									<player username="" userid="0" name="Blackhorde" startposition="" color="" score="141" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Giuli" startposition="" color="" score="107" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Seba" startposition="" color="" score="129" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Debora" startposition="1" color="" score="103" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110368365" userid="1740939" date="2026-02-15" quantity="1" length="131" incomplete="0" nowinstats="0" location="U mnie">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Played with expansions:
+- [thing=445048]SETI: Space Agencies[/thing]</comments>
+									<players>
+									<player username="akurczak" userid="1740939" name="Andrzej" startposition="" color="" score="259" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Anonimowy gracz" startposition="" color="Automa level 5" score="278" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110363898" userid="3448122" date="2026-02-15" quantity="1" length="240" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>216 bodu</comments>
+								</play>
 	<play id="110361119" userid="3887995" date="2026-02-15" quantity="1" length="0" incomplete="0" nowinstats="0" location="Дома">
 			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
 				<subtypes>
@@ -181,6 +446,413 @@ Played with expansions:
 						<player username="" userid="0" name="Automaton" startposition="" color="" score="134" new="1" rating="0" win="0" />
 						</players>
 					</play>
+	<play id="110384884" userid="3682233" date="2026-02-14" quantity="1" length="240" incomplete="0" nowinstats="0" location="B.">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="B." startposition="" color="" score="178" new="1" rating="0" win="0" />
+						<player username="" userid="0" name="Djoze" startposition="" color="" score="169" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="M." startposition="" color="" score="224" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110382480" userid="2632783" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="Szlado93" userid="2632783" name="Attila Szladovits" startposition="" color="" score="" new="1" rating="0" win="0" />
+						<player username="" userid="0" name="Wicky" startposition="" color="" score="" new="1" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110378183" userid="3402136" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+								</play>
+	<play id="110376233" userid="1556347" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Space Agencies</comments>
+									<players>
+									<player username="Alyssa Oolacile" userid="1556347" name="Alice" startposition="1" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Gabriel González" startposition="2" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Enrique" startposition="3" color="" score="" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110375846" userid="1292823" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+								</play>
+	<play id="110375496" userid="363796" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+								</play>
+	<play id="110374809" userid="3612701" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Jen and Alex's">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>I had 146 total points, but because of the alien danger I had the most of, I lost 10% of my points reducing mine by 15 points (jumping to 3rd place from my 3 alien completed quests, but dropped to 4th place after the 10 percent drop)
+
+*Jen has .5 pts for reasons
+
+*Alexis accidentally got moon points from orbiter when it has to be from probe.</comments>
+									<players>
+									<player username="" userid="0" name="Alexis" startposition="" color="" score="213" new="1" rating="0" win="1" />
+						<player username="" userid="0" name="Jen" startposition="" color="" score="145.5" new="1" rating="0" win="0" />
+						<player username="" userid="0" name="Katie" startposition="" color="" score="184" new="1" rating="0" win="0" />
+						<player username="nullghoul" userid="3612701" name="Moy" startposition="" color="" score="131" new="1" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110374075" userid="1089071" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="dborcher" userid="496337" name="Dad" startposition="" color="" score="187" new="1" rating="0" win="0" />
+						<player username="" userid="0" name="Evan" startposition="" color="" score="155" new="1" rating="0" win="0" />
+						<player username="MBorcher54" userid="1089071" name="Mark" startposition="" color="" score="231" new="1" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110374039" userid="1944390" date="2026-02-14" quantity="1" length="176" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Played with expansions:
+- [thing=445048]SETI: Space Agencies[/thing]</comments>
+									<players>
+									<player username="" userid="0" name="Kristen" startposition="" color="Mission Relay" score="189" new="0" rating="0" win="1" />
+						<player username="aawhite1" userid="1944390" name="Drew" startposition="" color="Cosmos Strategy Group" score="183" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110373579" userid="192156" date="2026-02-14" quantity="1" length="234" incomplete="0" nowinstats="0" location="CritHit 7 - DoubleTree - Mesa, AZ">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Played with expansions:
+- [thing=456891]SETI: Search for Extraterrestrial Intelligence – DLR Promo Card[/thing]
+- [thing=437940]SETI: Search for Extraterrestrial Intelligence – Gateway to Mars Promo Card[/thing]
+- [thing=430027]SETI: Search for Extraterrestrial Intelligence – Pluto Promo Card[/thing]
+- [thing=445048]SETI: Space Agencies[/thing]
+- [thing=453310]SETI: Space Agencies – Space Agencies Promo Card[/thing]</comments>
+									<players>
+									<player username="kijago" userid="32747" name="Kirsten Kimbler" startposition="" color="" score="235" new="0" rating="0" win="1" />
+						<player username="lttlkng" userid="192156" name="Justin Kimbler" startposition="" color="" score="132" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110373501" userid="3729905" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Ronnie" startposition="" color="" score="189" new="0" rating="0" win="0" />
+						<player username="Bluestreakz" userid="3729905" name="Shelli Richard" startposition="" color="" score="196" new="0" rating="0" win="1" />
+						<player username="Brimfire03" userid="3800801" name="Sandy Williams" startposition="" color="" score="152" new="0" rating="0" win="0" />
+						<player username="saytreyw" userid="320676" name="Trey Williams" startposition="" color="" score="146" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110373046" userid="1435355" date="2026-02-14" quantity="1" length="218" incomplete="0" nowinstats="0" location="Home :)">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Jessica" startposition="start player" color="" score="140" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Katherine" startposition="" color="" score="173" new="1" rating="0" win="0" />
+						<player username="Holy Toilet" userid="1435355" name="Kyle" startposition="" color="" score="191" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110372853" userid="5835" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Cambie">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="Raging Fury" userid="298014" name="Conan Leung" startposition="" color="Turing Systems" score="228" new="0" rating="0" win="1" />
+						<player username="bramadan" userid="5835" name="Bojan Ramadanovic" startposition="" color="Xenolab" score="209" new="0" rating="0" win="0" />
+						<player username="Ecclectic Moose" userid="465438" name="Tylor Hobbs" startposition="" color="Orbital Dynamics" score="192" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110372792" userid="3751921" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+								</play>
+	<play id="110372327" userid="2430879" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Played with expansions:
+- [thing=445048]SETI: Space Agencies[/thing]</comments>
+									<players>
+									<player username="" userid="0" name="Sara R" startposition="" color="" score="121" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Brian R" startposition="" color="" score="171" new="0" rating="0" win="0" />
+						<player username="katfisch" userid="2430879" name="Kat" startposition="" color="" score="193" new="0" rating="0" win="0" />
+						<player username="greendog99" userid="2004676" name="Mike" startposition="" color="" score="199" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110372287" userid="2260310" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Chewies Place">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Ryan" startposition="" color="" score="217" new="0" rating="0" win="1" />
+						<player username="dawntey" userid="2260310" name="Dante" startposition="" color="" score="173" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Joel" startposition="" color="" score="171" new="1" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110372171" userid="817993" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="Firnmacar" userid="817993" name="Curtis Lindstrom" startposition="" color="" score="196" new="0" rating="0" win="1" />
+						<player username="" userid="0" name="Claire Lindstrom" startposition="" color="" score="158" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110371644" userid="246884" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Home, Elyria OH">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+								</play>
+	<play id="110371326" userid="3160969" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>#BGCatalog</comments>
+								</play>
+	<play id="110371301" userid="2039046" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Mars hill, N.C.">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Played with expansions:
+- [thing=445048]SETI: Space Agencies[/thing]</comments>
+									<players>
+									<player username="" userid="0" name="Beth Mehsikomer" startposition="" color="" score="170" new="0" rating="0" win="1" />
+						<player username="yote501" userid="2039046" name="Jason Mehsikomer" startposition="" color="" score="157" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110371241" userid="2406076" date="2026-02-14" quantity="1" length="178" incomplete="0" nowinstats="0" location="H.">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="C." startposition="" color="" score="92" new="1" rating="0" win="0" />
+						<player username="" userid="0" name="C." startposition="" color="" score="157" new="1" rating="0" win="1" />
+						<player username="Hippojenkins" userid="2406076" name="David" startposition="" color="" score="123" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="P." startposition="" color="" score="131" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110368901" userid="658469" date="2026-02-14" quantity="1" length="180" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Jason" startposition="" color="" score="128" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Johnny" startposition="" color="" score="237" new="0" rating="0" win="1" />
+						<player username="" userid="0" name="Jodi" startposition="" color="" score="100" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110368094" userid="939419" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Charles'">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Played with expansions:
+- [thing=445048]SETI: Space Agencies[/thing]</comments>
+									<players>
+									<player username="" userid="0" name="Chris" startposition="" color="" score="178" new="0" rating="0" win="1" />
+						<player username="" userid="0" name="Griffin" startposition="" color="" score="95" new="1" rating="0" win="0" />
+						<player username="mtgofiend" userid="939419" name="Charles" startposition="" color="" score="142" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110367854" userid="1858393" date="2026-02-14" quantity="1" length="196" incomplete="0" nowinstats="0" location="DDCon">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Heather" startposition="" color="" score="52" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Daron" startposition="" color="" score="150" new="1" rating="0" win="1" />
+						<player username="" userid="0" name="Lacey" startposition="" color="" score="124" new="1" rating="0" win="0" />
+						<player username="" userid="0" name="Emily" startposition="" color="" score="107" new="1" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110367511" userid="1788931" date="2026-02-14" quantity="1" length="286" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Glyphids／Amoeba／Pippin - Variant
+
+Played with expansions:
+- [thing=445048]SETI: Space Agencies[/thing]</comments>
+									<players>
+									<player username="" userid="0" name="Eric" startposition="" color="" score="254" new="0" rating="0" win="1" />
+						<player username="" userid="0" name="Lara" startposition="start player" color="" score="150" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110366926" userid="2737988" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="GVSU Game Day">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Amoeba &amp; Anomalies</comments>
+									<players>
+									<player username="" userid="0" name="Tiffany" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Martin" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Jeremy X" startposition="" color="" score="" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110366747" userid="79080" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+								</play>
+	<play id="110365939" userid="1732920" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Parkdale House">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Jerry" startposition="" color="" score="132" new="1" rating="0" win="0" />
+						<player username="" userid="0" name="Jon" startposition="" color="" score="128" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Schmuul" startposition="" color="" score="233" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110365903" userid="1045421" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Difficulty 3</comments>
+									<players>
+									<player username="" userid="0" name="Jared" startposition="" color="" score="143" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="AI" startposition="" color="" score="213" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110365860" userid="978036" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Becky" startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Ian" startposition="" color="" score="" new="0" rating="0" win="1" />
+						<player username="" userid="0" name="David S." startposition="" color="" score="" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Michael-newtrain" startposition="" color="" score="" new="0" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110364453" userid="1722768" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="H.">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Played with expansions:
+- [thing=430027]SETI: Search for Extraterrestrial Intelligence – Pluto Promo Card[/thing]
+- [thing=445048]SETI: Space Agencies[/thing]</comments>
+									<players>
+									<player username="" userid="0" name="Melissa" startposition="" color="" score="167" new="0" rating="0" win="0" />
+						<player username="Smartyjosh" userid="845351" name="J." startposition="" color="" score="248" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110363633" userid="600762" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+									<players>
+									<player username="" userid="0" name="Dre" startposition="" color="" score="" new="1" rating="0" win="0" />
+						</players>
+					</play>
+	<play id="110363500" userid="2424602" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+								</play>
+	<play id="110362419" userid="2787358" date="2026-02-14" quantity="1" length="150" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>Played with expansions:
+- [thing=445048]SETI: Space Agencies[/thing]</comments>
+									<players>
+									<player username="droomies" userid="2787358" name="Daniel Ettridge" startposition="" color="" score="178" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Zoe Hooks" startposition="" color="" score="204" new="0" rating="0" win="1" />
+						</players>
+					</play>
+	<play id="110362386" userid="4094077" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Home">
+			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
+				<subtypes>
+										<subtype value="boardgame" />
+									</subtypes>
+			</item>
+						<comments>#BGCatalog</comments>
+									<players>
+									<player username="" userid="0" name="Tahmi" startposition="" color="" score="174" new="0" rating="0" win="0" />
+						<player username="AddictedDuck" userid="2589335" name="Will" startposition="" color="" score="214" new="0" rating="0" win="1" />
+						</players>
+					</play>
 	<play id="110362088" userid="116458" date="2026-02-14" quantity="1" length="152" incomplete="0" nowinstats="0" location="Dom">
 			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
 				<subtypes>
@@ -195,7 +867,7 @@ Played with expansions:
 - [thing=453310]SETI: Space Agencies – Space Agencies Promo Card[/thing]</comments>
 									<players>
 									<player username="" userid="0" name="Automa" startposition="" color="" score="133" new="0" rating="0" win="0" />
-						<player username="sugai" userid="116458" name="Patryk Radzik" startposition="start player" color="" score="186" new="0" rating="0" win="1" />
+						<player username="sugai" userid="116458" name="Patryk Radzik" startposition="start player" color="" score="195" new="0" rating="0" win="1" />
 						</players>
 					</play>
 	<play id="110361321" userid="3952" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
@@ -279,9 +951,9 @@ Played with expansions:
 									</subtypes>
 			</item>
 									<players>
-									<player username="Rox813" userid="1631159" name="Roxanne" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Philippe Lebeuf" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Vincent Lebeuf" startposition="" color="" score="" new="0" rating="0" win="0" />
+									<player username="Rox813" userid="1631159" name="Roxanne" startposition="" color="" score="123" new="0" rating="0" win="0" />
+						<player username="" userid="0" name="Philippe Lebeuf" startposition="" color="" score="98" new="1" rating="0" win="0" />
+						<player username="" userid="0" name="Vincent Lebeuf" startposition="" color="" score="168" new="0" rating="0" win="1" />
 						</players>
 					</play>
 	<play id="110358799" userid="3740383" date="2026-02-14" quantity="1" length="193" incomplete="0" nowinstats="0" location="Nogoya">
@@ -481,680 +1153,4 @@ Nao 154</comments>
 						<player username="" userid="0" name="Ewelina" startposition="" color="" score="192" new="0" rating="0" win="0" />
 						</players>
 					</play>
-	<play id="110353081" userid="54257" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
-	<play id="110352341" userid="219994" date="2026-02-14" quantity="1" length="431" incomplete="0" nowinstats="0" location="Nedre Sørbø 22">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Played with expansions:
-- [thing=456891]SETI: Search for Extraterrestrial Intelligence – DLR Promo Card[/thing]
-- [thing=437940]SETI: Search for Extraterrestrial Intelligence – Gateway to Mars Promo Card[/thing]
-- [thing=430027]SETI: Search for Extraterrestrial Intelligence – Pluto Promo Card[/thing]
-- [thing=445048]SETI: Space Agencies[/thing]
-- [thing=453310]SETI: Space Agencies – Space Agencies Promo Card[/thing]</comments>
-									<players>
-									<player username="CellarDoor" userid="111386" name="Geir Harald" startposition="" color="" score="231" new="1" rating="0" win="0" />
-						<player username="Atlasholy8" userid="219994" name="Terje Vedaa Naustheller" startposition="" color="" score="235" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="Espen" startposition="" color="" score="120" new="1" rating="0" win="0" />
-						<player username="Vilthuril" userid="217159" name="Katherine Rosland" startposition="" color="" score="188" new="1" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110352285" userid="3830362" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Nana and Grampys">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Eric" startposition="" color="" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="TC" startposition="" color="" score="" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110352206" userid="3467111" date="2026-02-14" quantity="1" length="135" incomplete="0" nowinstats="0" location="S.">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>#bgstats</comments>
-									<players>
-									<player username="Oogooseteen" userid="3467111" name="Augustine Paolo Dimalanta De Villa" startposition="" color="" score="133" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="C." startposition="" color="" score="145" new="1" rating="0" win="1" />
-						<player username="" userid="0" name="W." startposition="" color="" score="132" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110352111" userid="1740939" date="2026-02-14" quantity="1" length="146" incomplete="0" nowinstats="0" location="U mnie">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing]</comments>
-									<players>
-									<player username="akurczak" userid="1740939" name="Andrzej" startposition="" color="" score="289" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Anonimowy gracz" startposition="" color="Automa level 5" score="313" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110351182" userid="2573634" date="2026-02-14" quantity="1" length="119" incomplete="0" nowinstats="0" location="Dom">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Played with expansions:
-- [thing=430027]SETI: Search for Extraterrestrial Intelligence – Pluto Promo Card[/thing]
-- [thing=445048]SETI: Space Agencies[/thing]
-- [thing=453310]SETI: Space Agencies – Space Agencies Promo Card[/thing]</comments>
-									<players>
-									<player username="GrzegorzHalinka" userid="2573634" name="Grzegorz Rak" startposition="" color="" score="216" new="0" rating="0" win="0" />
-						<player username="GrzegorzHalinka" userid="2573634" name="Halinka" startposition="" color="Sentient" score="218" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="Paweł" startposition="start player" color="Sygnalink" score="131" new="1" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110351090" userid="1016906" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>3 os. 155 Marcin</comments>
-								</play>
-	<play id="110350578" userid="1226292" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Casa">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Centaurianos y Exertianos</comments>
-									<players>
-									<player username="Antilla" userid="1226292" name="César Martín Herguedas" startposition="" color="" score="151" new="1" rating="0" win="1" />
-						<player username="" userid="0" name="Lorena" startposition="" color="" score="143" new="1" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110349960" userid="3572443" date="2026-02-14" quantity="1" length="256" incomplete="0" nowinstats="0" location="Home Sazzz">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing]</comments>
-									<players>
-									<player username="" userid="0" name="Ricardo" startposition="" color="" score="183" new="0" rating="0" win="1" />
-						<player username="Sazzz" userid="3572443" name="Sazzz" startposition="" color="" score="164" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110349392" userid="55736" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
-	<play id="110348625" userid="3463198" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="ligning" userid="3463198" name="Anna" startposition="" color="" score="213" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="Timothy" startposition="" color="" score="148" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110348172" userid="1092570" date="2026-02-14" quantity="1" length="300" incomplete="0" nowinstats="0" location="Tanja &amp; Mechti">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Raumfahrtorganisation</comments>
-									<players>
-									<player username="MeepleMinion" userid="1092570" name="Ariane" startposition="1" color="" score="155" new="0" rating="0" win="0" />
-						<player username="schlafmuetze" userid="802675" name="Tanja Löb" startposition="2" color="" score="199" new="0" rating="0" win="0" />
-						<player username="Mechti" userid="446032" name="Thomas Mechtersheimer" startposition="3" color="" score="240" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="Danny" startposition="4" color="" score="208" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110348141" userid="90666" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Scott’s House">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments> #bgstats</comments>
-									<players>
-									<player username="" userid="0" name="Scott" startposition="" color="" score="203" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="Ariana" startposition="" color="" score="136" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110348040" userid="2970276" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="Voxari" userid="2970276" name="Voxari" startposition="" color="" score="255" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="M." startposition="" color="" score="140" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110348018" userid="1958451" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Casa">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>#BGCatalog</comments>
-									<players>
-									<player username="" userid="0" name="D4ru" startposition="" color="" score="null" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="Gonzalo" startposition="" color="" score="null" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Luisito" startposition="" color="" score="null" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Mamá" startposition="" color="" score="null" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110347982" userid="1315018" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="H.">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Paul" startposition="" color="" score="110" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="A." startposition="" color="" score="90" new="1" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110347253" userid="3728426" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
-	<play id="110347243" userid="3728426" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
-	<play id="110346841" userid="3465224" date="2026-02-14" quantity="1" length="101" incomplete="0" nowinstats="0" location="D.">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing]</comments>
-									<players>
-									<player username="" userid="0" name="A." startposition="" color="Orbital Dynamics" score="179" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Jakub" startposition="" color="Instytut Planowania Przyszłości" score="245" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110346722" userid="3019542" date="2026-02-14" quantity="1" length="240" incomplete="0" nowinstats="0" location="Дома">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="white_450" userid="3019542" name="Никита" startposition="" color="" score="169" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Иван Дуля" startposition="" color="" score="232" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="Алёна" startposition="" color="" score="168" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110346169" userid="3989219" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
-	<play id="110346101" userid="3870472" date="2026-02-14" quantity="1" length="108" incomplete="0" nowinstats="0" location="H.">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Ryan" startposition="" color="" score="190" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="A." startposition="" color="" score="213" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110344695" userid="1320213" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Atlantis">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="Kohei_Arai_Lippo" userid="1320213" name="Kohei Arai Lippo" startposition="" color="" score="207" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="Milka" startposition="" color="" score="169" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110344170" userid="1126284" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
-	<play id="110344139" userid="3116399" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Tychy">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>#BGCatalog</comments>
-									<players>
-									<player username="YeLLoW25" userid="1140241" name="Dawid" startposition="" color="Pomarańczowy" score="144" new="0" rating="0" win="0" />
-						<player username="nomu" userid="3116399" name="Pati" startposition="" color="Fioletowy" score="198" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="karolina" startposition="" color="Zielony" score="163" new="0" rating="0" win="0" />
-						<player username="Messer86" userid="2998150" name="krzysiek" startposition="" color="Biały" score="145" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110344070" userid="1684384" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Home">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="Ardbegman" userid="1684384" name="Nico De Muyt" startposition="" color="" score="175" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="Automa" startposition="" color="" score="132" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110343847" userid="2569489" date="2026-02-14" quantity="1" length="270" incomplete="0" nowinstats="0" location="Casa Boy">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing]</comments>
-									<players>
-									<player username="" userid="0" name="Stefano Belli" startposition="" color="Sistemi turing" score="190" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="ALEBOY" startposition="" color="Astropolo" score="137" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Corrado Melegari" startposition="" color="Progetto helion" score="80" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Mary (Goblin)" startposition="start player" color="Sistemi turing／Gruppo strategico" score="152" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110343545" userid="3934561" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="ludus">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="Magallope" userid="3934561" name="Marco Antonio  Gallardo" startposition="" color="" score="191" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="cheski" startposition="" color="" score="125" new="1" rating="0" win="0" />
-						<player username="losiwinner" userid="2636812" name="losiwinner" startposition="" color="" score="177" new="1" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110343467" userid="1298101" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
-	<play id="110343347" userid="2549207" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
-	<play id="110343188" userid="1397826" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="L.">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments> #bgstats</comments>
-									<players>
-									<player username="" userid="0" name="Joel Fischer" startposition="" color="" score="151" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="L." startposition="" color="" score="112" new="1" rating="0" win="0" />
-						<player username="" userid="0" name="E." startposition="" color="" score="119" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="S." startposition="" color="" score="103" new="1" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110342642" userid="694411" date="2026-02-14" quantity="1" length="286" incomplete="0" nowinstats="0" location="Lara">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Glyphids／Amoeba
-#bgstats
-
-Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing] ([geekurl=/play/110342643]play[/geekurl])</comments>
-									<players>
-									<player username="" userid="0" name="Lara" startposition="" color="" score="150" new="0" rating="0" win="0" />
-						<player username="runner_boy_4ever" userid="694411" name="Eric L" startposition="" color="" score="254" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110341714" userid="342434" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
-	<play id="110341628" userid="1777540" date="2026-02-14" quantity="1" length="113" incomplete="0" nowinstats="0" location="Hopfengarten ">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>#BGCatalog</comments>
-									<players>
-									<player username="" userid="0" name="Pia" startposition="" color="" score="126" new="0" rating="0" win="0" />
-						<player username="SegaOlemor" userid="1777540" name="Tobias" startposition="" color="" score="176" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110341393" userid="1160318" date="2026-02-14" quantity="1" length="205" incomplete="0" nowinstats="0" location="Schloss Tollet">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>2 Spieler - 4 neutrale Schnellstartkarten
-
-Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing]</comments>
-									<players>
-									<player username="" userid="0" name="Alex Mathie" startposition="" color="#5" score="173" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Michael Otelo" startposition="start player" color="#7" score="106" new="0" rating="0" win="0" />
-						<player username="FrAnkX0r88" userid="1160318" name="René Frank" startposition="" color="#8" score="146" new="0" rating="0" win="0" />
-						<player username="mainstream123" userid="1819269" name="Thomas Weinberger" startposition="" color="#9" score="199" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110340229" userid="238732" date="2026-02-14" quantity="1" length="212" incomplete="0" nowinstats="0" location="401 Games">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing] ([geekurl=/play/110340230]play[/geekurl])</comments>
-									<players>
-									<player username="" userid="0" name="TBG - Cassandra" startposition="start player" color="" score="210" new="1" rating="0" win="0" />
-						<player username="" userid="0" name="TBG - Kushal" startposition="" color="" score="168" new="0" rating="0" win="0" />
-						<player username="addicted2deals" userid="238732" name="Nam" startposition="" color="" score="216" new="1" rating="0" win="0" />
-						<player username="" userid="0" name="TBG - Eric S" startposition="" color="" score="259" new="1" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110340148" userid="238732" date="2026-02-14" quantity="1" length="191" incomplete="0" nowinstats="0" location="401 Games">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing] ([geekurl=/play/110340151]play[/geekurl])</comments>
-									<players>
-									<player username="addicted2deals" userid="238732" name="Nam" startposition="" color="Cosmos Strategy Group" score="" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="TBG - Cassandra" startposition="" color="Turing Systems" score="" new="1" rating="0" win="0" />
-						<player username="" userid="0" name="TBG - Eric S" startposition="" color="Stratus Code" score="" new="1" rating="0" win="0" />
-						<player username="" userid="0" name="TBG - Kushal" startposition="" color="Deep Sky Systems" score="" new="1" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110340006" userid="1075900" date="2026-02-14" quantity="1" length="212" incomplete="0" nowinstats="0" location="️ Bay-Adelaide Centre">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments> #bgstats
-
-Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing] ([geekurl=/play/110340009]play[/geekurl])</comments>
-									<players>
-									<player username="" userid="0" name="Eric S" startposition="" color="" score="259" new="1" rating="0" win="1" />
-						<player username="anim8r" userid="1075900" name="Kush R" startposition="" color="" score="168" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Cassandra" startposition="start player" color="" score="210" new="1" rating="0" win="0" />
-						<player username="addicted2deals" userid="238732" name="Nicholas T" startposition="" color="" score="216" new="1" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110339798" userid="2689271" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
-	<play id="110339292" userid="1688534" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Dom">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>#BGCatalog</comments>
-									<players>
-									<player username="" userid="0" name="Ila" startposition="" color="Purple" score="null" new="0" rating="0" win="0" />
-						<player username="peteer22r" userid="1688534" name="Piotr" startposition="" color="Green" score="null" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110339230" userid="3981180" date="2026-02-14" quantity="1" length="91" incomplete="0" nowinstats="0" location="Brandýsek - Doma">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Played with expansions:
-- [thing=445048]SETI: Kosmické agentury[/thing]</comments>
-									<players>
-									<player username="IvcaG87" userid="3981180" name="Ivča" startposition="" color="" score="228" new="0" rating="0" win="0" />
-						<player username="JirKrato" userid="3944871" name="Jirka" startposition="start player" color="" score="255" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110339217" userid="3386553" date="2026-02-14" quantity="1" length="186" incomplete="0" nowinstats="0" location="My home">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="SETI Rival lv.3" startposition="" color="" score="151" new="0" rating="0" win="0" />
-						<player username="ZeroZephyros" userid="3386553" name="G olf" startposition="" color="" score="198" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110339160" userid="3465224" date="2026-02-14" quantity="1" length="120" incomplete="0" nowinstats="0" location="D.">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing]</comments>
-									<players>
-									<player username="" userid="0" name="A." startposition="" color="Strato-Kor" score="169" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Jakub" startposition="" color="Systemy Turinga" score="191" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110338280" userid="628067" date="2026-02-14" quantity="1" length="178" incomplete="0" nowinstats="0" location="Maison">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>#bgstats</comments>
-									<players>
-									<player username="" userid="0" name="Mathilde" startposition="" color="" score="190" new="0" rating="0" win="0" />
-						<player username="Majami" userid="628067" name="Xavier" startposition="start player" color="" score="206" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110338098" userid="2152330" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>#BGCatalog</comments>
-									<players>
-									<player username="ded1984" userid="2152330" name="Oleksii Yukhno" startposition="" color="" score="null" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110337713" userid="56463" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
-	<play id="110337485" userid="1783130" date="2026-02-14" quantity="1" length="126" incomplete="0" nowinstats="0" location="Salle de la femme sans tête">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Tony" startposition="" color="" score="104" new="1" rating="0" win="0" />
-						<player username="" userid="0" name="Sébastien" startposition="" color="" score="162" new="1" rating="0" win="1" />
-						<player username="Madguitarist" userid="1783130" name="Sid" startposition="" color="" score="110" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110337470" userid="1204085" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="Nicola Ciacci">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Anna" startposition="" color="5 - Sistemi Turing" score="183" new="0" rating="0" win="0" />
-						<player username="Rogergalf" userid="1204085" name="Ettore" startposition="" color="6 - Gruppo Strategico Cosmos" score="189" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110336124" userid="4131229" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
-	<play id="110336102" userid="1970554" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="M.">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Alexandre" startposition="" color="" score="143" new="1" rating="0" win="0" />
-						<player username="" userid="0" name="A." startposition="" color="" score="199" new="1" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110335963" userid="4308239" date="2026-02-14" quantity="1" length="237" incomplete="0" nowinstats="0" location="H.">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="T." startposition="start player" color="" score="115" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="E." startposition="" color="" score="138" new="1" rating="0" win="0" />
-						<player username="" userid="0" name="Michael" startposition="" color="" score="154" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="M." startposition="" color="" score="184" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110334022" userid="3090135" date="2026-02-14" quantity="1" length="10" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>#BGCatalog</comments>
-									<players>
-									<player username="" userid="0" name="Matthew" startposition="" color="" score="171" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="Sonia" startposition="" color="" score="153" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110333823" userid="2389930" date="2026-02-14" quantity="1" length="95" incomplete="0" nowinstats="0" location="Home">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing]</comments>
-									<players>
-									<player username="" userid="0" name="Ross" startposition="" color="" score="136" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Наталя" startposition="" color="" score="150" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110333808" userid="1830002" date="2026-02-14" quantity="1" length="168" incomplete="0" nowinstats="0" location="Home">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-									<players>
-									<player username="" userid="0" name="Adam" startposition="" color="" score="129" new="0" rating="0" win="0" />
-						<player username="Bradcone" userid="1830002" name="Brad Cone" startposition="" color="" score="165" new="0" rating="0" win="1" />
-						</players>
-					</play>
-	<play id="110333498" userid="652639" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="U Pytona">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing]</comments>
-									<players>
-									<player username="minnenmin" userid="652639" name="Marcin" startposition="" color="" score="224" new="0" rating="0" win="1" />
-						<player username="" userid="0" name="Keraj" startposition="" color="" score="190" new="1" rating="0" win="0" />
-						<player username="" userid="0" name="Mateusz P" startposition="" color="" score="206" new="1" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110333463" userid="2231741" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="U Pythona">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>#bgstats
-
-Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing]
-- [thing=453310]SETI: Space Agencies – Space Agencies Promo Card[/thing]</comments>
-									<players>
-									<player username="keraj" userid="2231741" name="Jarek Nowisz" startposition="" color="" score="190" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Marcin od Mario" startposition="" color="" score="224" new="1" rating="0" win="1" />
-						<player username="Pyton Warsaw" userid="1160312" name="Pyton" startposition="" color="" score="206" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110333462" userid="1160312" date="2026-02-14" quantity="1" length="198" incomplete="0" nowinstats="0" location="Na Kabatach, Warszawa Ursynów">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-						<comments>#bgstats
-
-Played with expansions:
-- [thing=445048]SETI: Space Agencies[/thing]</comments>
-									<players>
-									<player username="" userid="0" name="Keraj" startposition="" color="" score="190" new="0" rating="0" win="0" />
-						<player username="" userid="0" name="Marcin Konstancin" startposition="" color="" score="224" new="0" rating="0" win="1" />
-						<player username="Pyton Warsaw" userid="1160312" name="Mateusz P." startposition="" color="" score="206" new="0" rating="0" win="0" />
-						</players>
-					</play>
-	<play id="110332425" userid="940928" date="2026-02-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="SETI: Search for Extraterrestrial Intelligence" objecttype="thing" objectid="418059">
-				<subtypes>
-										<subtype value="boardgame" />
-									</subtypes>
-			</item>
-								</play>
 	</plays>

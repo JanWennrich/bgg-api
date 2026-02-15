@@ -49,7 +49,7 @@ SETI: Search for Extraterrestrial Intelligence pays homage to space and planetar
 										      	               				<yearpublished value="2024" />
 						               				<minplayers value="1" />
 						               				<maxplayers value="4" />
-						      			<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="599">
+						      			<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="600">
 			
 		<results numplayers="1">		
 					<result value="Best" numvotes="26" />
@@ -70,7 +70,7 @@ SETI: Search for Extraterrestrial Intelligence pays homage to space and planetar
 				</results>					
 			
 		<results numplayers="4">		
-					<result value="Best" numvotes="109" />
+					<result value="Best" numvotes="110" />
 					<result value="Recommended" numvotes="204" />
 					<result value="Not Recommended" numvotes="152" />
 				</results>					
@@ -2202,24 +2202,24 @@ SETI: Search for Extraterrestrial Intelligence pays homage to space and planetar
 	
    		<statistics page="1">
 								<ratings >
-			<usersrated value="17319" />
-			<average value="8.41504" />
-			<bayesaverage value="7.99319" />
+			<usersrated value="17351" />
+			<average value="8.41573" />
+			<bayesaverage value="7.99427" />
 
 			<ranks>
-															<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="17" bayesaverage="7.99319" />
-																				<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="14" bayesaverage="8.0558" />
+															<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="17" bayesaverage="7.99427" />
+																				<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="14" bayesaverage="8.05691" />
 												</ranks>
 
-			<stddev value="1.27046" />
+			<stddev value="1.27009" />
 			<median value="0" />
-			<owned value="27876" />
+			<owned value="27922" />
 			<trading value="68" />
-			<wanting value="944" />
-			<wishing value="10579" />
-			<numcomments value="2205" />
-			<numweights value="936" />
-			<averageweight value="3.8184" />
+			<wanting value="946" />
+			<wishing value="10590" />
+			<numcomments value="2208" />
+			<numweights value="939" />
+			<averageweight value="3.819" />
 			</ratings>
 								</statistics>
      
