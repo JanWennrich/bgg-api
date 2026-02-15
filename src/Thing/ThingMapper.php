@@ -240,6 +240,7 @@ final class ThingMapper
             $versions[] = new Version(
                 Xml::attrInt($node, 'id') ?? 0,
                 Xml::attrString($node, 'type') ?? '',
+                Xml::childStringValue($node, 'canonicalname'),
                 Xml::childText($node->thumbnail ?? null),
                 Xml::childText($node->image ?? null),
                 $name,

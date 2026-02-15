@@ -185,6 +185,7 @@ final class CollectionMapper
             $item = new Version(
                 Xml::attrInt($itemNode, 'id') ?? 0,
                 Xml::attrString($itemNode, 'type') ?? '',
+                Xml::childStringValue($itemNode, 'canonicalname'),
                 Xml::childText($itemNode->thumbnail ?? null),
                 Xml::childText($itemNode->image ?? null),
                 $name,

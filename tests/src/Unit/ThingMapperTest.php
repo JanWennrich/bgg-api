@@ -63,6 +63,20 @@ final class ThingMapperTest extends TestCase
         self::assertEmpty($thing->getMarketplaceListings());
     }
 
+    public function testVersionCanonicalNameIsMapped(): void
+    {
+        $xml = simplexml_load_file(__DIR__ . '/../../fixtures/thing/thing-barebones.xml');
+        if ($xml === false) {
+            self::fail('Could not load XML file');
+        }
+
+        $thing = (new Thing\ThingMapper())->fromXml($xml->item[0]);
+        $versions = $thing->getVersions();
+
+        self::assertNotEmpty($versions);
+        self::assertSame('Senior Moments: Travel Edition', $versions[0]->getCanonicalName());
+    }
+
     #[\PHPUnit\Framework\Attributes\DoesNotPerformAssertions]
     public function testGetDesigners(): void
     {

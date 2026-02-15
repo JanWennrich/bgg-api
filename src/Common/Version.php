@@ -13,6 +13,7 @@ final readonly class Version
     public function __construct(
         private int $id,
         private string $type,
+        private ?string $canonicalName,
         private ?string $thumbnail,
         private ?string $image,
         private ?string $name,
@@ -34,6 +35,11 @@ final readonly class Version
     public function getType(): string
     {
         return $this->type;
+    }
+
+    public function getCanonicalName(): ?string
+    {
+        return $this->canonicalName;
     }
 
     public function getThumbnail(): ?string
