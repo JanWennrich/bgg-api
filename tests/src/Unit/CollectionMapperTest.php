@@ -68,8 +68,7 @@ final class CollectionMapperTest extends TestCase
         self::assertTrue($collectionStatus->isWishlisted());
         self::assertSame(4, $collectionStatus->getWishlistPriority());
         self::assertFalse($collectionStatus->isPreOrdered());
-        //        self::assertInstanceOf(\DateTimeImmutable::class, $itemStatus->getLastModified());
-        //        self::assertSame('2023-12-18 14:21:07', $itemStatus->getLastModified()->format('Y-m-d H:i:s'));
+        self::assertSame('2024-11-03 11:07:38', $collectionStatus->getLastModified()->format('Y-m-d H:i:s'));
 
         self::assertSame(0, $first->getNumPlays());
     }

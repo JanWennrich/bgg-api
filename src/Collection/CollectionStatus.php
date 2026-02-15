@@ -16,7 +16,7 @@ final readonly class CollectionStatus
         private bool $wishlist,
         private ?int $wishlistPriority,
         private bool $preordered,
-        private string $lastModified,
+        private \DateTimeImmutable $lastModified,
     ) {}
 
     public function isOwned(): bool
@@ -64,7 +64,7 @@ final readonly class CollectionStatus
         return $this->preordered;
     }
 
-    public function getLastModified(): string
+    public function getLastModified(): \DateTimeImmutable
     {
         return $this->lastModified;
     }

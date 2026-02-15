@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JanWennrich\BoardGameGeekApi\Collection;
 
+use JanWennrich\BoardGameGeekApi\Exception;
 use JanWennrich\BoardGameGeekApi\Thing\ThingType;
 use JanWennrich\BoardGameGeekApi\Common\Link;
 use JanWennrich\BoardGameGeekApi\Common\Version;
@@ -98,6 +99,11 @@ final class CollectionMapper
     {
         $statusNode ??= new \SimpleXMLElement('<status/>');
 
+        $lastModified = Xml::toDateTimeImmutable(Xml::attrString($statusNode, 'lastmodified'));
+        if (!$lastModified instanceof \DateTimeImmutable) {
+            throw new Exception('Collection status lastmodified is missing or invalid.');
+        }
+
         return new CollectionStatus(
             Xml::attrBool($statusNode, 'own') ?? false,
             Xml::attrBool($statusNode, 'prevowned') ?? false,
@@ -108,7 +114,7 @@ final class CollectionMapper
             Xml::attrBool($statusNode, 'wishlist') ?? false,
             Xml::attrInt($statusNode, 'wishlistpriority'),
             Xml::attrBool($statusNode, 'preordered') ?? false,
-            Xml::attrString($statusNode, 'lastmodified') ?? '',
+            $lastModified,
         );
     }
 
