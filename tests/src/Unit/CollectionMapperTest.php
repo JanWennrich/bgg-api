@@ -59,15 +59,15 @@ final class CollectionMapperTest extends TestCase
         self::assertStringStartsWith('https://cf.geekdo-images.com/', $first->getThumbnail() ?? '');
 
         $collectionStatus = $first->getStatus();
-        self::assertFalse($collectionStatus->isOwn());
-        self::assertFalse($collectionStatus->isPrevOwned());
+        self::assertFalse($collectionStatus->isOwned());
+        self::assertFalse($collectionStatus->isPreviouslyOwned());
         self::assertFalse($collectionStatus->isForTrade());
-        self::assertFalse($collectionStatus->isWant());
+        self::assertFalse($collectionStatus->isWanted());
         self::assertTrue($collectionStatus->isWantToPlay());
         self::assertFalse($collectionStatus->isWantToBuy());
-        self::assertTrue($collectionStatus->isWishlist());
+        self::assertTrue($collectionStatus->isWishlisted());
         self::assertSame(4, $collectionStatus->getWishlistPriority());
-        self::assertFalse($collectionStatus->isPreordered());
+        self::assertFalse($collectionStatus->isPreOrdered());
         //        self::assertInstanceOf(\DateTimeImmutable::class, $itemStatus->getLastModified());
         //        self::assertSame('2023-12-18 14:21:07', $itemStatus->getLastModified()->format('Y-m-d H:i:s'));
 
@@ -103,8 +103,8 @@ final class CollectionMapperTest extends TestCase
         self::assertInstanceOf(Collection\CollectionItem::class, $found, 'Expected to find objectid=343322 in collection-username=Klabauterjan.xml');
 
         $collectionStatus = $found->getStatus();
-        self::assertFalse($collectionStatus->isOwn());
-        self::assertTrue($collectionStatus->isPrevOwned());
+        self::assertFalse($collectionStatus->isOwned());
+        self::assertTrue($collectionStatus->isPreviouslyOwned());
         self::assertSame(1, $found->getNumPlays());
         //        self::assertInstanceOf(\DateTimeImmutable::class, $itemStatus->getLastModified());
         //        self::assertSame('2025-07-13 15:49:07', $itemStatus->getLastModified()->format('Y-m-d H:i:s'));
@@ -114,7 +114,7 @@ final class CollectionMapperTest extends TestCase
     {
         $found = null;
         foreach ($this->collection->getItems() as $collectionItem) {
-            if (!$collectionItem->getStatus()->isWishlist()) {
+            if (!$collectionItem->getStatus()->isWishlisted()) {
                 $found = $collectionItem;
                 break;
             }

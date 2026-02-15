@@ -19,12 +19,12 @@ final readonly class CollectionStatus
         private string $lastModified,
     ) {}
 
-    public function isOwn(): bool
+    public function isOwned(): bool
     {
         return $this->own;
     }
 
-    public function isPrevOwned(): bool
+    public function isPreviouslyOwned(): bool
     {
         return $this->prevOwned;
     }
@@ -34,7 +34,7 @@ final readonly class CollectionStatus
         return $this->forTrade;
     }
 
-    public function isWant(): bool
+    public function isWanted(): bool
     {
         return $this->want;
     }
@@ -49,7 +49,7 @@ final readonly class CollectionStatus
         return $this->wantToBuy;
     }
 
-    public function isWishlist(): bool
+    public function isWishlisted(): bool
     {
         return $this->wishlist;
     }
@@ -59,7 +59,7 @@ final readonly class CollectionStatus
         return $this->wishlistPriority;
     }
 
-    public function isPreordered(): bool
+    public function isPreOrdered(): bool
     {
         return $this->preordered;
     }
