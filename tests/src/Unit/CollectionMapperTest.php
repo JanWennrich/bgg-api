@@ -16,7 +16,7 @@ final class CollectionMapperTest extends TestCase
 
     protected function setUp(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/collection.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../fixtures/collection/collection-username=Klabauterjan.xml');
         if ($xml === false) {
             self::fail('Could not load XML file');
         }
@@ -26,7 +26,7 @@ final class CollectionMapperTest extends TestCase
 
     public function testCountMatchesXmlAndIterator(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/collection.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../fixtures/collection/collection-username=Klabauterjan.xml');
         if ($xml === false) {
             self::fail('Could not load XML file');
         }
@@ -50,27 +50,27 @@ final class CollectionMapperTest extends TestCase
 
         $first = $items[0];
 
-        self::assertSame(390092, $first->getObjectId());
+        self::assertSame(68448, $first->getObjectId());
         self::assertSame(ThingType::BoardGame, $first->getType());
-        self::assertSame(113685788, $first->getCollectionId());
-        self::assertSame('¡Aventureros al Tren! Legacy: Leyendas del Oeste', $first->getName());
-        self::assertSame("2023", $first->getYearPublished());
+        self::assertSame(125055247, $first->getCollectionId());
+        self::assertSame('7 Wonders', $first->getName());
+        self::assertSame("2010", $first->getYearPublished());
         self::assertStringStartsWith('https://cf.geekdo-images.com/', $first->getImage() ?? '');
         self::assertStringStartsWith('https://cf.geekdo-images.com/', $first->getThumbnail() ?? '');
 
         $collectionStatus = $first->getStatus();
-        self::assertTrue($collectionStatus->isOwn());
+        self::assertFalse($collectionStatus->isOwn());
         self::assertFalse($collectionStatus->isPrevOwned());
         self::assertFalse($collectionStatus->isForTrade());
         self::assertFalse($collectionStatus->isWant());
-        self::assertFalse($collectionStatus->isWantToPlay());
+        self::assertTrue($collectionStatus->isWantToPlay());
         self::assertFalse($collectionStatus->isWantToBuy());
-        self::assertFalse($collectionStatus->isWishlist());
+        self::assertTrue($collectionStatus->isWishlist());
         self::assertFalse($collectionStatus->isPreordered());
         //        self::assertInstanceOf(\DateTimeImmutable::class, $itemStatus->getLastModified());
         //        self::assertSame('2023-12-18 14:21:07', $itemStatus->getLastModified()->format('Y-m-d H:i:s'));
 
-        self::assertSame(6, $first->getNumPlays());
+        self::assertSame(0, $first->getNumPlays());
     }
 
     public function testStatsAndRatingsAreNullWhenAbsent(): void
@@ -90,7 +90,7 @@ final class CollectionMapperTest extends TestCase
 
     public function testPrevOwnedItemExistsAndParsed(): void
     {
-        $targetId = 359871; // Arcs
+        $targetId = 343322; // EXIT: The Game - Advent Calendar: The Hunt for the Golden Book
         $found = null;
         foreach ($this->collection->getItems() as $collectionItem) {
             if ($collectionItem->getObjectId() === $targetId) {
@@ -99,7 +99,7 @@ final class CollectionMapperTest extends TestCase
             }
         }
 
-        self::assertInstanceOf(Collection\CollectionItem::class, $found, 'Expected to find objectid=359871 in collection.xml');
+        self::assertInstanceOf(Collection\CollectionItem::class, $found, 'Expected to find objectid=343322 in collection-username=Klabauterjan.xml');
 
         $collectionStatus = $found->getStatus();
         self::assertFalse($collectionStatus->isOwn());

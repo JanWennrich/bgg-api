@@ -14,7 +14,7 @@ final class ThingMapperTest extends TestCase
 
     protected function setUp(): void
     {
-        $xml = simplexml_load_file(__DIR__ . '/../../files/thing.xml');
+        $xml = simplexml_load_file(__DIR__ . '/../../fixtures/thing/thing-id=418059.xml');
         if ($xml === false) {
             self::fail('Could not load XML file');
         }
@@ -24,12 +24,12 @@ final class ThingMapperTest extends TestCase
 
     public function testGetName(): void
     {
-        self::assertSame('Dream Home', $this->thing->getName());
+        self::assertSame('SETI: Search for Extraterrestrial Intelligence', $this->thing->getName());
     }
 
     public function testGetLinks(): void
     {
-        self::assertCount(16, $this->thing->getLinks());
+        self::assertCount(61, $this->thing->getLinks());
         self::assertContainsOnlyInstancesOf(BoardGameGeekApi\Common\Link::class, $this->thing->getLinks());
     }
 

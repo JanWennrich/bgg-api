@@ -1,0 +1,1055 @@
+<?xml version="1.0" encoding="utf-8"?><items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse"><item type="boardgame" id="418059">
+         <thumbnail>https://cf.geekdo-images.com/_BUXOVRDU9g_eRwgpR5ZZw__small/img/icamIZ4nP3HHH3vczZqTr1hQgKY=/fit-in/200x150/filters:strip_icc()/pic8160466.jpg</thumbnail>
+      <image>https://cf.geekdo-images.com/_BUXOVRDU9g_eRwgpR5ZZw__original/img/28ob2JiASW8iX8XoVzp5Y25-h24=/0x0/filters:format(jpeg)/pic8160466.jpg</image>
+   	                                  				
+				<name type="primary" sortindex="1" value="SETI: Search for Extraterrestrial Intelligence" />
+			
+						                               				
+				<name type="alternate" sortindex="1" value="SETI: Auf der Suche nach außerirdischem Leben" />
+			    				
+				<name type="alternate" sortindex="1" value="SETI: Busca por Inteligência Extraterrestre" />
+			    				
+				<name type="alternate" sortindex="1" value="SETI: De Zoektocht naar Buitenaardse Intelligentie" />
+			    				
+				<name type="alternate" sortindex="1" value="SETI: En busca de vida extraterrestre" />
+			    				
+				<name type="alternate" sortindex="1" value="SETI: Kutatás a földön kívüli élet után" />
+			    				
+				<name type="alternate" sortindex="1" value="SETI: Pátrání po mimozemské inteligenci" />
+			    				
+				<name type="alternate" sortindex="1" value="SETI: Poszukiwania pozaziemskich cywilizacji" />
+			    				
+				<name type="alternate" sortindex="1" value="SETI: Potraga za vanzemaljskom inteligencijom" />
+			    				
+				<name type="alternate" sortindex="1" value="SETI: Recherche d&#039;intelligence extraterrestre" />
+			    				
+				<name type="alternate" sortindex="1" value="SETI: Ricerca di Intelligenza Extraterrestre" />
+			    				
+				<name type="alternate" sortindex="1" value="SETI: Пошуки позаземного розуму" />
+			    				
+				<name type="alternate" sortindex="1" value="SETI：地球外知的生命体探査" />
+			    				
+				<name type="alternate" sortindex="1" value="星空觅迹：探寻地外文明计划" />
+			    				
+				<name type="alternate" sortindex="1" value="세티: 외계 지성체를 찾아서" />
+			
+						               													<description>In SETI: Search for Extraterrestrial Intelligence, you lead a scientific institution tasked with searching for traces of life beyond planet Earth. The game draws inspiration from current or emerging technologies and efforts in space exploration. Players will explore nearby planets and their moons by launching probes from Earth while taking advantage of ever-shifting planetary positions. Decide whether to land on their surfaces to collect valuable samples or stay in orbit for a broader survey. Additionally, by directing your telescopes to gaze into distant star systems, you may detect traces of alien signals or undiscovered exoplanets, and collect promising data to examine and study back home.
+
+Back on Earth, you can invest in upgrading your equipment so you can analyze incoming data more efficiently, boost your telescope signal capacity, or increase your supply of resources&amp;mdash;all to expand the scope of your search that could lead to a discovery of extraterrestrial life forms. Finding traces of extraterrestrial life is only a matter of time&amp;mdash;utilize the resources you have at your disposal strategically and you may well end up being the one to make the biggest scientific contribution towards advancing our understanding of alien life within our galaxy.
+
+You will also make use of over 200 cards to aid your efforts or focus your research in a particular direction for additional bonuses and rewards. Each card has unique effects and illustrations and depicts real-life technologies, projects, and discoveries (like the ISS, Large Hadron Collider, Perseverance rover, Voyager probe, and many more).
+
+The game is played in five rounds. The player with the starting player marker takes the first turn of the round. Players take turns in clockwise order, skipping any players who have already passed for the round. At the end of round 5, the final score is calculated and the player with the most points wins.
+
+SETI: Search for Extraterrestrial Intelligence pays homage to space and planetary exploration, astronomy, the ongoing search for signs of life in the vastness of space, and efforts to understand the nature of life in the universe.
+
+&amp;mdash;description from the publisher
+
+</description>
+										      	               				<yearpublished value="2024" />
+						               				<minplayers value="1" />
+						               				<maxplayers value="4" />
+						      			<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="599">
+			
+		<results numplayers="1">		
+					<result value="Best" numvotes="26" />
+					<result value="Recommended" numvotes="216" />
+					<result value="Not Recommended" numvotes="73" />
+				</results>					
+			
+		<results numplayers="2">		
+					<result value="Best" numvotes="73" />
+					<result value="Recommended" numvotes="308" />
+					<result value="Not Recommended" numvotes="73" />
+				</results>					
+			
+		<results numplayers="3">		
+					<result value="Best" numvotes="352" />
+					<result value="Recommended" numvotes="133" />
+					<result value="Not Recommended" numvotes="7" />
+				</results>					
+			
+		<results numplayers="4">		
+					<result value="Best" numvotes="109" />
+					<result value="Recommended" numvotes="204" />
+					<result value="Not Recommended" numvotes="152" />
+				</results>					
+			
+		<results numplayers="4+">		
+					<result value="Best" numvotes="1" />
+					<result value="Recommended" numvotes="2" />
+					<result value="Not Recommended" numvotes="236" />
+				</results>					
+	</poll>
+<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
+  <result name="bestwith" value="Best with 3 players" />
+  <result name="recommmendedwith" value="Recommended with 1–4 players" />
+</poll-summary> 			               				<playingtime value="160" />
+						               				<minplaytime value="40" />
+						               				<maxplaytime value="160" />
+						               				<minage value="14" />
+						      			<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="71">
+			<results>		
+					<result value="2" numvotes="0" />
+					<result value="3" numvotes="0" />
+					<result value="4" numvotes="0" />
+					<result value="5" numvotes="0" />
+					<result value="6" numvotes="0" />
+					<result value="8" numvotes="1" />
+					<result value="10" numvotes="3" />
+					<result value="12" numvotes="19" />
+					<result value="14" numvotes="43" />
+					<result value="16" numvotes="5" />
+					<result value="18" numvotes="0" />
+					<result value="21 and up" numvotes="0" />
+				</results>					
+	</poll> 			      			<poll name="language_dependence" title="Language Dependence" totalvotes="26">
+			
+		<results>		
+					<result level="1" value="No necessary in-game text" numvotes="1" />
+					<result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="2" />
+					<result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="16" />
+					<result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="6" />
+					<result level="5" value="Unplayable in another language" numvotes="1" />
+				</results>					
+	</poll> 			      			 			      				
+		 			
+
+			
+		
+					<link type="boardgamecategory" id="1016" value="Science Fiction" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamecategory" id="1113" value="Space Exploration" />
+		
+									
+			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2080" value="Area Majority / Influence" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2875" value="End Game Bonuses" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2902" value="Income" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="3099" value="Multi-Use Cards" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2948" value="Resource to Move" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2819" value="Solo / Solitaire Game" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2828" value="Turn Order: Progressive" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2897" value="Variable Set-up" />
+		
+									
+			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgamefamily" id="109412" value="Components: RE-Wood" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamefamily" id="5679" value="Creatures: Aliens / Extraterrestrials" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamefamily" id="106729" value="Misc: GettingGames Tutorial Videos" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamefamily" id="5666" value="Players: Games with Solitaire Rules" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamefamily" id="19298" value="Space: Earth&#039;s Solar System" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamefamily" id="66108" value="Theme: Astronomy" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamefamily" id="66167" value="Theme: Science" />
+		
+									
+			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgameexpansion" id="456891" value="SETI: Search for Extraterrestrial Intelligence – DLR Promo Card" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameexpansion" id="437940" value="SETI: Search for Extraterrestrial Intelligence – Gateway to Mars Promo Card" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameexpansion" id="430027" value="SETI: Search for Extraterrestrial Intelligence – Pluto Promo Card" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameexpansion" id="445048" value="SETI: Space Agencies" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameexpansion" id="453310" value="SETI: Space Agencies – Space Agencies Promo Card" />
+		
+									
+			
+
+			      			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="461328" value="SETI: 1st Player Token" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="464081" value="SETI: InMyBox Organizer" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="453493" value="SETI: reDrewno Insert" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="448429" value="SETI: Search for Extraterrestrial Intelligence – ApexCrafter Energy and Credit Enameled Metal Token Set" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="454633" value="SETI: Search for Extraterrestrial Intelligence – DeluxyGames Upgrade Kit" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="438799" value="SETI: Search for Extraterrestrial Intelligence – Eurohell 3D Tokens" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="438798" value="SETI: Search for Extraterrestrial Intelligence – Eurohell Insert" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="439799" value="SETI: Search for Extraterrestrial Intelligence – Folded Space Insert" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="442416" value="SETI: Search for Extraterrestrial Intelligence – Inserty Herman Insert" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="446139" value="SETI: Search for Extraterrestrial Intelligence – Laserox Organizer" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="434375" value="SETI: Search for Extraterrestrial Intelligence – Polandgames UV Insert" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="440125" value="SETI: Search for Extraterrestrial Intelligence – The GiftForge Insert" />
+		
+									
+			
+
+			      			
+
+			      			
+
+			      			
+
+			      			
+
+			      			
+
+			      	      	      				
+		 			
+
+			
+		
+					<link type="boardgamedesigner" id="135378" value="Tomáš Holek" />
+		
+									
+			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="115373" value="Ondřej Hrdina" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="160646" value="Oto Kandera" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="127825" value="Jiří Kůs" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="160644" value="Jakub Lang" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="160643" value="Michaela Lovecká" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="145646" value="Jiří Mikovec" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="94497" value="Jakub Politzer" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="160645" value="Petra Ramešová" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="119983" value="František Sedláček" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="113177" value="Petr Štich" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="160642" value="Petr Štich (III)" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="160641" value="Josef Surý" />
+		
+									
+			
+
+			      	      				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="7345" value="Czech Games Edition" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="9068" value="Broadway Toys LTD" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="10768" value="Cranio Creations" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="2366" value="Devir" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="23205" value="DiceTree Games" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="54949" value="DSV Games" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="36981" value="Feelindigo" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="8820" value="Gém Klub Kft." />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="38505" value="HeidelBÄR Games" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="1391" value="Hobby Japan" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="8923" value="IELLO" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="7992" value="MINDOK" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="51614" value="MIPL" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="7466" value="Rebel Sp. z o.o." />
+		
+									
+			
+
+			
+	
+
+	
+
+	
+	
+	
+   		<statistics page="1">
+								<ratings >
+			<usersrated value="17319" />
+			<average value="8.41504" />
+			<bayesaverage value="7.99319" />
+
+			<ranks>
+															<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="17" bayesaverage="7.99319" />
+																				<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="14" bayesaverage="8.0558" />
+												</ranks>
+
+			<stddev value="1.27046" />
+			<median value="0" />
+			<owned value="27876" />
+			<trading value="68" />
+			<wanting value="944" />
+			<wishing value="10579" />
+			<numcomments value="2205" />
+			<numweights value="936" />
+			<averageweight value="3.8184" />
+			</ratings>
+								</statistics>
+     
+	
+          
+</item>
+<item type="boardgame" id="420033">
+         <thumbnail>https://cf.geekdo-images.com/M0e9l-SHH2H4RMSAcnsDgg__small/img/TL_OB6SKLJpCM1u1MD4ddEAp9ic=/fit-in/200x150/filters:strip_icc()/pic8658546.jpg</thumbnail>
+      <image>https://cf.geekdo-images.com/M0e9l-SHH2H4RMSAcnsDgg__original/img/nT1NtVviWxSBgVv5lvM4RmemITs=/0x0/filters:format(jpeg)/pic8658546.jpg</image>
+   	                                  				
+				<name type="primary" sortindex="1" value="Vantage" />
+			
+						                           
+						               													<description>Vantage is an open-world, co-operative, non-campaign adventure game that features an entire planet to explore, with&amp;nbsp;players communicating while scattered across the world. With nearly eight hundred interconnected locations on four hundred cards and over nine hundred other discoverable cards, the world is your sandbox.
+
+You begin each game of Vantage on an intergalactic vessel heading towards an uncharted planet. After crashing far from your companions, you have complete freedom as to how you explore, discover, and interact with the planet. You view your location from a first-person perspective, and you can communicate with and support other players, but you are separated by vast distances, so only you can see your current location.
+
+In addition to a mission victory, a destiny victory, or an epic victory (completing both the mission and a destiny), you may define success in Vantage through anything you pursue and achieve.
+
+Vantage is not a campaign game. Each game is a standalone experience; you bring to future sessions only what you&amp;rsquo;ve learned about the world. It is completely self-contained with no&amp;nbsp;expansions &amp;mdash; just a few accessories like metal coins.
+
+&amp;mdash;description from the publisher
+
+</description>
+										      	               				<yearpublished value="2025" />
+						               				<minplayers value="1" />
+						               				<maxplayers value="6" />
+						      			<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="364">
+			
+		<results numplayers="1">		
+					<result value="Best" numvotes="172" />
+					<result value="Recommended" numvotes="139" />
+					<result value="Not Recommended" numvotes="16" />
+				</results>					
+			
+		<results numplayers="2">		
+					<result value="Best" numvotes="208" />
+					<result value="Recommended" numvotes="107" />
+					<result value="Not Recommended" numvotes="19" />
+				</results>					
+			
+		<results numplayers="3">		
+					<result value="Best" numvotes="69" />
+					<result value="Recommended" numvotes="162" />
+					<result value="Not Recommended" numvotes="69" />
+				</results>					
+			
+		<results numplayers="4">		
+					<result value="Best" numvotes="18" />
+					<result value="Recommended" numvotes="79" />
+					<result value="Not Recommended" numvotes="187" />
+				</results>					
+			
+		<results numplayers="5">		
+					<result value="Best" numvotes="2" />
+					<result value="Recommended" numvotes="27" />
+					<result value="Not Recommended" numvotes="255" />
+				</results>					
+			
+		<results numplayers="6">		
+					<result value="Best" numvotes="4" />
+					<result value="Recommended" numvotes="16" />
+					<result value="Not Recommended" numvotes="264" />
+				</results>					
+			
+		<results numplayers="6+">		
+					<result value="Best" numvotes="1" />
+					<result value="Recommended" numvotes="3" />
+					<result value="Not Recommended" numvotes="229" />
+				</results>					
+	</poll>
+<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
+  <result name="bestwith" value="Best with 1–2 players" />
+  <result name="recommmendedwith" value="Recommended with 1–3 players" />
+</poll-summary> 			               				<playingtime value="180" />
+						               				<minplaytime value="120" />
+						               				<maxplaytime value="180" />
+						               				<minage value="14" />
+						      			<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="41">
+			<results>		
+					<result value="2" numvotes="1" />
+					<result value="3" numvotes="0" />
+					<result value="4" numvotes="0" />
+					<result value="5" numvotes="0" />
+					<result value="6" numvotes="2" />
+					<result value="8" numvotes="20" />
+					<result value="10" numvotes="7" />
+					<result value="12" numvotes="5" />
+					<result value="14" numvotes="6" />
+					<result value="16" numvotes="0" />
+					<result value="18" numvotes="0" />
+					<result value="21 and up" numvotes="0" />
+				</results>					
+	</poll> 			      			<poll name="language_dependence" title="Language Dependence" totalvotes="11">
+			
+		<results>		
+					<result level="1" value="No necessary in-game text" numvotes="0" />
+					<result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="0" />
+					<result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="0" />
+					<result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="7" />
+					<result level="5" value="Unplayable in another language" numvotes="4" />
+				</results>					
+	</poll> 			      			 			      				
+		 			
+
+			
+		
+					<link type="boardgamecategory" id="1022" value="Adventure" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamecategory" id="1020" value="Exploration" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamecategory" id="1010" value="Fantasy" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamecategory" id="1016" value="Science Fiction" />
+		
+									
+			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2023" value="Cooperative Game" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2072" value="Dice Rolling" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2856" value="Die Icon Resolution" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2851" value="Narrative Choice / Paragraph" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2822" value="Scenario / Mission / Campaign Game" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2819" value="Solo / Solitaire Game" />
+		
+									
+			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgamefamily" id="5679" value="Creatures: Aliens / Extraterrestrials" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamefamily" id="69209" value="Occupation: Adventurer / Explorer" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamefamily" id="5666" value="Players: Games with Solitaire Rules" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamefamily" id="115524" value="Theme: Pets / Companion Animals" />
+		
+									
+			
+
+			      			
+
+			      			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="457671" value="Vantage: Board Bento Organizer" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="457234" value="Vantage: First Printing Errata Pack" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="420136" value="Vantage: Metal Coins" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="449934" value="Vantage: Playmats" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameaccessory" id="449933" value="Vantage: Wooden Skill Tokens" />
+		
+									
+			
+
+			      			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgamecompilation" id="451323" value="Skirm" inbound="true"/>
+		
+									
+			
+
+			      			
+
+			      			
+
+			      			
+
+			      	      	      				
+		 			
+
+			
+		
+					<link type="boardgamedesigner" id="62640" value="Jamey Stegmaier" />
+		
+									
+			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="102966" value="Valentina Filic" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="102584" value="Sören Meding" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgameartist" id="111373" value="Emilien Rotival" />
+		
+									
+			
+
+			      	      				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="23202" value="Stonemaier Games" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="6194" value="Delta Vision Publishing" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="22380" value="Feuerland Spiele" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="26840" value="Keep Exploring Games" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="30677" value="Maldito Games" />
+		
+									
+			
+
+			
+	
+
+	
+
+	
+	
+	
+   		<statistics page="1">
+								<ratings >
+			<usersrated value="5636" />
+			<average value="8.27562" />
+			<bayesaverage value="7.31141" />
+
+			<ranks>
+															<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="228" bayesaverage="7.31141" />
+																				<rank type="family" id="5496" name="thematic" friendlyname="Thematic Rank" value="45" bayesaverage="7.48375" />
+												</ranks>
+
+			<stddev value="1.6417" />
+			<median value="0" />
+			<owned value="11754" />
+			<trading value="88" />
+			<wanting value="584" />
+			<wishing value="7507" />
+			<numcomments value="1331" />
+			<numweights value="226" />
+			<averageweight value="2.3319" />
+			</ratings>
+								</statistics>
+     
+	
+          
+</item>
+</items>
