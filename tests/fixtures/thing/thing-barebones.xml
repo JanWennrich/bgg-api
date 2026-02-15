@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?><items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse"><item type="boardgame" id="463795">
+         <thumbnail>https://cf.geekdo-images.com/bgER78DlapNgeORPny9DYw__small/img/2oMUL09HQgZ0ltrAz6zmVGUjFr4=/fit-in/200x150/filters:strip_icc()/pic9378632.jpg</thumbnail>
+      <image>https://cf.geekdo-images.com/bgER78DlapNgeORPny9DYw__original/img/-atGfL9OabQPuH1-JJ9ZtkHq9PU=/0x0/filters:format(jpeg)/pic9378632.jpg</image>
+   	                                  				
+				<name type="primary" sortindex="1" value="Senior Moments: Travel Edition" />
+			
+						                           
+						               													<description>You're never too young to have a senior moment or to play Senior Moments, a memory game for anyone who might need the practice.
+
+Senior Moments Travel Edition is a compact, quick-play memory challenge card game themed around classic &amp;ldquo;senior moment&amp;rdquo; jokes&amp;mdash;with a friendly, pop culture twist. The oldest player starts as the active player. The person to their right is the reader and draws from the deck. If a Special Card appears, the reader keeps it to use later and draws again until a Memory Card is pulled. The reader then reads the Memory Card twice, slowly and clearly. The active player must repeat the list of items&amp;mdash;or perform the listed actions and will score 1 point for each item remembered or action performed correctly.
+
+Play continues clockwise until someone reaches the agreed point goal. After the first player hits the goal, everyone else gets one final turn to try to match or beat it. If there&amp;rsquo;s a tie, those players go head-to-head, taking turns reading lists to each other until one misses&amp;mdash;last one standing wins.
+
+&amp;mdash;description from the publisher
+
+</description>
+										      	               				<yearpublished value="2025" />
+						               				<minplayers value="2" />
+						               				<maxplayers value="8" />
+						      			<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="0">
+			
+		<results numplayers="8+">		
+				</results>					
+	</poll>
+<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
+  <result name="bestwith" value="" />
+  <result name="recommmendedwith" value="(no votes)" />
+</poll-summary> 			               				<playingtime value="45" />
+						               				<minplaytime value="15" />
+						               				<maxplaytime value="45" />
+						               				<minage value="15" />
+						      			<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="0">
+	</poll> 			      			<poll name="language_dependence" title="Language Dependence" totalvotes="0">
+	</poll> 			      			 			      				
+		 			
+
+			
+		
+					<link type="boardgamecategory" id="1002" value="Card Game" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamecategory" id="1045" value="Memory" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamecategory" id="1030" value="Party Game" />
+		
+									
+			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2073" value="Acting" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2040" value="Hand Management" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2837" value="Interrupts" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2047" value="Memory" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2865" value="Player Judge" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2686" value="Take That" />
+		
+									
+				
+		 			
+
+			
+		
+					<link type="boardgamemechanic" id="2828" value="Turn Order: Progressive" />
+		
+									
+			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgamefamily" id="62270" value="Versions &amp; Editions: Travel Versions of Non-Travel Games" />
+		
+									
+			
+
+			      			
+
+			      			
+
+			      			
+
+			      			
+
+			      			
+
+			      			
+
+			      			
+
+			      				
+		 			
+
+			
+		
+					<link type="boardgameimplementation" id="18543" value="Senior Moments" inbound="true"/>
+		
+									
+			
+
+			      	      	      			
+
+			      			
+
+			      	      				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="527" value="TDC Games, Inc." />
+		
+									
+			
+
+			
+	
+
+	<versions><item type="boardgameversion" id="789477">
+   			<canonicalname value="Senior Moments: Travel Edition"></canonicalname>
+	         				
+		 			
+
+			
+		
+					<link type="boardgameversion" id="463795" value="Senior Moments: Travel Edition" inbound="true"/>
+		
+									
+			
+
+			                               				
+				<name type="primary" sortindex="1" value="English edition" />
+			
+						                           
+						      				
+		 			
+
+			
+		
+					<link type="boardgamepublisher" id="527" value="TDC Games, Inc." />
+		
+									
+			
+
+			      			
+
+			               				<yearpublished value="2025" />
+						               				<productcode value="" />
+						               				<width value="3.75" />
+						               				<length value="5.5" />
+						               				<depth value="0.75" />
+						               				<weight value="0.23" />
+						      				
+		 			
+
+			
+		
+					<link type="language" id="2184" value="English" />
+		
+									
+			
+
+			
+	
+
+	
+
+	
+	
+	
+   
+	
+          
+</item>
+</versions>
+
+	
+	
+	
+   		<statistics page="1">
+								<ratings >
+			<usersrated value="0" />
+			<average value="0" />
+			<bayesaverage value="0" />
+
+			<ranks>
+															<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="Not Ranked" bayesaverage="Not Ranked" />
+												</ranks>
+
+			<stddev value="0" />
+			<median value="0" />
+			<owned value="1" />
+			<trading value="0" />
+			<wanting value="0" />
+			<wishing value="2" />
+			<numcomments value="0" />
+			<numweights value="0" />
+			<averageweight value="0" />
+			</ratings>
+								</statistics>
+     
+	
+          
+</item>
+</items>

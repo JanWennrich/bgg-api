@@ -44,6 +44,25 @@ final class ThingMapperTest extends TestCase
         self::assertSame(4, $numberOfPlayersSuggestion->getMaximum());
     }
 
+    public function testMissingOptionalThingDataIsHandled(): void
+    {
+        $xml = simplexml_load_file(__DIR__ . '/../../fixtures/thing/thing-barebones.xml');
+        if ($xml === false) {
+            self::fail('Could not load XML file');
+        }
+
+        $thing = (new Thing\ThingMapper())->fromXml($xml->item[0]);
+
+        self::assertEmpty($thing->getAlternateNames());
+        self::assertEmpty($thing->getComments());
+        self::assertNull($thing->getExactPublishDate());
+        self::assertNull($thing->getReleaseDate());
+        self::assertNull($thing->getSeriesCode());
+        self::assertNull($thing->getSuggestedNumberOfPlayers());
+        self::assertNull($thing->getVideos());
+        self::assertEmpty($thing->getMarketplaceListings());
+    }
+
     #[\PHPUnit\Framework\Attributes\DoesNotPerformAssertions]
     public function testGetDesigners(): void
     {
