@@ -106,6 +106,7 @@ final class CollectionMapper
             Xml::attrBool($statusNode, 'wanttoplay') ?? false,
             Xml::attrBool($statusNode, 'wanttobuy') ?? false,
             Xml::attrBool($statusNode, 'wishlist') ?? false,
+            Xml::attrInt($statusNode, 'wishlistpriority'),
             Xml::attrBool($statusNode, 'preordered') ?? false,
             Xml::attrString($statusNode, 'lastmodified') ?? '',
         );

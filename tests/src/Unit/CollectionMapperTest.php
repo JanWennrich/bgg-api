@@ -66,6 +66,7 @@ final class CollectionMapperTest extends TestCase
         self::assertTrue($collectionStatus->isWantToPlay());
         self::assertFalse($collectionStatus->isWantToBuy());
         self::assertTrue($collectionStatus->isWishlist());
+        self::assertSame(4, $collectionStatus->getWishlistPriority());
         self::assertFalse($collectionStatus->isPreordered());
         //        self::assertInstanceOf(\DateTimeImmutable::class, $itemStatus->getLastModified());
         //        self::assertSame('2023-12-18 14:21:07', $itemStatus->getLastModified()->format('Y-m-d H:i:s'));
@@ -107,5 +108,19 @@ final class CollectionMapperTest extends TestCase
         self::assertSame(1, $found->getNumPlays());
         //        self::assertInstanceOf(\DateTimeImmutable::class, $itemStatus->getLastModified());
         //        self::assertSame('2025-07-13 15:49:07', $itemStatus->getLastModified()->format('Y-m-d H:i:s'));
+    }
+
+    public function testWishlistPriorityIsNullWhenNotWishlisted(): void
+    {
+        $found = null;
+        foreach ($this->collection->getItems() as $collectionItem) {
+            if (!$collectionItem->getStatus()->isWishlist()) {
+                $found = $collectionItem;
+                break;
+            }
+        }
+
+        self::assertInstanceOf(Collection\CollectionItem::class, $found, 'Expected to find an item that is not wishlisted.');
+        self::assertNull($found->getStatus()->getWishlistPriority());
     }
 }

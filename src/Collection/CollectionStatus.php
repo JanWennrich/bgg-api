@@ -14,6 +14,7 @@ final readonly class CollectionStatus
         private bool $wantToPlay,
         private bool $wantToBuy,
         private bool $wishlist,
+        private ?int $wishlistPriority,
         private bool $preordered,
         private string $lastModified,
     ) {}
@@ -51,6 +52,11 @@ final readonly class CollectionStatus
     public function isWishlist(): bool
     {
         return $this->wishlist;
+    }
+
+    public function getWishlistPriority(): ?int
+    {
+        return $this->wishlistPriority;
     }
 
     public function isPreordered(): bool
