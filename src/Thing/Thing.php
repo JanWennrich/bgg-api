@@ -39,6 +39,7 @@ final readonly class Thing
         private ?int $minPlayTime,
         private ?int $maxPlayTime,
         private ?int $minAge,
+        private ?NumberOfPlayersSuggestion $numberOfPlayersSuggestion,
         private array $links,
         private array $polls,
         private ?array $videos,
@@ -139,6 +140,11 @@ final readonly class Thing
     public function getMinAge(): ?int
     {
         return $this->minAge;
+    }
+
+    public function getSuggestedNumberOfPlayers(): ?NumberOfPlayersSuggestion
+    {
+        return $this->numberOfPlayersSuggestion;
     }
 
     /**

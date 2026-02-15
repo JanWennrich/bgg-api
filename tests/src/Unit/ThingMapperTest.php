@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JanWennrich\BoardGameGeekApi\Test;
 
 use JanWennrich\BoardGameGeekApi\Thing;
+use JanWennrich\BoardGameGeekApi\Thing\NumberOfPlayersSuggestion;
 use PHPUnit\Framework\TestCase;
 use JanWennrich\BoardGameGeekApi;
 
@@ -31,6 +32,16 @@ final class ThingMapperTest extends TestCase
     {
         self::assertCount(61, $this->thing->getLinks());
         self::assertContainsOnlyInstancesOf(BoardGameGeekApi\Common\Link::class, $this->thing->getLinks());
+    }
+
+    public function testGetSuggestedNumberOfPlayers(): void
+    {
+        $numberOfPlayersSuggestion = $this->thing->getSuggestedNumberOfPlayers();
+
+        self::assertInstanceOf(NumberOfPlayersSuggestion::class, $numberOfPlayersSuggestion);
+        self::assertSame(3, $numberOfPlayersSuggestion->getBest());
+        self::assertSame(1, $numberOfPlayersSuggestion->getMinimum());
+        self::assertSame(4, $numberOfPlayersSuggestion->getMaximum());
     }
 
     #[\PHPUnit\Framework\Attributes\DoesNotPerformAssertions]

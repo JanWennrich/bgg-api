@@ -20,6 +20,7 @@ final class ThingMapper
         [$name, $alternateNames] = $this->mapNames(Xml::xpath($item, 'name'));
         $links = $this->mapLinks(Xml::xpath($item, 'link'));
         $polls = $this->mapPolls(Xml::xpath($item, 'poll'));
+        $numberOfPlayersSuggestion = $this->mapSuggestedNumberOfPlayers($item);
         $versions = $this->mapVersions($item->versions ?? null);
         $statistics = $this->mapStatistics($item->statistics ?? null);
         $listings = $this->mapMarketplaceListings($item->marketplacelistings ?? null);
@@ -43,6 +44,7 @@ final class ThingMapper
             Xml::childIntValue($item, 'minplaytime'),
             Xml::childIntValue($item, 'maxplaytime'),
             Xml::childIntValue($item, 'minage'),
+            $numberOfPlayersSuggestion,
             $links,
             $polls,
             $this->mapVideos($item->videos ?? null),
@@ -131,6 +133,58 @@ final class ThingMapper
         }
 
         return $polls;
+    }
+
+    private function mapSuggestedNumberOfPlayers(\SimpleXMLElement $item): ?NumberOfPlayersSuggestion
+    {
+        $summaryNode = Xml::xpath($item, 'poll-summary[@name="suggested_numplayers"]')[0] ?? null;
+        if (!$summaryNode instanceof \SimpleXMLElement) {
+            return null;
+        }
+
+        $best = null;
+        $minimum = null;
+        $maximum = null;
+        foreach (Xml::xpath($summaryNode, 'result') as $resultNode) {
+            $name = Xml::attrString($resultNode, 'name') ?? '';
+            $value = Xml::attrString($resultNode, 'value') ?? '';
+            $numbers = $this->extractInts($value);
+            if ($numbers === []) {
+                continue;
+            }
+
+            if ($name === 'bestwith') {
+                $best = $numbers[0];
+                continue;
+            }
+
+            if ($name === 'recommmendedwith' || $name === 'recommendedwith') {
+                $minimum = $numbers[0];
+                $maximum = $numbers[count($numbers) - 1];
+            }
+        }
+
+        if ($best === null || $minimum === null || $maximum === null) {
+            return null;
+        }
+
+        if ($best < 1 || $minimum < 1 || $maximum < 1) {
+            return null;
+        }
+
+        return new NumberOfPlayersSuggestion($best, $minimum, $maximum);
+    }
+
+    /**
+     * @return int[]
+     */
+    private function extractInts(string $value): array
+    {
+        if (preg_match_all('/\\d+/', $value, $matches) === 0) {
+            return [];
+        }
+
+        return array_map(intval(...), $matches[0]);
     }
 
     /**
