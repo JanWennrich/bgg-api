@@ -7,51 +7,51 @@ namespace JanWennrich\BoardGameGeekApi\Collection;
 final readonly class CollectionStatus
 {
     public function __construct(
-        private bool $own,
-        private bool $prevOwned,
-        private bool $forTrade,
-        private bool $want,
-        private bool $wantToPlay,
-        private bool $wantToBuy,
-        private bool $wishlist,
+        private bool $isOwned,
+        private bool $isPreviouslyOwned,
+        private bool $isForTrade,
+        private bool $isWanted,
+        private bool $isWantToPlay,
+        private bool $isWantToBuy,
+        private bool $isWishlisted,
         private ?int $wishlistPriority,
-        private bool $preordered,
+        private bool $isPreOrdered,
         private \DateTimeImmutable $lastModified,
     ) {}
 
     public function isOwned(): bool
     {
-        return $this->own;
+        return $this->isOwned;
     }
 
     public function isPreviouslyOwned(): bool
     {
-        return $this->prevOwned;
+        return $this->isPreviouslyOwned;
     }
 
     public function isForTrade(): bool
     {
-        return $this->forTrade;
+        return $this->isForTrade;
     }
 
     public function isWanted(): bool
     {
-        return $this->want;
+        return $this->isWanted;
     }
 
     public function isWantToPlay(): bool
     {
-        return $this->wantToPlay;
+        return $this->isWantToPlay;
     }
 
     public function isWantToBuy(): bool
     {
-        return $this->wantToBuy;
+        return $this->isWantToBuy;
     }
 
     public function isWishlisted(): bool
     {
-        return $this->wishlist;
+        return $this->isWishlisted;
     }
 
     public function getWishlistPriority(): ?int
@@ -61,7 +61,7 @@ final readonly class CollectionStatus
 
     public function isPreOrdered(): bool
     {
-        return $this->preordered;
+        return $this->isPreOrdered;
     }
 
     public function getLastModified(): \DateTimeImmutable
