@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://bgg.naska.li/xml/common">
+  <xs:import schemaLocation="../common.xsd" namespace="http://bgg.naska.li/xml/common"/>
+
+  <xs:element name="items" type="items"/>
+
+  <xs:complexType name="items">
+    <xs:sequence>
+      <xs:element name="item" type="item" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="totalitems" type="xs:nonNegativeInteger" use="required"/>
+    <xs:attribute name="termsofuse" type="xs:anyURI" use="required"/>
+    <xs:attribute name="pubdate" type="common:rfcZonedDateTime" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="item">
+    <xs:sequence>
+      <xs:element name="name" type="name"/>
+      <xs:element name="originalname" type="xs:string" minOccurs="0"/>
+      <xs:element name="yearpublished" type="xs:string" minOccurs="0"/>
+      <xs:element name="image" type="xs:anyURI" minOccurs="0"/>
+      <xs:element name="thumbnail" type="xs:anyURI" minOccurs="0"/>
+      <xs:element name="stats" type="stats" minOccurs="0"/>
+      <xs:element name="status" type="status"/>
+      <xs:element name="numplays" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="privateinfo" type="privateInfo" minOccurs="0"/>
+      <xs:element name="version" type="version" minOccurs="0"/>
+      <xs:element name="wantpartslist" type="xs:string" minOccurs="0"/>
+      <xs:element name="haspartslist" type="xs:string" minOccurs="0"/>
+      <xs:element name="wishlistcomment" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="objecttype" type="xs:string" use="required"/>
+    <xs:attribute name="objectid" type="xs:integer" use="required"/>
+    <xs:attribute name="subtype" type="xs:string" use="required"/>
+    <xs:attribute name="collid" type="xs:integer" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="name">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="sortindex" type="xs:nonNegativeInteger" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="stats">
+    <xs:sequence>
+      <xs:element name="rating" type="rating"/>
+    </xs:sequence>
+    <xs:attribute name="minplayers" type="xs:nonNegativeInteger" use="required"/>
+    <xs:attribute name="maxplayers" type="xs:nonNegativeInteger" use="required"/>
+    <xs:attribute name="minplaytime" type="xs:nonNegativeInteger" use="required"/>
+    <xs:attribute name="maxplaytime" type="xs:nonNegativeInteger" use="required"/>
+    <xs:attribute name="playingtime" type="xs:nonNegativeInteger" use="required"/>
+    <xs:attribute name="numowned" type="xs:nonNegativeInteger" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="rating">
+    <xs:sequence>
+      <xs:element name="usersrated" type="common:integerValue"/>
+      <xs:element name="average" type="common:decimalValue"/>
+      <xs:element name="bayesaverage" type="common:decimalValue"/>
+      <xs:element name="stddev" type="common:decimalValue"/>
+      <xs:element name="median" type="common:decimalValue"/>
+      <xs:element name="ranks" type="ranks"/>
+    </xs:sequence>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="ranks">
+    <xs:sequence>
+      <xs:element name="rank" type="rank" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rank">
+    <xs:attribute name="type" type="xs:string" use="required"/>
+    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="friendlyname" type="xs:string" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+    <xs:attribute name="bayesaverage" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="status">
+    <xs:attribute name="own" type="xs:boolean" use="required"/>
+    <xs:attribute name="prevowned" type="xs:boolean" use="required"/>
+    <xs:attribute name="fortrade" type="xs:boolean" use="required"/>
+    <xs:attribute name="want" type="xs:boolean" use="required"/>
+    <xs:attribute name="wanttoplay" type="xs:boolean" use="required"/>
+    <xs:attribute name="wanttobuy" type="xs:boolean" use="required"/>
+    <xs:attribute name="wishlist" type="xs:boolean" use="required"/>
+    <xs:attribute name="wishlistpriority" type="xs:integer"/>
+    <xs:attribute name="preordered" type="xs:boolean" use="required"/>
+    <xs:attribute name="lastmodified" type="common:localDateTime" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="privateInfo">
+    <xs:sequence>
+      <xs:element name="privatecomment" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="pp_currency" type="xs:string"/>
+    <xs:attribute name="pricepaid" type="common:optionalDecimal"/>
+    <xs:attribute name="cv_currency" type="xs:string"/>
+    <xs:attribute name="currvalue" type="common:optionalDecimal"/>
+    <xs:attribute name="quantity" type="common:optionalInteger"/>
+    <xs:attribute name="acquisitiondate" type="common:optionalLocalDate"/>
+    <xs:attribute name="acquiredfrom" type="xs:string"/>
+    <xs:attribute name="inventorylocation" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="version">
+    <xs:sequence>
+      <xs:element name="imageid" type="common:integerValue" minOccurs="0"/>
+      <xs:element name="year" type="xs:integer" minOccurs="0"/>
+      <xs:element name="publisher" type="versionPublisher" minOccurs="0"/>
+      <xs:element name="other" type="xs:string" minOccurs="0"/>
+      <xs:element name="barcode" type="xs:string" minOccurs="0"/>
+      <xs:element name="item" type="versionItem" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="versionPublisher">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="publisherid" type="xs:integer" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="versionItem">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="thumbnail" type="xs:anyURI"/>
+      <xs:element name="image" type="xs:anyURI"/>
+      <xs:element name="canonicalname" type="common:stringValue"/>
+      <xs:element name="name" type="versionName"/>
+      <xs:element name="yearpublished" type="common:integerValue"/>
+      <xs:element name="link" type="versionLink"/>
+      <xs:element name="productcode" type="common:stringValue"/>
+      <xs:element name="width" type="common:decimalValue"/>
+      <xs:element name="length" type="common:decimalValue"/>
+      <xs:element name="depth" type="common:decimalValue"/>
+      <xs:element name="weight" type="common:decimalValue"/>
+    </xs:choice>
+    <xs:attribute name="type" type="xs:string" use="required"/>
+    <xs:attribute name="id" type="xs:integer" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="versionName">
+    <xs:attribute name="type" type="xs:string" use="required"/>
+    <xs:attribute name="sortindex" type="xs:nonNegativeInteger" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="versionLink">
+    <xs:attribute name="type" type="xs:string" use="required"/>
+    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+    <xs:attribute name="inbound" type="xs:boolean"/>
+  </xs:complexType>
+
+</xs:schema>

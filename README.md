@@ -323,6 +323,8 @@ The library uses the following tools to ensure functionality & stability:
 This library is a fork of [castro732/bggxmlapi2](https://github.com/castro732/bggxmlapi2) which is a fork of [nataniel/bggxmlapi2](https://github.com/nataniel/bggxmlapi2).  
 Thanks to the original authors for the foundation.
 
+The XML Schema (`.xsd`) files in `tests/xsd/` were taken from [tnaskali/bgg-api](https://github.com/tnaskali/bgg-api).
+
 ## License
 
 MIT License 
