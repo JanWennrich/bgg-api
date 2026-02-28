@@ -2,6 +2,7 @@
 <phpunit
     colors="true"
     beStrictAboutChangesToGlobalState="true"
+    beStrictAboutOutputDuringTests="true"
 >
     <testsuites>
         <testsuite name="Unit Tests">
