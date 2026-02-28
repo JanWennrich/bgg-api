@@ -3,6 +3,7 @@
     colors="true"
     beStrictAboutChangesToGlobalState="true"
     beStrictAboutOutputDuringTests="true"
+    requireSealedMockObjects="true"
 >
     <testsuites>
         <testsuite name="Unit Tests">

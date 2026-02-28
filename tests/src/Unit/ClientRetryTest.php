@@ -65,7 +65,8 @@ final class ClientRetryTest extends TestCase
         $invokedCount = $this->exactly(2);
         $sleepService->expects($invokedCount)
             ->method('sleep')
-            ->withParameterSetsInOrder(1, 2);
+            ->withParameterSetsInOrder(1, 2)
+            ->seal();
 
         $client = $this->makeClient(
             [
@@ -88,7 +89,9 @@ final class ClientRetryTest extends TestCase
     public function testQueuedRequestDoesNotRetryWhenDisabled(): void
     {
         $sleepService = $this->createMock(SleepServiceInterface::class);
-        $sleepService->expects($this->never())->method('sleep');
+        $sleepService->expects($this->never())
+            ->method('sleep')
+            ->seal();
 
         $client = $this->makeClient(
             [
