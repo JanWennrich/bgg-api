@@ -49,7 +49,7 @@ use Webmozart\Assert\InvalidArgumentException;
  * @phpstan-type RequestParams Array<string, bool|int|string>
  * @phpstan-type BggId positive-int
  */
-class Client
+final class Client
 {
     /**
      * @var non-empty-string|null
@@ -424,7 +424,7 @@ class Client
      * @param RequestParams $params
      * @throws ClientRequestException
      */
-    protected function request(BggApiEndpoint $bggApiEndpoint, array $params = []): \SimpleXMLElement
+    private function request(BggApiEndpoint $bggApiEndpoint, array $params = []): \SimpleXMLElement
     {
         /** @infection-ignore-all */
         $this->logger->debug('BGG API request', ['action' => $bggApiEndpoint, 'params' => $params]);
