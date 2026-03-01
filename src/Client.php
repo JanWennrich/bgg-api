@@ -491,7 +491,7 @@ class Client
             ]);
 
             if ($httpCode === 202) {
-                $this->logger->info('BGG API returned 202, retrying', [
+                $this->logger->info('BGG API queued the request', [
                     'code' => $httpCode,
                     'action' => $bggApiEndpoint,
                     'attempt' => $attempt,
