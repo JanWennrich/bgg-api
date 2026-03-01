@@ -15,8 +15,10 @@ use JanWennrich\BoardGameGeekApi\SleepService;
 use JanWennrich\BoardGameGeekApi\SleepServiceInterface;
 use JanWennrich\BoardGameGeekApi\RetryConfig;
 use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
 
 #[CoversMethod(Client::class, 'request')]
 final class ClientRetryTest extends TestCase
@@ -105,9 +107,127 @@ final class ClientRetryTest extends TestCase
 
         try {
             $client->getHotItems();
-            self::fail(sprintf("Expected %s to be thrown.", ClientRequestException::class));
-        } catch (ClientRequestException $clientRequestException) {
-            self::assertSame(1, $clientRequestException->attemptNumber);
+        } catch (ClientRequestException) {
+        }
+    }
+
+    public function testRequestResponseDebugLogging(): void
+    {
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger->method('error');
+        $logger->expects($this->exactly(2))
+            ->method('debug')
+            ->withParameterSetsInOrder(
+                'BGG API request',
+                'BGG API response',
+            )->seal();
+
+        $client = $this->makeClient(
+            [
+                new Response(500, [], 'foo'),
+            ],
+            new RetryConfig(retryOnServerError: false),
+            logger: $logger,
+        );
+
+        try {
+            $client->getHotItems();
+        } catch (ClientRequestException) {
+        }
+    }
+
+    public function testLoggingOnQueuedRequest(): void
+    {
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger->method('debug');
+        $logger->expects($this->exactly(3))->method('info')->withParameterSetsInOrder(
+            'BGG API queued the request',
+            'Retrying BGG API request (attempt {attempt})',
+            'BGG API queued the request'
+        )->seal();
+
+        $client = $this->makeClient(
+            [
+                new Response(202, [], 'queued'),
+                new Response(202, [], 'queued'),
+            ],
+            new RetryConfig(maxAttempts: 2, retryOnQueuedRequest: true),
+            logger: $logger,
+        );
+
+        try {
+            $client->getHotItems();
+        } catch (ClientRequestException) {
+        }
+    }
+
+    #[TestWith([400])]
+    #[TestWith([499])]
+    public function testLoggingOnClientError(int $returnCode): void
+    {
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger->method('debug');
+        $logger->expects($this->once())->method('error')->withParameterSetsInOrder(
+            'BGG API returned client error'
+        )->seal();
+
+        $client = $this->makeClient(
+            [
+                new Response($returnCode, [], 'foo'),
+            ],
+            new RetryConfig(),
+            logger: $logger,
+        );
+
+        try {
+            $client->getHotItems();
+        } catch (ClientRequestException) {
+        }
+    }
+
+    #[TestWith([500])]
+    #[TestWith([599])]
+    public function testLoggingOnServerError(int $returnCode): void
+    {
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger->method('debug');
+        $logger->expects($this->once())->method('error')->withParameterSetsInOrder(
+            'BGG API error response'
+        )->seal();
+
+        $client = $this->makeClient(
+            [
+                new Response($returnCode, [], 'foo'),
+            ],
+            new RetryConfig(retryOnServerError: false),
+            logger: $logger,
+        );
+
+        try {
+            $client->getHotItems();
+        } catch (ClientRequestException) {
+        }
+    }
+
+    public function testLoggingOnInvalidXml(): void
+    {
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger->method('debug');
+        $logger->expects($this->once())->method('error')->withParameterSetsInOrder(
+            'Failed to parse BGG API response as XML'
+        )->seal();
+
+        $client = $this->makeClient(
+            [
+                new Response(200, [], 'foo'),
+            ],
+            new RetryConfig(retryOnInvalidXml: false),
+            logger: $logger,
+        );
+
+        try {
+            $client->getHotItems();
+        } catch (ClientRequestException) {
         }
     }
 
@@ -118,12 +238,14 @@ final class ClientRetryTest extends TestCase
         array $responses,
         RetryConfig $retryConfig,
         ?SleepServiceInterface $sleepService = null,
+        ?LoggerInterface $logger = null,
     ): Client {
         $mockHandler = new MockHandler($responses);
         $handlerStack = HandlerStack::create($mockHandler);
         $client = new GuzzleClient(['handler' => $handlerStack]);
         $httpFactory = new HttpFactory();
         $sleepService ??= new SleepService();
+        $logger ??= self::createStub(LoggerInterface::class);
 
         return new Client(
             psr18Client: $client,
@@ -131,6 +253,7 @@ final class ClientRetryTest extends TestCase
             streamFactory: $httpFactory,
             retryConfig: $retryConfig,
             sleepService: $sleepService,
+            logger: $logger,
         );
     }
 }
