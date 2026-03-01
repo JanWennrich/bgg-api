@@ -1,3 +1,5 @@
+rules:
+  - JanWennrich\BoardGameGeekApi\Test\PhpStan\Rules\LoggerInfectionIgnoreRule
 parameters:
   level: 10
   paths:
@@ -5,3 +7,8 @@ parameters:
     - tests
   tipsOfTheDay: false
   treatPhpDocTypesAsCertain: false
+  ignoreErrors:
+    -
+      identifier: infection.logger.ignore
+      paths:
+        - tests

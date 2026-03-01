@@ -426,6 +426,7 @@ class Client
      */
     protected function request(BggApiEndpoint $bggApiEndpoint, array $params = []): \SimpleXMLElement
     {
+        /** @infection-ignore-all */
         $this->logger->debug('BGG API request', ['action' => $bggApiEndpoint, 'params' => $params]);
 
         $httpCode = null;
@@ -437,6 +438,7 @@ class Client
 
             if ($attempt > 1) {
                 $delayInSeconds = $this->calculateRetryDelayInSeconds($attempt);
+                /** @infection-ignore-all */
                 $this->logger->info('Retrying BGG API request (attempt {attempt})', [
                     'attempt' => $attempt,
                     'action' => $bggApiEndpoint,
@@ -466,6 +468,7 @@ class Client
             } catch (\Throwable $exception) {
                 $previousException = $exception;
 
+                /** @infection-ignore-all */
                 $this->logger->error('BGG API transport error', [
                     'exception' => $exception,
                     'attempt' => $attempt,
@@ -483,6 +486,7 @@ class Client
             $response = $httpResponse->getBody()->getContents();
             $duration = microtime(true) - $startTime;
 
+            /** @infection-ignore-all */
             $this->logger->debug('BGG API response', [
                 'code' => $httpCode,
                 'duration' => round($duration, 2),
@@ -491,6 +495,7 @@ class Client
             ]);
 
             if ($httpCode === 202) {
+                /** @infection-ignore-all */
                 $this->logger->info('BGG API queued the request', [
                     'code' => $httpCode,
                     'action' => $bggApiEndpoint,
@@ -505,6 +510,7 @@ class Client
             }
 
             if ($httpCode >= 400 && $httpCode <= 499) {
+                /** @infection-ignore-all */
                 $this->logger->error('BGG API returned client error', [
                     'code' => $httpCode,
                     'action' => $bggApiEndpoint,
@@ -516,6 +522,7 @@ class Client
             }
 
             if ($httpCode >= 500) {
+                /** @infection-ignore-all */
                 $this->logger->error('BGG API error response', [
                     'code' => $httpCode,
                     'action' => $bggApiEndpoint,
@@ -532,6 +539,7 @@ class Client
 
             $xml = @simplexml_load_string($response);
             if (!$xml instanceof \SimpleXMLElement) {
+                /** @infection-ignore-all */
                 $this->logger->error('Failed to parse BGG API response as XML', [
                     'action' => $bggApiEndpoint,
                     'attempt' => $attempt,
@@ -577,6 +585,7 @@ class Client
     {
         $url = 'https://boardgamegeek.com/login/api/v1';
 
+        /** @infection-ignore-all */
         $this->logger->info('Logging in to BGG');
 
         try {
@@ -595,6 +604,7 @@ class Client
 
             $response = $this->psr18Client->sendRequest($request);
         } catch (\Throwable $throwable) {
+            /** @infection-ignore-all */
             $this->logger->error('BGG login request failed', [
                 'exception' => $throwable,
             ]);
@@ -604,6 +614,7 @@ class Client
         $status = $response->getStatusCode();
         $body = $response->getBody()->getContents();
 
+        /** @infection-ignore-all */
         $this->logger->debug('BGG login response', [
             'status' => $status,
             'body' => substr($body, 0, 500),
