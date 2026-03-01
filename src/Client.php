@@ -530,7 +530,7 @@ class Client
                 break;
             }
 
-            $xml = simplexml_load_string($response);
+            $xml = @simplexml_load_string($response);
             if (!$xml instanceof \SimpleXMLElement) {
                 $this->logger->error('Failed to parse BGG API response as XML', [
                     'action' => $bggApiEndpoint,
